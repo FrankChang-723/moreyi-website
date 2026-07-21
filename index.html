@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoreYi — Premium Wheels & Armored Vehicle Components</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #1989fa; --primary-dark: #0d6efd; --accent: #a78bfa;
+    --bg: #0a0e17; --bg-card: rgba(255,255,255,0.03); --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(91,141,239,0.15); --text: #e0e5f0; --text-light: #8892b0;
+    --danger: #ee0a24; --success: #07c160; --radius: 14px;
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+  canvas#bg { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+
+  /* Nav */
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(10,14,23,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-size: 24px; font-weight: 900; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 15px; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--primary); }
+  .lang-btn { background: rgba(25,137,250,0.1); color: var(--primary); border: 1px solid rgba(25,137,250,0.25); padding: 6px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; transition: all 0.3s; }
+  .lang-btn:hover { background: rgba(25,137,250,0.2); }
+
+  /* Hero */
+  .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 60px; }
+  .hero h1 { font-size: clamp(36px, 8vw, 72px); font-weight: 900; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
+  .hero .sub { font-size: clamp(16px, 3vw, 22px); color: var(--text-light); margin-bottom: 12px; letter-spacing: 2px; }
+  .hero .slogan { font-size: 18px; color: var(--primary); margin-bottom: 36px; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .btn-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn { padding: 14px 36px; border-radius: 40px; font-size: 16px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; box-shadow: 0 6px 24px rgba(25,137,250,0.3); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(25,137,250,0.4); }
+  .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+  .btn-outline:hover { background: rgba(25,137,250,0.08); }
+
+  /* Section */
+  .section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 80px 24px; }
+  .section h2 { text-align: center; font-size: 36px; font-weight: 800; margin-bottom: 12px; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section .sec-desc { text-align: center; color: var(--text-light); margin-bottom: 48px; font-size: 16px; }
+
+  /* Product Cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; transition: all 0.4s; position: relative; overflow: hidden; }
+  .card:hover { background: var(--bg-card-hover); border-color: rgba(25,137,250,0.35); transform: translateY(-6px); box-shadow: 0 16px 48px rgba(25,137,250,0.1); }
+  .card .icon { font-size: 48px; margin-bottom: 16px; }
+  .card h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14px; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
+  .card .specs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .card .spec { background: rgba(25,137,250,0.08); color: var(--primary); padding: 4px 12px; border-radius: 12px; font-size: 13px; }
+  .card .price { font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+  .card .price small { font-size: 14px; color: var(--text-light); font-weight: 400; }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .contact-form input, .contact-form textarea, .contact-form select {
+    width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; font-family: inherit; transition: border-color 0.3s;
+  }
+  .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { outline: none; border-color: var(--primary); }
+  .contact-form textarea { min-height: 120px; resize: vertical; }
+  .contact-form select option { background: #1a1a2e; color: var(--text); }
+  .contact-info { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+  .contact-item { display: flex; align-items: center; gap: 14px; }
+  .contact-icon { font-size: 28px; width: 48px; height: 48px; background: rgba(25,137,250,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-text { font-size: 15px; color: var(--text-light); }
+  .contact-text strong { color: var(--text); display: block; }
+
+  /* Payment */
+  .payment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+  .payment-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; text-align: center; transition: all 0.3s; }
+  .payment-card:hover { border-color: rgba(25,137,250,0.35); background: var(--bg-card-hover); }
+  .payment-card .pay-icon { font-size: 52px; margin-bottom: 12px; }
+  .payment-card h4 { font-size: 20px; margin-bottom: 6px; }
+  .payment-card p { font-size: 14px; color: var(--text-light); margin-bottom: 18px; }
+
+  /* Footer */
+  footer { position: relative; z-index: 1; text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 13px; border-top: 1px solid var(--border); }
+
+  /* Toast */
+  .toast { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background: var(--success); color: #fff; padding: 12px 28px; border-radius: 24px; font-size: 15px; z-index: 200; opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links a { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+<canvas id="bg"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">MoreYi</div>
+    <div class="nav-links">
+      <a href="#products" class="t-products">Products</a>
+      <a href="#about" class="t-about">About</a>
+      <a href="#contact" class="t-contact">Contact</a>
+      <a href="#payment" class="t-payment">Payment</a>
+      <button class="lang-btn" onclick="toggleLang()" id="langBtn">中/EN</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1 class="t-hero">Premium Wheels & Armor Components</h1>
+    <div class="sub t-sub">MoreYi — Engineered for Extreme Performance</div>
+    <div class="slogan t-slogan">Wheels · Runflat Inserts · Armored Vehicle Solutions</div>
+    <div class="btn-group">
+      <a href="#products" class="btn btn-primary t-btn-products">View Products</a>
+      <a href="#contact" class="btn btn-outline t-btn-contact">Request Quote</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <h2 class="t-prod-title">Our Products</h2>
+  <div class="sec-desc t-prod-desc">Heavy-duty components for armored, tactical, and commercial vehicles</div>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🛞</div>
+      <h3 class="t-p1-name">Heavy-Duty Alloy Wheels</h3>
+      <p class="t-p1-desc">Forged / cast alloy wheel rims for armored vehicles & SUVs. Custom offset, PCD, and load rating up to 14+ tons GVW.</p>
+      <div class="specs"><span class="spec">14T+ Load</span><span class="spec">MIL/ASTM</span><span class="spec">Custom PCD</span><span class="spec">Anti-Blast</span></div>
+      <div class="price"><span class="t-p1-price">Inquire</span> <small class="t-unit">/ set</small></div>
+      <a href="#contact" class="btn btn-primary" style="width:100%;text-align:center;display:block;font-size:15px;" data-product="alloy-wheels" onclick="prefillForm(this)">Inquire Now</a>
+    </div>
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3 class="t-p2-name">Runflat / Blast-Proof Inserts</h3>
+      <p class="t-p2-desc">Certified runflat tire inserts allowing vehicles to drive 80+ km after puncture. Ballistic and off-road tested.</p>
+      <div class="specs"><span class="spec">80km Range</span><span class="spec">MIL-STD</span><span class="spec">Ballistic</span><span class="spec">Custom Size</span></div>
+      <div class="price"><span class="t-p2-price">Inquire</span> <small class="t-unit">/ unit</small></div>
+      <a href="#contact" class="btn btn-primary" style="width:100%;text-align:center;display:block;font-size:15px;" data-product="runflat" onclick="prefillForm(this)">Inquire Now</a>
+    </div>
+    <div class="card">
+      <div class="icon">🔧</div>
+      <h3 class="t-p3-name">Complete Wheel Assembly</h3>
+      <p class="t-p3-desc">Pre-assembled wheel + runflat + TPMS packages for OEM production lines and fleet maintenance.</p>
+      <div class="specs"><span class="spec">OEM Spec</span><span class="spec">TPMS Ready</span><span class="spec">Plug & Play</span><span class="spec">JIT Delivery</span></div>
+      <div class="price"><span class="t-p3-price">Inquire</span> <small class="t-unit">/ set</small></div>
+      <a href="#contact" class="btn btn-primary" style="width:100%;text-align:center;display:block;font-size:15px;" data-product="assembly" onclick="prefillForm(this)">Inquire Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2 class="t-about-title">About MoreYi</h2>
+  <div class="sec-desc t-about-desc" style="max-width:700px;margin:0 auto 40px;">
+    Specialized manufacturer of heavy-duty wheels, runflat inserts, and armored vehicle components. 
+    Serving global OEMs, defense contractors, and fleet operators with certified products at competitive pricing. 
+    Export-ready with full documentation.
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2 class="t-ct-title">Contact & Inquire</h2>
+  <div class="sec-desc t-ct-desc">Tell us your requirements and we'll respond within 24 hours</div>
+  <div class="contact-grid">
+    <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+      <input type="text" id="name" placeholder="Your Name / Company" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <select id="product">
+        <option value="">— Select Product —</option>
+        <option value="alloy-wheels">Alloy Wheels</option>
+        <option value="runflat">Runflat Inserts</option>
+        <option value="assembly">Complete Assembly</option>
+        <option value="other">Other / Custom</option>
+      </select>
+      <textarea id="message" placeholder="Quantity, specifications, or any questions..."></textarea>
+      <button type="submit" class="btn btn-primary t-ct-send" style="width:100%">Send Inquiry</button>
+    </form>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-text"><strong>Email</strong>contact@moreyi.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div class="contact-text"><strong>WhatsApp</strong>+86 (your number)</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div class="contact-text"><strong>Web</strong>moreyi.vercel.app</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-text"><strong>Location</strong>China · Global Shipping</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="payment">
+  <h2 class="t-pay-title">Payment Methods</h2>
+  <div class="sec-desc t-pay-desc">Secure international payments via Stripe & PayPal</div>
+  <div class="payment-grid">
+    <div class="payment-card">
+      <div class="pay-icon">💳</div>
+      <h4>Stripe</h4>
+      <p class="t-stripe-desc">Credit card, Apple Pay, Google Pay — all major cards accepted</p>
+      <a href="#" class="btn btn-primary" style="display:block;font-size:15px;" onclick="alert('Stripe payment gateway will be activated after deployment.')">Pay with Stripe</a>
+    </div>
+    <div class="payment-card">
+      <div class="pay-icon">🅿️</div>
+      <h4>PayPal</h4>
+      <p class="t-paypal-desc">Global coverage in 200+ countries, instant confirmation</p>
+      <a href="#" class="btn btn-outline" style="display:block;font-size:15px;" onclick="alert('PayPal gateway will be activated after deployment.')">Pay with PayPal</a>
+    </div>
+    <div class="payment-card">
+      <div class="pay-icon">🏦</div>
+      <h4>Bank Transfer</h4>
+      <p class="t-bank-desc">Wire transfer for bulk / enterprise orders. Contact us for details.</p>
+      <a href="#contact" class="btn btn-outline" style="display:block;font-size:15px;">Contact for Transfer</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 MoreYi. All rights reserved. | moreyi.vercel.app</p>
+</footer>
+
+<script>
+// ===== Particle Background =====
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize); resize();
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5; this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5; this.opacity = Math.random() * 0.5 + 0.1;
+    this.color = Math.random() > 0.5 ? '91,141,239' : '139,92,246';
+  }
+  update() { this.x += this.speedX; this.y += this.speedY; if (this.x < -10 || this.x > canvas.width+10 || this.y < -10 || this.y > canvas.height+10) this.reset(); }
+  draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fillStyle = `rgba(${this.color},${this.opacity})`; ctx.fill(); }
+}
+for (let i = 0; i < 100; i++) particles.push(new Particle());
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  for (let i = 0; i < particles.length; i++)
+    for (let j = i+1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 140) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(91,141,239,${0.08*(1-dist/140)})`; ctx.stroke(); }
+    }
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ===== i18n =====
+const L = {
+  en: {
+    products:'Products', about:'About', contact:'Contact', payment:'Payment',
+    hero:'Premium Wheels & Armor Components', sub:'MoreYi — Engineered for Extreme Performance',
+    slogan:'Wheels · Runflat Inserts · Armored Vehicle Solutions',
+    btnProducts:'View Products', btnContact:'Request Quote',
+    prodTitle:'Our Products', prodDesc:'Heavy-duty components for armored, tactical, and commercial vehicles',
+    p1name:'Heavy-Duty Alloy Wheels', p1desc:'Forged / cast alloy wheel rims for armored vehicles & SUVs. Custom offset, PCD, and load rating up to 14+ tons GVW.',
+    p1price:'Inquire', unit:'/ set',
+    p2name:'Runflat / Blast-Proof Inserts', p2desc:'Certified runflat tire inserts allowing vehicles to drive 80+ km after puncture. Ballistic and off-road tested.',
+    p2price:'Inquire', unit2:'/ unit',
+    p3name:'Complete Wheel Assembly', p3desc:'Pre-assembled wheel + runflat + TPMS packages for OEM production lines and fleet maintenance.',
+    p3price:'Inquire', unit3:'/ set',
+    aboutTitle:'About MoreYi', aboutDesc:'Specialized manufacturer of heavy-duty wheels, runflat inserts, and armored vehicle components. Serving global OEMs, defense contractors, and fleet operators with certified products at competitive pricing. Export-ready with full documentation.',
+    ctTitle:'Contact & Inquire', ctDesc:'Tell us your requirements and we\'ll respond within 24 hours', ctSend:'Send Inquiry',
+    payTitle:'Payment Methods', payDesc:'Secure international payments via Stripe & PayPal',
+    stripeDesc:'Credit card, Apple Pay, Google Pay — all major cards accepted',
+    paypalDesc:'Global coverage in 200+ countries, instant confirmation',
+    bankDesc:'Wire transfer for bulk / enterprise orders. Contact us for details.',
+    toastSent:'Message sent! We\'ll reply within 24 hours.',
+    namePlaceholder:'Your Name / Company', emailPlaceholder:'Email Address',
+    msgPlaceholder:'Quantity, specifications, or any questions...',
+    langBtn:'中/EN'
+  },
+  zh: {
+    products:'产品', about:'关于', contact:'联系', payment:'支付',
+    hero:'高端轮毂 & 装甲车配件', sub:'MoreYi — 为极端性能而生',
+    slogan:'轮毂 · 防爆内衬 · 装甲车辆解决方案',
+    btnProducts:'查看产品', btnContact:'询价咨询',
+    prodTitle:'产品展示', prodDesc:'为装甲、战术和商用车辆提供重型零部件',
+    p1name:'重型合金轮毂', p1desc:'锻造/铸造合金轮毂，适配装甲车和SUV。支持定制偏距、PCD，承重最高14+吨。',
+    p1price:'询价', unit:'/ 套',
+    p2name:'防爆泄气保用内衬', p2desc:'认证级防爆轮胎内衬，爆胎后可继续行驶80+公里。通过弹道及越野测试。',
+    p2price:'询价', unit2:'/ 个',
+    p3name:'轮毂总成套件', p3desc:'预装轮毂+防爆内衬+胎压监测一体化方案，面向主机厂产线和车队维护。',
+    p3price:'询价', unit3:'/ 套',
+    aboutTitle:'关于 MoreYi', aboutDesc:'专业重型轮毂、防爆内衬和装甲车零部件制造商。为全球主机厂、防务承包商和车队运营商提供认证产品和有竞争力的价格。出口资质齐全。',
+    ctTitle:'联系我们', ctDesc:'留下你的需求，24小时内回复', ctSend:'发送询价',
+    payTitle:'支付方式', payDesc:'通过 Stripe 和 PayPal 进行安全国际支付',
+    stripeDesc:'支持信用卡、Apple Pay、Google Pay — 覆盖主流卡种',
+    paypalDesc:'覆盖全球200+国家和地区，即时确认',
+    bankDesc:'大宗/企业订单支持银行电汇，详情联系我们',
+    toastSent:'消息已发送！我们将在24小时内回复。',
+    namePlaceholder:'您的姓名 / 公司名称', emailPlaceholder:'邮箱地址',
+    msgPlaceholder:'数量、规格或任何问题...',
+    langBtn:'EN/中'
+  }
+};
+
+let lang = 'en';
+function toggleLang() {
+  lang = lang === 'en' ? 'zh' : 'en';
+  const d = L[lang];
+  document.querySelectorAll('.t-products').forEach(el => el.textContent = d.products);
+  document.querySelectorAll('.t-about').forEach(el => el.textContent = d.about);
+  document.querySelectorAll('.t-contact').forEach(el => el.textContent = d.contact);
+  document.querySelectorAll('.t-payment').forEach(el => el.textContent = d.payment);
+  document.querySelector('.t-hero').textContent = d.hero;
+  document.querySelector('.t-sub').textContent = d.sub;
+  document.querySelector('.t-slogan').textContent = d.slogan;
+  document.querySelector('.t-btn-products').textContent = d.btnProducts;
+  document.querySelector('.t-btn-contact').textContent = d.btnContact;
+  document.querySelector('.t-prod-title').textContent = d.prodTitle;
+  document.querySelector('.t-prod-desc').textContent = d.prodDesc;
+  document.querySelector('.t-p1-name').textContent = d.p1name;
+  document.querySelector('.t-p1-desc').textContent = d.p1desc;
+  document.querySelector('.t-p1-price').textContent = d.p1price;
+  document.querySelector('.t-p2-name').textContent = d.p2name;
+  document.querySelector('.t-p2-desc').textContent = d.p2desc;
+  document.querySelector('.t-p2-price').textContent = d.p2price;
+  document.querySelector('.t-p3-name').textContent = d.p3name;
+  document.querySelector('.t-p3-desc').textContent = d.p3desc;
+  document.querySelector('.t-p3-price').textContent = d.p3price;
+  document.querySelector('.t-about-title').textContent = d.aboutTitle;
+  document.querySelector('.t-about-desc').textContent = d.aboutDesc;
+  document.querySelector('.t-ct-title').textContent = d.ctTitle;
+  document.querySelector('.t-ct-desc').textContent = d.ctDesc;
+  document.querySelector('.t-ct-send').textContent = d.ctSend;
+  document.querySelector('.t-pay-title').textContent = d.payTitle;
+  document.querySelector('.t-pay-desc').textContent = d.payDesc;
+  document.querySelector('.t-stripe-desc').textContent = d.stripeDesc;
+  document.querySelector('.t-paypal-desc').textContent = d.paypalDesc;
+  document.querySelector('.t-bank-desc').textContent = d.bankDesc;
+  document.getElementById('name').placeholder = d.namePlaceholder;
+  document.getElementById('email').placeholder = d.emailPlaceholder;
+  document.getElementById('message').placeholder = d.msgPlaceholder;
+  document.getElementById('langBtn').textContent = d.langBtn;
+  document.querySelector('.t-unit').textContent = d.unit;
+  document.querySelectorAll('.t-unit')[1] && (document.querySelectorAll('.t-unit')[1].textContent = d.unit2);
+  document.querySelectorAll('.t-unit')[2] && (document.querySelectorAll('.t-unit')[2].textContent = d.unit3);
+  document.title = lang === 'en' ? 'MoreYi — Wheels & Armor' : 'MoreYi — 轮毂 & 装甲车配件';
+}
+
+// ===== Form =====
+function prefillForm(el) {
+  document.getElementById('product').value = el.dataset.product;
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const product = document.getElementById('product').value;
+  const message = document.getElementById('message').value;
+  
+  // In production: send to your API endpoint
+  console.log('Inquiry:', { name, email, product, message });
+  
+  const toast = document.getElementById('toast');
+  toast.textContent = L[lang].toastSent;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+  e.target.reset();
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
