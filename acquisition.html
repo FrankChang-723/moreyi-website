@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>获客引擎 · MoreYi</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pri:#b8860b;--pri-light:#daa520;--pri-dark:#936316;--bg:#faf7f2;--card:#fff;--border:#e8dcc8;--text:#3d3226;--text-light:#8c7b6a;--radius:16px;--shadow:0 2px 16px rgba(139,107,20,.06);--success:#2d8b4e;--info:#2563eb}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden;min-height:100vh}
+
+/* Nav */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(250,247,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;color:#6b4c1e;letter-spacing:2px}
+.logo a{color:inherit;text-decoration:none}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:var(--text-light);text-decoration:none;font-size:15px;transition:color .3s;padding:6px 0}
+.nav-links a:hover,.nav-links a.active{color:var(--pri)}
+.nav-badge{background:var(--pri);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:4px}
+
+/* Header */
+.tool-header{max-width:1200px;margin:0 auto;padding:96px 24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.tool-header h1{font-size:28px;font-weight:800;color:#6b4c1e;display:flex;align-items:center;gap:10px}
+.tool-header h1 span{font-size:14px;font-weight:400;color:var(--text-light);background:rgba(184,134,11,.08);padding:3px 12px;border-radius:12px}
+.header-actions{display:flex;gap:10px}
+.header-btn{padding:9px 20px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-size:14px;transition:all .3s;font-family:inherit}
+.header-btn:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
+.header-btn.primary{background:var(--pri);color:#fff;border-color:var(--pri);font-weight:600}
+
+/* Stats */
+.stats-bar{max-width:1200px;margin:0 auto 28px;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat-card{background:var(--card);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.stat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.stat-icon.gold{background:rgba(184,134,11,.1);color:var(--pri)}
+.stat-icon.blue{background:rgba(37,99,235,.1);color:var(--info)}
+.stat-icon.green{background:rgba(45,139,78,.1);color:var(--success)}
+.stat-icon.purple{background:rgba(124,58,237,.1);color:#7c3aed}
+.stat-val{font-size:1.5rem;font-weight:800;line-height:1.2}
+.stat-label{font-size:.78rem;color:var(--text-light)}
+
+/* Section */
+.section{max-width:1200px;margin:0 auto 40px;padding:0 24px}
+.section-title{font-size:1.2rem;font-weight:700;color:#6b4c1e;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.section-title .tag{font-size:.78rem;font-weight:400;color:var(--text-light);background:rgba(184,134,11,.06);padding:2px 10px;border-radius:10px}
+
+/* Search */
+.search-box{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.search-input-wrapper{flex:1;min-width:200px}
+.search-input-wrapper label{display:block;font-size:.8rem;color:var(--text-light);margin-bottom:4px;font-weight:600}
+.search-input-wrapper input,.search-input-wrapper select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);font-size:15px;background:var(--card);color:var(--text);outline:none;font-family:inherit;transition:border .3s}
+.search-input-wrapper input:focus,.search-input-wrapper select:focus{border-color:var(--pri)}
+.search-btn{padding:12px 32px;background:linear-gradient(135deg,var(--pri),var(--pri-dark));color:#fff;border:none;border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;align-self:flex-end;font-family:inherit;box-shadow:0 4px 16px rgba(184,134,11,.2)}
+.search-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,134,11,.3)}
+
+.tabs-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab-pill{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text-light);cursor:pointer;font-size:14px;transition:all .3s;font-family:inherit}
+.tab-pill.active{background:var(--pri);color:#fff;border-color:var(--pri)}
+
+/* Results */
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.result-card{background:var(--card);border-radius:var(--radius);padding:18px 20px;border:1px solid var(--border);box-shadow:var(--shadow);transition:all .3s;cursor:pointer}
+.result-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(139,107,20,.12);border-color:var(--pri-light)}
+.result-card .rc-name{font-weight:700;font-size:1.05rem;color:#6b4c1e;margin-bottom:4px}
+.result-card .rc-country{font-size:.82rem;color:var(--text-light);margin-bottom:8px}
+.result-card .rc-detail{font-size:.82rem;color:var(--text-light);display:flex;gap:14px;flex-wrap:wrap}
+.result-card .rc-detail span{display:flex;align-items:center;gap:4px}
+.rc-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.rc-actions button{padding:6px 14px;border-radius:16px;font-size:.8rem;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;transition:all .3s;font-family:inherit}
+.rc-actions button.whatsapp{color:#25d366;border-color:#25d366}
+.rc-actions button.whatsapp:hover{background:#25d366;color:#fff}
+.rc-actions button.email{color:var(--info);border-color:var(--info)}
+.rc-actions button.email:hover{background:var(--info);color:#fff}
+.rc-actions button.save{color:var(--pri);border-color:var(--pri)}
+.rc-actions button.save:hover{background:var(--pri);color:#fff}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-panel{background:var(--card);border-radius:var(--radius);padding:28px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.contact-panel h3{font-size:1.05rem;font-weight:700;color:#6b4c1e;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.contact-panel .badge{font-size:.7rem;background:rgba(184,134,11,.1);color:var(--pri);padding:2px 8px;border-radius:8px;font-weight:500}
+.campaign-list{display:flex;flex-direction:column;gap:10px}
+.campaign-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#fdfdfb;border-radius:12px;border:1px solid var(--border)}
+.campaign-info{flex:1}
+.campaign-info .ci-name{font-weight:600;font-size:.92rem}
+.campaign-info .ci-meta{font-size:.78rem;color:var(--text-light)}
+.campaign-stats{display:flex;gap:16px;font-size:.82rem;flex-shrink:0}
+.campaign-stats .cs-ok{color:var(--success);font-weight:600}
+.campaign-stats .cs-pending{color:var(--text-light)}
+
+/* AI Writer */
+.ai-writer{display:flex;flex-direction:column;gap:12px}
+.ai-writer textarea{width:100%;height:100px;padding:14px;border:1px solid var(--border);border-radius:14px;font-size:15px;resize:vertical;font-family:inherit;outline:none;background:#fdfbf7;transition:border .3s}
+.ai-writer textarea:focus{border-color:var(--pri-light)}
+.ai-writer .aw-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ai-writer select{padding:9px 14px;border-radius:12px;border:1px solid var(--border);font-size:14px;background:var(--card);outline:none;font-family:inherit}
+.ai-btn{padding:10px 24px;background:linear-gradient(135deg,var(--pri),var(--pri-dark));color:#fff;border:none;border-radius:20px;font-weight:700;cursor:pointer;font-size:14px;transition:all .3s;font-family:inherit;box-shadow:0 4px 16px rgba(184,134,11,.2)}
+.ai-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,134,11,.3)}
+.ai-output{margin-top:4px;padding:16px;background:#fefdf9;border-radius:12px;border:1px solid var(--border);font-size:.88rem;line-height:1.7;white-space:pre-wrap;max-height:240px;overflow:auto;color:var(--text)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(61,50,38,.4);display:none;align-items:center;justify-content:center;z-index:200}
+.modal-overlay.show{display:flex}
+.modal{background:var(--card);border-radius:20px;padding:32px;max-width:540px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,.15);max-height:90vh;overflow:auto}
+.modal h3{font-size:1.2rem;font-weight:700;color:#6b4c1e;margin-bottom:20px}
+.modal-input{margin-bottom:14px}
+.modal-input label{display:block;font-size:.82rem;font-weight:600;margin-bottom:4px;color:var(--text-light)}
+.modal-input input,.modal-input textarea{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:12px;font-size:15px;outline:none;font-family:inherit;background:#fdfbf7}
+.modal-input textarea{height:200px;resize:vertical}
+.modal-btns{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.modal-btns button{padding:10px 24px;border-radius:12px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .3s}
+.btn-cancel{background:rgba(184,134,11,.08);color:var(--text)}
+.btn-cancel:hover{background:rgba(184,134,11,.15)}
+.btn-confirm{background:linear-gradient(135deg,var(--pri),var(--pri-dark));color:#fff;box-shadow:0 4px 16px rgba(184,134,11,.2)}
+.btn-confirm:hover{transform:translateY(-1px)}
+
+/* Toast */
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--pri);color:#fff;padding:12px 28px;border-radius:24px;font-size:15px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:0 4px 16px rgba(184,134,11,.3)}
+.toast.show{opacity:1}
+
+/* Empty */
+.empty-state{text-align:center;padding:60px 20px;color:var(--text-light);grid-column:1/-1}
+.empty-state .es-icon{font-size:3rem;margin-bottom:12px}
+.empty-state p{font-size:.92rem}
+
+/* Footer */
+footer{max-width:1200px;margin:0 auto;padding:32px 24px;color:var(--text-light);font-size:13px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--pri);text-decoration:none}
+
+/* Responsive */
+@media(max-width:900px){
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr}
+  .search-box{flex-direction:column}
+  .search-btn{align-self:stretch}
+  .results-grid{grid-template-columns:1fr}
+  .nav-links a:not(.always-visible){display:none}
+}
+@media(max-width:500px){
+  .stats-bar{grid-template-columns:1fr}
+  .campaign-item{flex-direction:column;align-items:flex-start;gap:8px}
+  .tool-header{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><a href="index.html">MoreYi</a></div>
+    <div class="nav-links">
+      <a href="index.html">产品</a>
+      <a href="acquisition.html" class="active">获客引擎<span class="nav-badge">NEW</span></a>
+      <a href="layout.html">空间布局</a>
+    </div>
+  </div>
+</nav>
+
+<div class="tool-header">
+  <h1>🔱 获客引擎 <span>v1.0 — 找客户 · 联系客户</span></h1>
+  <div class="header-actions">
+    <button class="header-btn primary" onclick="location.href='index.html#contact'">📞 联系 MoreYi</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card"><div class="stat-icon gold">🆕</div><div><div class="stat-val" id="stat-today">6</div><div class="stat-label">今日新线索</div></div></div>
+  <div class="stat-card"><div class="stat-icon blue">🔥</div><div><div class="stat-val" id="stat-active">5</div><div class="stat-label">跟进中</div></div></div>
+  <div class="stat-card"><div class="stat-icon green">★</div><div><div class="stat-val" id="stat-saved">0</div><div class="stat-label">已收藏客户</div></div></div>
+  <div class="stat-card"><div class="stat-icon purple">🗄</div><div><div class="stat-val">200万+</div><div class="stat-label">全球企业数据</div></div></div>
+</div>
+
+<!-- 找客户 -->
+<div class="section">
+  <div class="section-title">🔍 全球买家搜索 <span class="tag">海关数据 · 企业库</span></div>
+  <div class="search-box">
+    <div class="search-input-wrapper"><label>搜索关键词</label><input id="find-search-input" placeholder="产品 / HS编码 / 公司名…" value="wheel 8708.70"></div>
+    <div class="search-input-wrapper" style="max-width:180px"><label>目标国家</label>
+      <select id="find-country">
+        <option value="">全部国家</option>
+        <option>🇺🇸 USA</option><option>🇩🇪 Germany</option><option>🇦🇪 UAE</option><option>🇲🇽 Mexico</option><option>🇹🇭 Thailand</option>
+        <option>🇬🇧 UK</option><option>🇫🇷 France</option><option>🇮🇹 Italy</option><option>🇯🇵 Japan</option><option>🇰🇷 South Korea</option>
+        <option>🇦🇺 Australia</option><option>🇧🇷 Brazil</option><option>🇨🇦 Canada</option><option>🇹🇷 Turkey</option><option>🇿🇦 South Africa</option>
+        <option>🇻🇳 Vietnam</option><option>🇮🇩 Indonesia</option><option>🇪🇬 Egypt</option><option>🇷🇺 Russia</option><option>🇪🇸 Spain</option>
+      </select>
+    </div>
+    <button class="search-btn" id="find-search-btn">🔍 搜索买家</button>
+  </div>
+  <div class="tabs-row">
+    <button class="tab-pill active">全部来源</button>
+    <button class="tab-pill" data-src="customs">📦 海关数据</button>
+    <button class="tab-pill" data-src="email">✉️ 有邮箱</button>
+    <button class="tab-pill" data-src="whatsapp">💬 有WhatsApp</button>
+  </div>
+  <div class="results-grid" id="find-results"></div>
+</div>
+
+<!-- 联系客户 -->
+<div class="section">
+  <div class="section-title">✉️ 客户触达 <span class="tag">开发信 · WhatsApp · 邮件</span></div>
+  <div class="contact-grid">
+    <div class="contact-panel">
+      <h3>📬 近期营销活动</h3>
+      <div class="campaign-list">
+        <div class="campaign-item"><div class="campaign-info"><div class="ci-name">轮毂买家第一轮开发信</div><div class="ci-meta">2026-07-28 · 50人</div></div><div class="campaign-stats"><span class="cs-ok">32 打开 (64%)</span><span class="cs-pending">8 回复 (16%)</span></div></div>
+        <div class="campaign-item"><div class="campaign-info"><div class="ci-name">防爆内衬产品推介</div><div class="ci-meta">2026-07-25 · 30人</div></div><div class="campaign-stats"><span class="cs-ok">22 打开 (73%)</span><span class="cs-pending">5 回复 (17%)</span></div></div>
+        <div class="campaign-item"><div class="campaign-info"><div class="ci-name">WhatsApp精准触达</div><div class="ci-meta">2026-07-29 · 15人</div></div><div class="campaign-stats"><span class="cs-ok">12 已读 (80%)</span><span class="cs-pending">6 回复 (40%)</span></div></div>
+      </div>
+    </div>
+    <div class="contact-panel">
+      <h3>🤖 AI开发信助手 <span class="badge">免费</span></h3>
+      <div class="ai-writer">
+        <select id="ai-template">
+          <option value="intro">📧 第一次开发信</option>
+          <option value="followUp">📧 跟进邮件</option>
+          <option value="quotation">📧 报价邮件</option>
+        </select>
+        <textarea id="ai-extra" placeholder="补充说明（选填）：强调特定产品优势、价格亮点、促销政策…"></textarea>
+        <div class="aw-row">
+          <button class="ai-btn" id="ai-generate-btn">✨ 生成开发信</button>
+          <button class="header-btn" id="ai-copy-btn">📋 复制到剪贴板</button>
+        </div>
+        <div class="ai-output" id="ai-output">选择模板后点击生成，AI 将自动填充你的产品信息和公司资料…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 MoreYi. All rights reserved. | <a href="index.html">产品</a> · <a href="acquisition.html">获客引擎</a></span>
+  <span><a href="index.html">返回 MoreYi 主页 →</a></span>
+</footer>
+
+<div class="modal-overlay" id="acq-modal">
+  <div class="modal">
+    <h3 id="modal-title">✉️ 写开发信</h3>
+    <div id="modal-body"></div>
+    <div class="modal-btns">
+      <button class="btn-cancel" id="modal-cancel">取消</button>
+      <button class="btn-confirm" id="modal-confirm">📤 复制并打开邮件</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==== 数据层 ====
+var COMPANIES = [
+  {id:1,name:"AutoPro Imports Ltd.",country:"🇺🇸 USA",city:"Los Angeles, CA",industry:"Auto Parts",hs:"8708.70",importVol:"$2.4M/yr",employees:"120",contact:{name:"John Mitchell",title:"Purchasing Manager",email:"j.mitchell@autopro-us.com",phone:"+1-323-555-0182",whatsapp:"+13235550182"},source:"海关数据"},
+  {id:2,name:"WheelMaster GmbH",country:"🇩🇪 Germany",city:"Stuttgart",industry:"Automotive",hs:"8708.70",importVol:"$5.1M/yr",employees:"280",contact:{name:"Klaus Weber",title:"CEO",email:"k.weber@wheelmaster.de",phone:"+49-711-555-0147",whatsapp:"+497115550147"},source:"海关数据"},
+  {id:3,name:"Dubai Wheel Trading Co.",country:"🇦🇪 UAE",city:"Dubai",industry:"Auto Parts Distributor",hs:"8708.70",importVol:"$3.8M/yr",employees:"65",contact:{name:"Ahmed Al-Mansoori",title:"Owner",email:"ahmed@dubaiwheels.ae",phone:"+971-4-555-6123",whatsapp:"+97145556123"},source:"海关数据"},
+  {id:4,name:"Mexico Rines S.A.",country:"🇲🇽 Mexico",city:"Monterrey",industry:"Wheel Manufacturing",hs:"8708.70",importVol:"$1.2M/yr",employees:"45",contact:{name:"Carlos Ruiz",title:"General Manager",email:"c.ruiz@mexicorines.mx",phone:"+52-81-555-9045",whatsapp:"+52815559045"},source:"海关数据"},
+  {id:5,name:"Bangkok Auto Supply",country:"🇹🇭 Thailand",city:"Bangkok",industry:"Auto Parts Import",hs:"8708.70",importVol:"$2.8M/yr",employees:"90",contact:{name:"Somsak Chaiyaporn",title:"Import Manager",email:"somsak@bkautosupply.co.th",phone:"+66-2-555-3210",whatsapp:"+6625553210"},source:"海关数据"},
+  {id:6,name:"Sydney Tyre & Wheel",country:"🇦🇺 Australia",city:"Sydney",industry:"Tyre & Wheel Retail",hs:"8708.70",importVol:"$4.2M/yr",employees:"150",contact:{name:"James Wilson",title:"Procurement Director",email:"jwilson@sydtw.com.au",phone:"+61-2-555-7812",whatsapp:"+6125557812"},source:"海关数据"},
+  {id:7,name:"Moscow Truck Parts",country:"🇷🇺 Russia",city:"Moscow",industry:"Truck Parts",hs:"8708.99",importVol:"$6.5M/yr",employees:"200",contact:{name:"Dmitry Volkov",title:"Supply Chain Manager",email:"d.volkov@mtp.ru",phone:"+7-495-555-4567",whatsapp:"+74955554567"},source:"海关数据"},
+  {id:8,name:"Jakarta Wheel Import",country:"🇮🇩 Indonesia",city:"Jakarta",industry:"Auto Parts Import",hs:"8708.70",importVol:"$1.5M/yr",employees:"30",contact:{name:"Budi Santoso",title:"Director",email:"budi@jakartawheel.id",phone:"+62-21-555-8901",whatsapp:"+62215558901"},source:"海关数据"},
+  {id:9,name:"Sao Paulo Rodas Ltda",country:"🇧🇷 Brazil",city:"Sao Paulo",industry:"Wheels & Accessories",hs:"8708.70",importVol:"$3.2M/yr",employees:"110",contact:{name:"Felipe Oliveira",title:"CEO",email:"felipe@rodas-sp.com.br",phone:"+55-11-555-6723",whatsapp:"+55115556723"},source:"海关数据"},
+  {id:10,name:"Cairo Wheel Center",country:"🇪🇬 Egypt",city:"Cairo",industry:"Auto Parts",hs:"8708.70",importVol:"$1.8M/yr",employees:"55",contact:{name:"Mohamed Hassan",title:"General Manager",email:"m.hassan@cairowheels.com.eg",phone:"+20-2-555-4456",whatsapp:"+2025554456"},source:"海关数据"},
+  {id:11,name:"London Alloy Ltd.",country:"🇬🇧 UK",city:"Birmingham",industry:"Aftermarket Wheels",hs:"8708.70",importVol:"$7.3M/yr",employees:"340",contact:{name:"Andrew Clarke",title:"Purchasing Director",email:"a.clarke@londonalloy.co.uk",phone:"+44-121-555-8901",whatsapp:"+441215558901"},source:"海关数据"},
+  {id:12,name:"Paris Roues SARL",country:"🇫🇷 France",city:"Lyon",industry:"Wheel Distribution",hs:"8708.70",importVol:"$3.9M/yr",employees:"85",contact:{name:"Pierre Dubois",title:"Commercial Director",email:"p.dubois@parisroues.fr",phone:"+33-4-555-3211",whatsapp:"+3345553211"},source:"海关数据"},
+  {id:13,name:"Istanbul Jant A.S.",country:"🇹🇷 Turkey",city:"Istanbul",industry:"Wheel Manufacturing",hs:"8708.70",importVol:"$2.1M/yr",employees:"140",contact:{name:"Mustafa Yilmaz",title:"Export Manager",email:"m.yilmaz@istanbuljant.com.tr",phone:"+90-212-555-7788",whatsapp:"+902125557788"},source:"海关数据"},
+  {id:14,name:"Johannesburg Wheel Hub",country:"🇿🇦 South Africa",city:"Johannesburg",industry:"Auto Parts",hs:"8708.70",importVol:"$2.5M/yr",employees:"70",contact:{name:"David Nkosi",title:"Managing Director",email:"d.nkosi@joburgwheel.co.za",phone:"+27-11-555-9012",whatsapp:"+27115559012"},source:"海关数据"},
+  {id:15,name:"Toronto Rim Source",country:"🇨🇦 Canada",city:"Toronto",industry:"Wheel Import",hs:"8708.70",importVol:"$4.8M/yr",employees:"95",contact:{name:"Michael Chen",title:"VP Procurement",email:"m.chen@torontorim.ca",phone:"+1-416-555-3345",whatsapp:"+14165553345"},source:"海关数据"},
+  {id:16,name:"Milano Cerchi S.r.l.",country:"🇮🇹 Italy",city:"Milan",industry:"Luxury Wheels",hs:"8708.70",importVol:"$8.2M/yr",employees:"220",contact:{name:"Marco Rossi",title:"CEO",email:"m.rossi@milanocerchi.it",phone:"+39-02-555-1234",whatsapp:"+39025551234"},source:"海关数据"},
+  {id:17,name:"Madrid Llantas S.L.",country:"🇪🇸 Spain",city:"Madrid",industry:"Auto Parts",hs:"8708.70",importVol:"$2.9M/yr",employees:"78",contact:{name:"Javier Garcia",title:"Commercial Director",email:"j.garcia@madridllantas.es",phone:"+34-91-555-8901",whatsapp:"+34915558901"},source:"海关数据"},
+  {id:18,name:"Nagoya Wheel Trading",country:"🇯🇵 Japan",city:"Nagoya",industry:"Auto Parts Trading",hs:"8708.70",importVol:"$5.6M/yr",employees:"180",contact:{name:"Tanaka Hiroshi",title:"President",email:"tanaka@nagoyawheel.co.jp",phone:"+81-52-555-4455",whatsapp:"+81525554455"},source:"海关数据"},
+  {id:19,name:"Seoul Auto Parts Co.",country:"🇰🇷 South Korea",city:"Seoul",industry:"Auto Parts",hs:"8708.70",importVol:"$3.4M/yr",employees:"130",contact:{name:"Park Min-jun",title:"Overseas Manager",email:"mj.park@seoulautoparts.kr",phone:"+82-2-555-9900",whatsapp:"+8225559900"},source:"海关数据"},
+  {id:20,name:"Buenos Aires Ruedas",country:"🇦🇷 Argentina",city:"Buenos Aires",industry:"Wheel Import",hs:"8708.70",importVol:"$1.6M/yr",employees:"42",contact:{name:"Diego Fernandez",title:"Owner",email:"diego@ruedas-ba.com.ar",phone:"+54-11-555-2345",whatsapp:"+54115552345"},source:"海关数据"}
+];
+
+var EMAIL_TMPL = {
+  intro:"Dear {name},\n\nI'm {sender} from {company}, a leading manufacturer of high-quality alloy wheels and runflat tire inserts in China.\n\nI came across {company_name} through customs data and noticed you're importing {product} — I believe we can offer you very competitive pricing and quality.\n\nWould you be open to receiving our product catalog and price list?\n\nBest regards,\n{sender}\n{company}\nEmail: {email}\nWhatsApp: {whatsapp}",
+  followUp:"Dear {name},\n\nHope you're doing well. I'm following up on my previous email about our wheel and runflat insert products.\n\nWe've recently launched several new models that have been well received in the {market} market — I'd love to share the details with you.\n\nIf you have any questions about specifications, pricing, or delivery, please don't hesitate to reach out.\n\nLooking forward to hearing from you,\n{sender}\n{company}",
+  quotation:"Dear {name},\n\nThank you for your interest in our products. Please find our quotation as follows:\n\nProduct: {product}\nModel: {model}\nQuantity: {quantity}\nUnit Price: {price}\nDelivery: {delivery}\nPayment: T/T 30% advance, 70% before shipment\n\nAll products come with 2-year warranty and meet international standards (JWL/VIA/DOT/TUV).\n\nPlease let me know if you have any questions.\n\nBest regards,\n{sender}\n{company}\nEmail: {email}\nWhatsApp: {whatsapp}"
+};
+
+// ==== 应用逻辑 ====
+var STATE = {searchResults:[],saved:JSON.parse(localStorage.getItem('moreyi_acq_saved')||'[]'),user:{name:'MoreYi Team',company:'MoreYi',email:'contact@moreyi.com',whatsapp:'+86-138-8888-8888'}};
+
+function show(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500)}
+
+function updateStats(){document.getElementById('stat-saved').textContent=STATE.saved.length}
+
+function doSearch(){
+  var q=(document.getElementById('find-search-input').value||'').toLowerCase().trim();
+  var c=document.getElementById('find-country').value;
+  var tab=document.querySelector('.tab-pill.active');
+  var src=tab?tab.dataset.src:'all';
+  var r=COMPANIES.filter(function(x){
+    var m=true;
+    if(q)m=m&&(x.name.toLowerCase().indexOf(q)>=0||x.industry.toLowerCase().indexOf(q)>=0||x.hs.indexOf(q)>=0);
+    if(c)m=m&&x.country===c;
+    if(src==='customs')m=m&&x.source==='海关数据';
+    if(src==='email')m=m&&x.contact.email;
+    if(src==='whatsapp')m=m&&x.contact.whatsapp;
+    return m
+  });
+  STATE.searchResults=r;renderResults(r)
+}
+
+function renderResults(r){
+  var g=document.getElementById('find-results');
+  var sids=STATE.saved.map(function(x){return x.id});
+  if(!r.length){g.innerHTML='<div class="empty-state"><div class="es-icon">🔍</div><p>没有匹配的买家，试试调整关键词或国家筛选</p></div>';return}
+  g.innerHTML=r.map(function(x){
+    var sv=sids.indexOf(x.id)>=0;
+    return '<div class="result-card"><div class="rc-name">'+x.name+'</div><div class="rc-country">'+x.country+' '+x.city+' · '+x.industry+'</div><div class="rc-detail"><span>🏷 HS '+x.hs+'</span><span>📦 '+x.importVol+'</span><span>👥 '+x.employees+'人</span><span>📡 '+x.source+'</span></div><div class="rc-actions"><button class="whatsapp" data-a="wa" data-id="'+x.id+'">💬 WhatsApp</button><button class="email" data-a="em" data-id="'+x.id+'">✉️ 开发信</button><button class="save'+(sv?' saved':'')+'" data-a="sv" data-id="'+x.id+'">'+(sv?'★ 已收藏':'☆ 收藏')+'</button></div></div>'
+  }).join('');
+  g.querySelectorAll('.rc-actions button').forEach(function(b){
+    b.addEventListener('click',function(e){e.stopPropagation();
+      var a=this.dataset.a,id=parseInt(this.dataset.id);
+      var x=COMPANIES.find(function(c){return c.id===id});if(!x)return;
+      if(a==='wa'){var n=x.contact.whatsapp.replace(/[^0-9]/g,'');window.open('https://wa.me/'+n+'?text='+encodeURIComponent('Hi '+x.contact.name+', I\'m from MoreYi (China). We supply high-quality alloy wheels & runflat inserts. I noticed your import data and would love to discuss cooperation.'),'_blank');show('✅ WhatsApp已打开')}
+      if(a==='em')openModal(x);
+      if(a==='sv'){
+        var i=STATE.saved.findIndex(function(l){return l.id===x.id});
+        if(i>=0){STATE.saved.splice(i,1);show('已取消收藏')}
+        else{STATE.saved.push({id:x.id,name:x.contact.name,company:x.name,country:x.country,email:x.contact.email,whatsapp:x.contact.whatsapp});show('★ 已收藏到CRM')}
+        localStorage.setItem('moreyi_acq_saved',JSON.stringify(STATE.saved));updateStats();renderResults(STATE.searchResults)
+      }
+    })
+  })
+}
+
+function genEmail(){
+  var tpl=document.getElementById('ai-template').value;
+  var extra=(document.getElementById('ai-extra').value||'').trim();
+  var tmpls={intro:EMAIL_TMPL.intro,followUp:EMAIL_TMPL.followUp,quotation:EMAIL_TMPL.quotation};
+  var text=(tmpls[tpl]||tmpls.intro)
+    .replace(/\{name\}/g,'[客户名]').replace(/\{sender\}/g,STATE.user.name)
+    .replace(/\{company\}/g,STATE.user.company).replace(/\{company_name\}/g,'[客户公司]')
+    .replace(/\{email\}/g,STATE.user.email).replace(/\{whatsapp\}/g,STATE.user.whatsapp)
+    .replace(/\{product\}/g,'alloy wheels & runflat inserts').replace(/\{market\}/g,'[目标市场]')
+    .replace(/\{model\}/g,'MW-20" & MW-18"').replace(/\{quantity\}/g,'100 sets')
+    .replace(/\{price\}/g,'FOB $85/set').replace(/\{delivery\}/g,'30 days');
+  if(extra)text+='\n\n---\n补充：'+extra;
+  document.getElementById('ai-output').textContent=text
+}
+
+function openModal(x){
+  document.getElementById('modal-title').textContent='✉️ 给 '+x.contact.name+' 写开发信';
+  document.getElementById('modal-body').innerHTML='<div class="modal-input"><label>收件人</label><input value="'+x.contact.email+'" readonly></div><div class="modal-input"><label>邮件标题</label><input value="High-Quality Alloy Wheels Supplier — '+x.name+'" id="email-subject"></div><div class="modal-input"><label>邮件正文</label><textarea id="email-body">'+EMAIL_TMPL.intro.replace(/\{name\}/g,x.contact.name).replace(/\{sender\}/g,STATE.user.name).replace(/\{company\}/g,STATE.user.company).replace(/\{company_name\}/g,x.name).replace(/\{email\}/g,STATE.user.email).replace(/\{whatsapp\}/g,STATE.user.whatsapp).replace(/\{product\}/g,'alloy wheels & runflat inserts').replace(/</g,'&lt;')+'</textarea></div>';
+  document.getElementById('modal-confirm').onclick=function(){
+    var b=document.getElementById('email-body').value;
+    var s=document.getElementById('email-subject').value;
+    navigator.clipboard.writeText(b).then(function(){
+      window.open('mailto:'+x.contact.email+'?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b),'_blank');
+      document.getElementById('acq-modal').classList.remove('show');show('📋 已复制邮件，正在打开邮件客户端')
+    })
+  };
+  document.getElementById('acq-modal').classList.add('show')
+}
+
+// Init
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('find-search-btn').addEventListener('click',doSearch);
+  document.getElementById('find-search-input').addEventListener('keydown',function(e){if(e.key==='Enter')doSearch()});
+  document.querySelectorAll('.tab-pill').forEach(function(el){el.addEventListener('click',function(){document.querySelectorAll('.tab-pill').forEach(function(x){x.classList.remove('active')});this.classList.add('active');doSearch()})});
+  document.getElementById('ai-generate-btn').addEventListener('click',genEmail);
+  document.getElementById('ai-copy-btn').addEventListener('click',function(){var t=document.getElementById('ai-output').textContent;if(t&&t.indexOf('选择模板')<0)navigator.clipboard.writeText(t).then(function(){show('📋 已复制到剪贴板')})});
+  document.getElementById('modal-cancel').addEventListener('click',function(){document.getElementById('acq-modal').classList.remove('show')});
+  document.getElementById('acq-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('show')});
+  updateStats();doSearch()
+});
+</script>
+</body>
+</html>
