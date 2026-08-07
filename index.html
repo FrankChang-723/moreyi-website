@@ -72,8 +72,23 @@ footer{text-align:center;padding:40px 20px;color:var(--text-light);font-size:13p
 
 .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--pri);color:#fff;padding:12px 28px;border-radius:24px;font-size:15px;z-index:200;opacity:0;transition:opacity .4s;pointer-events:none}
 .toast.show{opacity:1}
+.about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.about-item{background:#fdfbf7;border:1px solid #e8dcc8;border-radius:12px;padding:20px;text-align:center}
+.ab-num{font-size:32px;font-weight:800;color:#b8860b;margin-bottom:6px}
+.ab-label{font-size:13px;color:#3d3226}
+.about-points{display:grid;gap:10px}
+.about-point{background:#fdfbf7;border:1px solid #e8dcc8;border-radius:10px;padding:12px 16px;font-size:14px;color:#3d3226}
+.spec-block{background:#fdfbf7;border:1px solid #e8dcc8;border-radius:12px;margin-bottom:12px;overflow:hidden}
+.spec-block summary{cursor:pointer;padding:16px 20px;font-size:15px;font-weight:700;color:#3d3226;background:#f8f4e8}
+.spec-block summary:hover{background:#f5efe0}
+.table-wrap{overflow-x:auto;padding:0 4px 12px}
+.spec-table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
+.spec-table th{background:#3d3226;color:#fff;padding:10px 14px;text-align:left}
+.spec-table td{padding:9px 14px;border-bottom:1px solid #e8dcc8;color:#3d3226}
+.spec-table tr:hover td{background:#f8f4e8}
+.form-hint{font-size:13px;color:#8c7b6a;text-align:center;margin-bottom:12px;padding:8px;background:#f8f4e8;border-radius:8px}
 
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr}.nav-links a{display:none}}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}.nav-links a{display:none}.about-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -110,44 +125,115 @@ footer{text-align:center;padding:40px 20px;color:var(--text-light);font-size:13p
   <div class="cards">
     <div class="card">
       <div class="icon">🛞</div>
-      <h3 class="t-p1-name">重型合金轮毂</h3>
-      <p class="t-p1-desc">锻造/铸造合金轮毂，适配重型车辆和高性能SUV。支持定制偏距、PCD，承重最高14+吨。</p>
-      <div class="specs"><span class="spec">14T+承重</span><span class="spec">ASTM认证</span><span class="spec">定制PCD</span></div>
+      <h3 class="t-p1-name">重型锻造铝合金轮毂</h3>
+      <p class="t-p1-desc">锻造铝合金轮毂，15"–30" 全尺寸覆盖，单轮/双轮可选，载荷最高 5,800kg。支持定制 PCD、偏距、中心孔、风孔形状。</p>
+      <div class="specs"><span class="spec">15"–30"全系列</span><span class="spec">最高5.8T载荷</span><span class="spec">锻造工艺</span></div>
+      <div class="specs"><span class="spec">6/8/10孔PCD</span><span class="spec">单/双轮</span><span class="spec">全尺寸定制</span></div>
       <div class="price"><span class="t-p1-price">询价</span> <small>/ 套</small></div>
       <a href="#contact" class="btn btn-primary" style="display:block;text-align:center;font-size:15px" data-product="alloy-wheels" onclick="prefillForm(this)">询价</a>
     </div>
     <div class="card">
       <div class="icon">🛡️</div>
       <h3 class="t-p2-name">防爆泄气保用内衬</h3>
-      <p class="t-p2-desc">认证级防爆轮胎内衬，爆胎后可继续行驶80+公里。通过严格路况及越野测试验证。</p>
-      <div class="specs"><span class="spec">80km续航</span><span class="spec">安全认证</span><span class="spec">越野测试</span></div>
+      <p class="t-p2-desc">聚合物/橡胶双方案支撑体：子弹击穿后零胎压承载全车载荷，安全续驶超 100 公里。14 套注塑模具，15"–22.5" 全系列，承载 950–4,000kg。</p>
+      <div class="specs"><span class="spec">100km+续驶</span><span class="spec">950-4000kg承载</span><span class="spec">15-22.5"全系列</span></div>
+      <div class="specs"><span class="spec">14套模具</span><span class="spec">MIL/ASTM</span><span class="spec">按参数定制</span></div>
       <div class="price"><span class="t-p2-price">询价</span> <small>/ 个</small></div>
       <a href="#contact" class="btn btn-primary" style="display:block;text-align:center;font-size:15px" data-product="runflat" onclick="prefillForm(this)">询价</a>
     </div>
     <div class="card">
       <div class="icon">🔧</div>
       <h3 class="t-p3-name">轮毂总成套件</h3>
-      <p class="t-p3-desc">预装轮毂+防爆内衬+胎压监测一体化方案，面向主机厂产线和车队维护。</p>
+      <p class="t-p3-desc">预装轮毂+防爆内衬+胎压监测一体化方案，面向主机厂产线和车队维护。按客户图纸定制开发，从样品到批量生产。</p>
       <div class="specs"><span class="spec">OEM规格</span><span class="spec">TPMS就绪</span><span class="spec">JIT交付</span></div>
+      <div class="specs"><span class="spec">NPI样品</span><span class="spec">批量产能</span><span class="spec">全批次追溯</span></div>
       <div class="price"><span class="t-p3-price">询价</span> <small>/ 套</small></div>
       <a href="#contact" class="btn btn-primary" style="display:block;text-align:center;font-size:15px" data-product="assembly" onclick="prefillForm(this)">询价</a>
     </div>
   </div>
 </section>
 
+<section class="section" id="about">
+  <h2 class="t-ab-title">公司实力</h2>
+  <div class="sec-desc t-ab-desc">自有模具 · 完整产线 · 全批次可追溯</div>
+  <div class="about-grid">
+    <div class="about-item"><div class="ab-num">14</div><div class="ab-label t-ab1">套自有注塑模具</div></div>
+    <div class="about-item"><div class="ab-num">15–30</div><div class="ab-label t-ab2">轮毂全尺寸覆盖</div></div>
+    <div class="about-item"><div class="ab-num">100+</div><div class="ab-label t-ab3">公里零胎压续驶</div></div>
+    <div class="about-item"><div class="ab-num">5,800</div><div class="ab-label t-ab4">KG 最大轮毂载荷</div></div>
+  </div>
+  <div class="about-points">
+    <div class="about-point">🏭 注塑 → 机加工 → 装配全流程自有产线，非代理非转手</div>
+    <div class="about-point">🔬 全批次可追溯（原料到成品），MIL/ASTM 标准合规，实车穿刺测试</div>
+    <div class="about-point">🧩 支撑体按客户轮辋与轮胎参数定制，NPI 样品支持测试管道</div>
+    <div class="about-point">🤝 竞争性 tier-2 定价，灵活产能，全球交付</div>
+  </div>
+</section>
+
+<section class="section" id="specs">
+  <h2 class="t-sp-title">规格参数</h2>
+  <div class="sec-desc t-sp-desc">支持任意 PCD / 偏距 / 中心孔定制</div>
+  <details class="spec-block">
+    <summary class="t-sp1-sum">🛞 锻造铝合金轮毂 · 代表性规格（15"–30" 共 80+ 规格）</summary>
+    <div class="table-wrap"><table class="spec-table">
+      <tr><th class="t-h1-1">尺寸</th><th class="t-h1-2">编号</th><th class="t-h1-3">重量(kg)</th><th class="t-h1-4">载荷(kg)</th><th>PCD</th><th class="t-h1-6">中心孔</th><th class="t-h1-7">类型</th></tr>
+      <tr><td>15×5.0</td><td>AW170</td><td>7.4</td><td>1000</td><td>6×184.15</td><td>133</td><td>双轮</td></tr>
+      <tr><td>16×6.0</td><td>JC140</td><td>9.1</td><td>1215</td><td>6×180</td><td>140</td><td>单轮</td></tr>
+      <tr><td>17.5×6.75</td><td>AW200</td><td>13.7</td><td>2750</td><td>8×165.1</td><td>124.1</td><td>单轮</td></tr>
+      <tr><td>19.5×7.50</td><td>AW040</td><td>17.0</td><td>3000</td><td>8×275</td><td>221</td><td>单轮</td></tr>
+      <tr><td>19.5×14.00</td><td>AW080</td><td>25.5</td><td>4500</td><td>8×275</td><td>221</td><td>单轮</td></tr>
+      <tr><td>22.5×8.25</td><td>AW011</td><td>21.5</td><td>3650</td><td>10×335</td><td>281.2</td><td>双轮</td></tr>
+      <tr><td>22.5×11.75</td><td>AW130</td><td>26.9</td><td>5000</td><td>10×335</td><td>281.2</td><td>单轮</td></tr>
+      <tr><td>22.5×13.00</td><td>AW050</td><td>29.6</td><td>5600</td><td>10×285.75</td><td>220.1</td><td>单轮</td></tr>
+      <tr><td>22.5×14.00</td><td>AW052</td><td>31.1</td><td>5800</td><td>10×335</td><td>281.2</td><td>单轮</td></tr>
+      <tr><td>24.5×8.25</td><td>AW060</td><td>27.3</td><td>3650</td><td>10×285.75</td><td>220.1</td><td>双轮</td></tr>
+      <tr><td>30×8.25</td><td>JC490</td><td>46.6</td><td>1600</td><td>—</td><td>108</td><td>双轮</td></tr>
+    </table></div>
+  </details>
+  <details class="spec-block">
+    <summary class="t-sp2-sum">🛡️ 聚合物支撑体（防爆内衬）· 15"–22.5" 全系列</summary>
+    <div class="table-wrap"><table class="spec-table">
+      <tr><th class="t-h2-1">尺寸</th><th class="t-h2-2">承载(kg)</th><th class="t-h2-3">适配轮胎</th><th class="t-h2-1">尺寸</th><th class="t-h2-2">承载(kg)</th><th class="t-h2-3">适配轮胎</th></tr>
+      <tr><td>15"</td><td>950</td><td>195/65R15</td><td>20"(S)</td><td>2100</td><td>265/55R20</td></tr>
+      <tr><td>16"(S)</td><td>1000</td><td>205/55R16</td><td>20"(L)</td><td>4000</td><td>14.00R20</td></tr>
+      <tr><td>16"(L)</td><td>1050</td><td>245/75R16</td><td>21"</td><td>1500</td><td>275/50R21</td></tr>
+      <tr><td>17"</td><td>2000</td><td>205/65R17</td><td>22"</td><td>1500</td><td>305/45R22</td></tr>
+      <tr><td>17.5"</td><td>2000</td><td>215/75R17.5</td><td>22.5"(A)</td><td>3200</td><td>295/80R22.5</td></tr>
+      <tr><td>18"</td><td>1800</td><td>285/60R18</td><td>22.5"(B)</td><td>3200</td><td>315/80R22.5</td></tr>
+      <tr><td>19"</td><td>1800</td><td>255/45R19</td><td colspan="3">最大承载 4,000kg（20"L）</td></tr>
+    </table></div>
+  </details>
+  <details class="spec-block">
+    <summary class="t-sp3-sum">🛞 橡胶支撑体（防弹续驶轮胎）· 全钢丝子午线</summary>
+    <div class="table-wrap"><table class="spec-table">
+      <tr><th class="t-h3-1">规格</th><th>PR</th><th class="t-h3-3">轮辋</th><th class="t-h3-4">载荷指数</th><th class="t-h3-5">最大载荷(kg)</th><th class="t-h3-6">气压(kPa)</th><th class="t-h3-7">速度等级</th></tr>
+      <tr><td>14.00R20</td><td>20</td><td>10.0-20</td><td>164</td><td>5000</td><td>790</td><td>G(90km/h)</td></tr>
+      <tr><td>14.00R20</td><td>18</td><td>10.0-20</td><td>161</td><td>4625</td><td>690</td><td>G(90km/h)</td></tr>
+      <tr><td>12.00R20</td><td>18</td><td>8.50-20</td><td>154</td><td>3750</td><td>830</td><td>K(110km/h)</td></tr>
+      <tr><td>12.00R20</td><td>16</td><td>8.50-20</td><td>152</td><td>3520</td><td>770</td><td>K(110km/h)</td></tr>
+      <tr><td>12.00-18</td><td>18</td><td>9.00-18</td><td>140</td><td>2500</td><td>600</td><td>K(110km/h)</td></tr>
+      <tr><td>37×12.5R16.5</td><td>8</td><td>9.75-16.5</td><td>127</td><td>1750</td><td>350</td><td>N(140km/h)</td></tr>
+    </table></div>
+  </details>
+</section>
+
 <section class="section" id="contact">
   <h2 class="t-ct-title">联系我们</h2>
   <div class="sec-desc t-ct-desc">留下需求，24小时内回复</div>
   <div class="contact-grid">
-    <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
-      <input type="text" id="name" placeholder="姓名 / 公司" required>
-      <input type="email" id="email" placeholder="邮箱地址" required>
-      <select id="product"><option value="">— 选择产品 —</option><option value="alloy-wheels">合金轮毂</option><option value="runflat">防爆内衬</option><option value="assembly">总成套件</option><option value="other">其他</option></select>
-      <textarea id="message" placeholder="数量、规格或任何问题…"></textarea>
+    <form class="contact-form" id="contactForm" action="https://formsubmit.co/zhongchuangguoke@gmail.com" method="POST" onsubmit="submitForm(event)">
+      <input type="hidden" name="_subject" value="MoreYi 网站询价 - New Inquiry">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="form-hint">We reply within 24 hours · 留下需求，24小时内回复</div>
+      <input type="text" id="name" name="name" placeholder="姓名 / 公司 · Name / Company" required>
+      <input type="email" id="email" name="email" placeholder="邮箱地址 · Email" required>
+      <select id="product" name="product"><option value="">— 选择产品 · Select Product —</option><option value="alloy-wheels">合金轮毂 Alloy Wheels</option><option value="runflat">防爆内衬 Runflat Inserts</option><option value="assembly">总成套件 Wheel Assembly</option><option value="other">其他 Other</option></select>
+      <textarea id="message" name="message" placeholder="数量、规格或任何问题… · Quantity, specs or any questions…"></textarea>
       <button type="submit" class="btn btn-primary t-ct-send">发送询价</button>
     </form>
     <div>
-      <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-text"><strong>邮箱</strong>contact@moreyi.com</div></div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-text"><strong>邮箱</strong>zhongchuangguoke@gmail.com</div></div>
       <div class="contact-item"><div class="contact-icon">📱</div><div class="contact-text"><strong>WhatsApp</strong>+86 (your number)</div></div>
       <div class="contact-item"><div class="contact-icon">🌐</div><div class="contact-text"><strong>网站</strong>moreyi.vercel.app</div></div>
       <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><strong>地址</strong>中国 · 全球发货</div></div>
@@ -199,6 +285,11 @@ function toggleLang(){
   document.querySelector('.t-p3-name').textContent=d.p3name;document.querySelector('.t-p3-desc').textContent=d.p3desc;
   document.querySelector('.t-p3-price').textContent=d.p3price;
   document.querySelector('.t-ct-title').textContent=d.ctTitle;document.querySelector('.t-ct-desc').textContent=d.ctDesc;
+  document.querySelector('.t-ab-title').textContent=d.abTitle;document.querySelector('.t-ab-desc').textContent=d.abDesc;
+  document.querySelector('.t-ab1').textContent=d.ab1;document.querySelector('.t-ab2').textContent=d.ab2;document.querySelector('.t-ab3').textContent=d.ab3;document.querySelector('.t-ab4').textContent=d.ab4;
+  document.querySelector('.t-sp-title').textContent=d.spTitle;document.querySelector('.t-sp-desc').textContent=d.spDesc;
+  document.querySelector('.t-sp1-sum').textContent=d.sp1s;document.querySelector('.t-sp2-sum').textContent=d.sp2s;document.querySelector('.t-sp3-sum').textContent=d.sp3s;
+  [['t-h1-1',0],['t-h1-2',1],['t-h1-3',2],['t-h1-4',3],['t-h1-6',4],['t-h1-7',5],['t-h2-1',0],['t-h2-2',1],['t-h2-3',2],['t-h3-1',0],['t-h3-3',1],['t-h3-4',2],['t-h3-5',3],['t-h3-6',4],['t-h3-7',5]].forEach(function(p){document.querySelectorAll('.'+p[0]).forEach(function(el){el.textContent=d['h'+p[0][2]][p[1]]})});
   document.querySelector('.t-ct-send').textContent=d.ctSend;
   document.querySelector('.t-pay-title').textContent=d.payTitle;document.querySelector('.t-pay-desc').textContent=d.payDesc;
   document.querySelector('.t-stripe-desc').textContent=d.stripeDesc;
@@ -216,6 +307,10 @@ const L={zh:{products:'产品',contact:'联系',payment:'支付',
   p2name:'防爆泄气保用内衬',p2desc:'认证级防爆轮胎内衬，爆胎后可继续行驶80+公里。通过严格路况及越野测试验证。',p2price:'询价',
   p3name:'轮毂总成套件',p3desc:'预装轮毂+防爆内衬+胎压监测一体化方案，面向主机厂产线和车队维护。',p3price:'询价',
   ctTitle:'联系我们',ctDesc:'留下需求，24小时内回复',ctSend:'发送询价',
+  abTitle:'公司实力',abDesc:'自有模具 · 完整产线 · 全批次可追溯',ab1:'套自有注塑模具',ab2:'轮毂全尺寸覆盖',ab3:'公里零胎压续驶',ab4:'KG 最大轮毂载荷',
+  spTitle:'规格参数',spDesc:'支持任意 PCD / 偏距 / 中心孔定制',
+  sp1s:'🛞 锻造铝合金轮毂 · 代表性规格（15"–30" 共 80+ 规格）',sp2s:'🛡️ 聚合物支撑体（防爆内衬）· 15"–22.5" 全系列',sp3s:'🛞 橡胶支撑体（防弹续驶轮胎）· 全钢丝子午线',
+  h1:['尺寸','编号','重量(kg)','载荷(kg)','中心孔','类型'],h2:['尺寸','承载(kg)','适配轮胎'],h3:['规格','轮辋','载荷指数','最大载荷(kg)','气压(kPa)','速度等级'],
   payTitle:'支付方式',payDesc:'支持多种支付渠道，安全便捷',
   stripeDesc:'信用卡、Apple Pay、Google Pay',paypalDesc:'覆盖全球200+国家和地区',
   wechatDesc:'扫码支付，即时到账',alipayDesc:'支持花呗、余额宝',
@@ -227,13 +322,17 @@ en:{products:'Products',contact:'Contact',payment:'Payment',
   p2name:'Runflat / Blast-Proof Inserts',p2desc:'Certified runflat tire inserts allowing 80+ km after puncture. Validated through rigorous road and off-road testing.',p2price:'Inquire',
   p3name:'Complete Wheel Assembly',p3desc:'Pre-assembled wheel + runflat + TPMS packages for OEM lines and fleet maintenance.',p3price:'Inquire',
   ctTitle:'Contact',ctDesc:'Tell us your requirements, reply in 24h',ctSend:'Send Inquiry',
+  abTitle:'Our Strength',abDesc:'Own molds · Full production lines · Full batch traceability',ab1:'Injection mold sets',ab2:'Wheel size coverage',ab3:'km zero-pressure range',ab4:'KG max wheel load',
+  spTitle:'Specifications',spDesc:'Any PCD / offset / center bore customization supported',
+  sp1s:'🛞 Forged Aluminum Wheels — Sample Specs (80+ sizes, 15"–30")',sp2s:'🛡️ Polymer Support Inserts — Full Range 15"–22.5"',sp3s:'🛞 Rubber Support Body — All-Steel Radial',
+  h1:['Size','Part No.','Weight(kg)','Max Load(kg)','C.B.D','Type'],h2:['Size','Load(kg)','Tire'],h3:['Size','Rim','Load Index','Max Load(kg)','Pressure(kPa)','Speed'],
   payTitle:'Payment Methods',payDesc:'Multiple payment channels, secure and convenient',
   stripeDesc:'Credit card, Apple Pay, Google Pay',paypalDesc:'200+ countries worldwide',
   wechatDesc:'Scan to pay, instant settlement',alipayDesc:'Alipay, Huabei support',
   langBtn:'中/EN',title:'MoreYi — Premium Wheels & Vehicle Parts'}};
 
 function prefillForm(el){document.getElementById('product').value=el.dataset.product;document.getElementById('contact').scrollIntoView({behavior:'smooth'})}
-function submitForm(e){e.preventDefault();document.getElementById('toast').textContent=L[lang].ctSend+' ✓';document.getElementById('toast').classList.add('show');setTimeout(()=>document.getElementById('toast').classList.remove('show'),3000);e.target.reset()}
+function submitForm(e){e.preventDefault();const f=e.target;const fd=new FormData(f);document.getElementById('toast').textContent=L[lang].ctSend+' ✓';document.getElementById('toast').classList.add('show');setTimeout(()=>document.getElementById('toast').classList.remove('show'),3000);fetch(f.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(r=>{if(r.ok){document.getElementById('toast').textContent='✓ '+(lang==='zh'?'已发送，我们会尽快回复':'Sent! We will reply soon')}else{document.getElementById('toast').textContent='⚠️ '+(lang==='zh'?'发送失败，请直接邮件联系':'Failed, please email us')}}).catch(()=>{document.getElementById('toast').textContent='⚠️ '+(lang==='zh'?'发送失败，请直接邮件联系':'Failed, please email us')}).finally(()=>{document.getElementById('toast').classList.add('show');setTimeout(()=>document.getElementById('toast').classList.remove('show'),4000)});f.reset()}
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){e.preventDefault();document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'})}));
 </script>
 </body>
