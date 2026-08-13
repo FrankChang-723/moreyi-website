@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="MoreYi® 实时翻译助手 — 中文/英语/俄语/哈萨克语/乌兹别克语/印尼语/马来语 七语互译，带语音朗读">
-<title>MoreYi® — 实时翻译助手 v2.1</title>
+<title>MoreYi® — 实时翻译助手 v2.2</title>
 <style>
 :root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--gold:#b8860b;--gold2:#daa520;--gold-dim:rgba(184,134,11,0.15);--text:#e0d5c0;--text2:#a09080;--radius:8px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -92,7 +92,7 @@ footer{text-align:center;padding:24px 20px;color:var(--text2);font-size:0.8rem;b
 
 <section class="hero">
   <div class="container">
-    <h1>🌐 实时翻译助手 <span style="font-size:0.6rem;color:var(--text2)">v2.1</span></h1>
+    <h1>🌐 实时翻译助手 <span style="font-size:0.6rem;color:var(--text2)">v2.2</span></h1>
     <div class="sub">中文 · English · Русский · Қазақша · O'zbek · Bahasa Indonesia · Bahasa Melayu</div>
     <div class="slogan">外贸洽谈 · 即时翻译 · 语音朗读</div>
   </div>
@@ -219,9 +219,9 @@ function translate(){
   const tgtLang = document.getElementById('tgtLang').value;
   const tgtBox = document.getElementById('tgtText');
   const status = document.getElementById('status');
-  
+
   document.getElementById('srcCount').textContent = src.length + ' 字';
-  
+
   if (!src) {
     tgtBox.value = '';
     document.getElementById('tgtCount').textContent = '0 字';
@@ -234,34 +234,48 @@ function translate(){
     status.textContent = '源语言与目标语言相同';
     return;
   }
-  
+
   status.textContent = '翻译中…';
-  
-  // MyMemory 免费翻译 API
+
+  /* 多源fallback：优先MyMemory，失败换Lingva，再失败提示 */
   const pair = srcLang + '|' + tgtLang;
-  const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(src) + '&langpair=' + pair;
-  
-  fetch(url)
+  const url1 = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(src) + '&langpair=' + pair;
+
+  fetch(url1, { signal: AbortSignal.timeout(8000) })
     .then(r => r.json())
     .then(data => {
-      if (data.responseData && data.responseData.translatedText) {
-        let text = data.responseData.translatedText;
-        // MyMemory 会转义HTML实体
-        text = text.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-        tgtBox.value = text;
-        document.getElementById('tgtCount').textContent = text.length + ' 字';
-        status.textContent = '✅ 翻译完成 · 点击 🔊 朗读译文';
+      if (data.responseData && data.responseData.translatedText && !data.responseData.translatedText.toUpperCase().includes('MYMEMORY')) {
+        showTranslated(data.responseData.translatedText);
       } else {
-        tgtBox.value = '';
-        status.textContent = '⚠️ 翻译服务暂不可用，请稍后重试';
+        tryLingva(src, srcLang, tgtLang);
       }
     })
-    .catch(() => {
-      status.textContent = '⚠️ 网络问题，请检查连接（需能访问外网）';
-    });
+    .catch(() => { tryLingva(src, srcLang, tgtLang); });
+
+  function tryLingva(text, sl, tl){
+    status.textContent = '翻译中（备用通道）…';
+    fetch('https://lingva.ml/api/v1/' + sl + '/' + tl + '/' + encodeURIComponent(text), { signal: AbortSignal.timeout(8000) })
+      .then(r => r.json())
+      .then(data => {
+        if (data.translation) showTranslated(data.translation);
+        else failTranslate();
+      })
+      .catch(failTranslate);
+  }
+
+  function failTranslate(){
+    tgtBox.value = '';
+    status.textContent = '⚠️ 翻译服务连不上（手机需开Clash全局模式）';
+  }
+
+  function showTranslated(text){
+    text = text.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    tgtBox.value = text;
+    document.getElementById('tgtCount').textContent = text.length + ' 字';
+    status.textContent = '✅ 翻译完成 · 点击 🔊 朗读译文';
+  }
 }
 
-/* ============ 语音朗读（浏览器TTS） ============ */
 function speak(text, lang){
   if (!text.trim()) return;
   if (!('speechSynthesis' in window)) {
@@ -559,7 +573,7 @@ renderPhrases();
   var isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '';
   var msg = [];
   if (SR) msg.push('✅语音识别支持');
-  else msg.push('❌语音识别不支持（此浏览器无法用麦克风，请用文字翻译+朗读）');
+  else msg.push('⚠️本机浏览器语音识别受限，用文字翻译+APP朗读');
   if (TTS) msg.push('✅朗读支持');
   else msg.push('❌朗读不支持');
   if (!isSecure) msg.push('⚠️非HTTPS页面麦克风可能被禁');
