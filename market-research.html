@@ -768,17 +768,23 @@ function submitForm(){
     return;
   }
   const summary = document.getElementById('summary').textContent;
-  const body = encodeURIComponent(summary);
-  const subject = encodeURIComponent('MoreYi Inquiry - ' + get('company'));
-  const email = 'changyanju@zcgkkg.com';
-  const url = 'https://formsubmit.co/ajax/' + email;
-  fetch(url, {
+  const subject = 'MoreYi Inquiry - ' + get('company');
+  const fd = new FormData();
+  fd.append('_subject', subject);
+  fd.append('_template', 'table');
+  fd.append('_captcha', 'false');
+  fd.append('Message', summary);
+  fetch('https://formsubmit.co/el/covoxo', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({ _subject: subject, _template: 'table', _captcha: 'false', Message: summary })
-  }).then(r => r.json()).then(() => {
-    clearDraft();
-    toast(cl === 'zh' ? '✅ 需求已提交！我们24小时内与您联系' : '✅ Submitted! We will contact you within 24h');
+    body: fd,
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      clearDraft();
+      toast(cl === 'zh' ? '✅ 需求已提交！我们24小时内与您联系' : '✅ Submitted! We will contact you within 24h');
+    } else {
+      throw new Error('HTTP ' + r.status);
+    }
   }).catch(() => {
     toast(cl === 'zh' ? '提交失败，请复制询价文本发送到 changyanju@zcgkkg.com' : 'Failed, please copy the text and send to changyanju@zcgkkg.com');
   });
