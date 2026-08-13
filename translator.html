@@ -172,8 +172,8 @@ footer{text-align:center;padding:24px 20px;color:var(--text2);font-size:0.8rem;b
       <option value="zh">🇨🇳 中文</option>
     </select>
   </div>
-  <button class="mic-big" id="micBtn" onmousedown="startListen()" onmouseup="stopListen()" ontouchstart="startListen(event)" ontouchend="stopListen(event)">🎤</button>
-  <div class="vm-status" id="vmStatus">按住麦克风说话，松手自动翻译并朗读</div>
+  <button class="mic-big" id="micBtn" onclick="toggleListen()">🎤</button>
+  <div class="vm-status" id="vmStatus">点击麦克风开始说话，说完再点一下停止并翻译朗读</div>
   <div class="vm-bubbles" id="vmBubbles"></div>
   <div class="vm-actions">
     <button onclick="vmClear()">🗑 清空对话</button>
@@ -369,6 +369,9 @@ function initRecognition(){
   rec.onresult = function(event){
     const text = event.results[0][0].transcript;
     if (text) vmTranslateAndSpeak(text);
+    recognition = null;
+    vmListening = false;
+    updateMicUI(false);
   };
   rec.onerror = function(event){
     vmListening = false;
@@ -383,7 +386,7 @@ function initRecognition(){
     vmListening = false;
     updateMicUI(false);
     if (document.getElementById('vmStatus').textContent.indexOf('听') >= 0 || document.getElementById('vmStatus').textContent.indexOf('识别') >= 0) {
-      document.getElementById('vmStatus').textContent = '按住麦克风说话，松手自动翻译并朗读';
+      document.getElementById('vmStatus').textContent = '点击麦克风开始说话，说完再点一下停止并翻译朗读';
     }
   };
   return rec;
@@ -393,6 +396,11 @@ function updateMicUI(listening){
   const btn = document.getElementById('micBtn');
   if (listening) { btn.classList.add('listening'); btn.textContent = '🔴'; }
   else { btn.classList.remove('listening'); btn.textContent = '🎤'; }
+}
+
+function toggleListen(){
+  if (vmListening) { stopListen(); }
+  else { startListen(); }
 }
 
 function startListen(e){
@@ -408,9 +416,13 @@ function startListen(e){
 }
 
 function stopListen(){
-  if (recognition && vmListening) {
+  if (recognition) {
     try { recognition.stop(); } catch(err) {}
+    try { recognition.abort && recognition.abort(); } catch(err) {}
+    recognition = null;
   }
+  vmListening = false;
+  updateMicUI(false);
 }
 
 function vmTranslateAndSpeak(srcText){
@@ -461,7 +473,7 @@ function addBubble(who, text, lang){
 
 function vmClear(){
   document.getElementById('vmBubbles').innerHTML = '';
-  document.getElementById('vmStatus').textContent = '按住麦克风说话，松手自动翻译并朗读';
+  document.getElementById('vmStatus').textContent = '点击麦克风开始说话，说完再点一下停止并翻译朗读';
 }
 
 function vmSwapLangs(){
