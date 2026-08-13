@@ -356,15 +356,14 @@ document.getElementById('tgtLang').addEventListener('change', function(){
 let recognition = null;
 let vmListening = false;
 let audioUnlocked = false;
+let watchdogTimer = null;
 
-/* 浏览器移动端自动播放策略：需要一次用户手势"解锁"语音朗读 */
 function unlockAudio(){
   if (audioUnlocked) return;
   try {
     if ('speechSynthesis' in window) {
       const u = new SpeechSynthesisUtterance(' ');
       u.volume = 0;
-      u.rate = 10;
       window.speechSynthesis.speak(u);
       audioUnlocked = true;
     }
@@ -372,6 +371,25 @@ function unlockAudio(){
 }
 document.addEventListener('click', unlockAudio);
 document.addEventListener('touchstart', unlockAudio);
+
+/* 核心：强制重置函数——不管识别器什么状态，按钮必须恢复 */
+function updateMicUI(listening){
+  const btn = document.getElementById('micBtn');
+  if (!btn) return;
+  if (listening) { btn.classList.add('listening'); btn.textContent = '🔴'; }
+  else { btn.classList.remove('listening'); btn.textContent = '🎤'; }
+}
+
+function forceReset(){
+  if (watchdogTimer) { clearTimeout(watchdogTimer); watchdogTimer = null; }
+  if (recognition) {
+    try { recognition.onresult = null; recognition.onerror = null; recognition.onend = null; } catch(e) {}
+    try { recognition.abort(); } catch(e) {}
+    recognition = null;
+  }
+  vmListening = false;
+  updateMicUI(false);
+}
 
 function getRecognition(){
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -382,12 +400,6 @@ function getRecognition(){
   rec.continuous = false;
   rec.maxAlternatives = 1;
   return rec;
-}
-
-function updateMicUI(listening){
-  const btn = document.getElementById('micBtn');
-  if (listening) { btn.classList.add('listening'); btn.textContent = '🔴'; }
-  else { btn.classList.remove('listening'); btn.textContent = '🎤'; }
 }
 
 function toggleListen(){
@@ -405,51 +417,57 @@ function startListening(){
     document.getElementById('vmStatus').textContent = '⚠️ 浏览器不支持语音识别（请用 Chrome + 开Clash）';
     return;
   }
-  let gotResult = false;
+
   recognition.onresult = function(event){
-    gotResult = true;
-    try {
-      const text = event.results[0][0].transcript;
-      if (text) vmTranslateAndSpeak(text);
-    } catch(e) {}
+    let text = '';
+    try { text = event.results[0][0].transcript; } catch(e) {}
+    forceReset();
+    if (text) vmTranslateAndSpeak(text);
   };
   recognition.onerror = function(event){
+    forceReset();
     let msg = '识别失败，请重试';
     if (event.error === 'not-allowed') msg = '⚠️ 麦克风权限被拒绝';
     else if (event.error === 'network') msg = '⚠️ 语音识别需要外网（开Clash）';
     else if (event.error === 'no-speech') msg = '没听到声音，请重试';
-    else if (event.error === 'aborted') msg = '已停止';
     document.getElementById('vmStatus').textContent = msg;
   };
   recognition.onend = function(){
-    /* 无论正常结束还是中止，都恢复按钮 */
-    vmListening = false;
-    recognition = null;
-    updateMicUI(false);
-    if (!gotResult && document.getElementById('vmStatus').textContent.indexOf('请重试') === -1
-        && document.getElementById('vmStatus').textContent.indexOf('拒绝') === -1
-        && document.getElementById('vmStatus').textContent.indexOf('外网') === -1) {
-      document.getElementById('vmStatus').textContent = '点击麦克风开始说话，说完再点一下翻译朗读';
-    }
+    forceReset();
   };
+
   vmListening = true;
   updateMicUI(true);
-  document.getElementById('vmStatus').textContent = '🎧 正在听…请说话，说完点红色按钮';
-  try { recognition.start(); } catch(err) {
-    vmListening = false;
-    recognition = null;
-    updateMicUI(false);
+  document.getElementById('vmStatus').textContent = '🎧 正在听…请说话';
+
+  try {
+    recognition.start();
+  } catch(err) {
+    forceReset();
     document.getElementById('vmStatus').textContent = '⚠️ 启动失败，请重试';
+    return;
   }
+
+  /* 看门狗：最长 20 秒强制恢复，绝不卡死 */
+  watchdogTimer = setTimeout(function(){
+    if (vmListening) {
+      try { recognition && recognition.stop(); } catch(e) {}
+      forceReset();
+      document.getElementById('vmStatus').textContent = '⏱ 超时自动停止（最长20秒），请重试';
+    }
+  }, 20000);
 }
 
 function stopAndProcess(){
-  if (recognition) {
-    try { recognition.stop(); } catch(err) {}
-    /* onend 会处理状态恢复 */
-  } else {
-    vmListening = false;
-    updateMicUI(false);
+  /* 立即强制重置按钮——不等待 onend（移动端可能不触发） */
+  const rec = recognition;
+  if (rec) {
+    try { rec.stop(); } catch(e) {}
+  }
+  forceReset();
+  const st = document.getElementById('vmStatus');
+  if (st.textContent.indexOf('正在听') >= 0 || st.textContent.indexOf('🎧') >= 0) {
+    st.textContent = '已停止 · 点击麦克风重新说话';
   }
 }
 
