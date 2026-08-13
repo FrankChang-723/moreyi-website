@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="MoreYi® 实时翻译助手 — 中文/英语/俄语/哈萨克语/乌兹别克语/印尼语/马来语 七语互译，带语音朗读">
+<title>MoreYi® — 实时翻译助手</title>
+<style>
+:root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--gold:#b8860b;--gold2:#daa520;--gold-dim:rgba(184,134,11,0.15);--text:#e0d5c0;--text2:#a09080;--radius:8px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;line-height:1.6;min-height:100vh}
+a{color:var(--gold2);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+.header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,134,11,0.2);padding:12px 0}
+.header .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.logo{font-size:1.3rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.nav-links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.nav-links a{color:var(--text2);font-size:0.92rem}
+.nav-links a:hover{color:var(--gold2)}
+
+.hero{padding:40px 0 20px;text-align:center}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;color:#fff;margin-bottom:8px}
+.hero .sub{font-size:1rem;color:var(--gold);margin-bottom:6px}
+.hero .slogan{font-size:0.9rem;color:var(--text2)}
+
+/* Translator */
+.translator{background:var(--bg2);border:1px solid var(--gold-dim);border-radius:12px;padding:24px;margin:20px auto 30px}
+.lang-row{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.lang-row select{flex:1;min-width:160px;padding:11px 14px;background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);color:var(--text);font-size:0.95rem;outline:none;cursor:pointer}
+.swap-btn{background:var(--gold);color:#0a0a0a;border:none;border-radius:50%;width:40px;height:40px;font-size:1.2rem;cursor:pointer;flex-shrink:0;font-weight:700;transition:transform .2s}
+.swap-btn:hover{transform:rotate(180deg)}
+
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.panes{grid-template-columns:1fr}}
+.pane{display:flex;flex-direction:column}
+.pane textarea{width:100%;min-height:160px;padding:14px;background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);color:var(--text);font-size:1rem;font-family:inherit;outline:none;resize:vertical}
+.pane textarea:focus{border-color:var(--gold)}
+.pane .pane-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px;flex-wrap:wrap}
+.pane .char-count{font-size:0.78rem;color:var(--text2)}
+.pane button{padding:8px 16px;border-radius:var(--radius);font-size:0.85rem;cursor:pointer;border:1px solid var(--gold-dim);background:var(--bg3);color:var(--gold2);font-family:inherit;transition:all .2s}
+.pane button:hover{border-color:var(--gold);background:rgba(184,134,11,0.1)}
+
+/* Quick phrases */
+.phrases{background:var(--bg2);border:1px solid var(--gold-dim);border-radius:12px;padding:20px;margin-bottom:30px}
+.phrases h3{font-size:1rem;color:var(--gold);margin-bottom:12px}
+.phrase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.phrase-chip{background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:10px 14px;font-size:0.88rem;color:var(--text);cursor:pointer;transition:all .2s;text-align:left;font-family:inherit}
+.phrase-chip:hover{border-color:var(--gold);background:rgba(184,134,11,0.1)}
+.phrase-chip .zh{color:#fff;font-weight:600}
+.phrase-chip .sub{display:block;font-size:0.78rem;color:var(--text2);margin-top:2px}
+
+/* Status */
+.status{text-align:center;font-size:0.82rem;color:var(--text2);margin-bottom:10px;min-height:20px}
+
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0a0a;padding:12px 28px;border-radius:24px;font-size:0.95rem;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;font-weight:600}
+.toast.show{opacity:1}
+
+footer{text-align:center;padding:24px 20px;color:var(--text2);font-size:0.8rem;border-top:1px solid var(--gold-dim)}
+/* Voice mode */
+.voice-mode{background:var(--bg2);border:1px solid var(--gold-dim);border-radius:12px;padding:28px 20px;margin:20px auto 30px;text-align:center}
+.voice-mode h2{font-size:1.2rem;color:#fff;margin-bottom:4px}
+.voice-mode .vm-hint{color:var(--text2);font-size:0.88rem;margin-bottom:20px}
+.vm-lang-row{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.vm-lang-row select{padding:10px 14px;background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);color:var(--text);font-size:0.95rem;outline:none}
+.mic-big{width:110px;height:110px;border-radius:50%;background:var(--gold);color:#0a0a0a;border:none;font-size:2.4rem;cursor:pointer;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 4px 24px rgba(184,134,11,.35)}
+.mic-big:hover{transform:scale(1.06)}
+.mic-big.listening{background:#e74c3c;color:#fff;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(231,76,60,.5)}50%{box-shadow:0 0 0 22px rgba(231,76,60,0)}}
+.vm-status{color:var(--gold2);font-size:0.95rem;min-height:24px;margin-bottom:14px;font-weight:600}
+.vm-bubbles{max-width:640px;margin:0 auto 14px}
+.vm-bubble{background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:12px 16px;margin-bottom:8px;text-align:left;font-size:0.95rem}
+.vm-bubble .who{font-size:0.75rem;color:var(--gold2);margin-bottom:3px;font-weight:600}
+.vm-bubble .spk{margin-left:6px;color:var(--text2);cursor:pointer}
+.vm-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.vm-actions button{padding:9px 20px;border-radius:var(--radius);font-size:0.88rem;cursor:pointer;border:1px solid var(--gold-dim);background:var(--bg3);color:var(--gold2);font-family:inherit}
+.vm-actions button:hover{border-color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="logo">MoreYi <span style="color:var(--gold2)">® 翻译助手</span></div>
+    <nav class="nav-links">
+      <a href="index.html">返回官网</a>
+      <a href="market-research.html">需求调研</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>🌐 实时翻译助手</h1>
+    <div class="sub">中文 · English · Русский · Қазақша · O'zbek · Bahasa Indonesia · Bahasa Melayu</div>
+    <div class="slogan">外贸洽谈 · 即时翻译 · 语音朗读</div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="translator">
+    <div class="lang-row">
+      <select id="srcLang">
+        <option value="zh">🇨🇳 中文</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="ru">🇷🇺 Русский</option>
+        <option value="kk">🇰🇿 Қазақша</option>
+        <option value="uz">🇺🇿 O'zbek</option>
+        <option value="id">🇮🇩 Bahasa Indonesia</option>
+        <option value="ms">🇲🇾 Bahasa Melayu</option>
+      </select>
+      <button class="swap-btn" onclick="swapLangs()" title="交换语言">⇄</button>
+      <select id="tgtLang">
+        <option value="zh">🇨🇳 中文</option>
+        <option value="en" selected>🇬🇧 English</option>
+        <option value="ru">🇷🇺 Русский</option>
+        <option value="kk">🇰🇿 Қазақша</option>
+        <option value="uz">🇺🇿 O'zbek</option>
+        <option value="id">🇮🇩 Bahasa Indonesia</option>
+        <option value="ms">🇲🇾 Bahasa Melayu</option>
+      </select>
+    </div>
+    <div class="status" id="status">输入文字，自动翻译 · 点击 🔊 朗读译文</div>
+    <div class="panes">
+      <div class="pane">
+        <textarea id="srcText" placeholder="在这里输入或粘贴文字…"></textarea>
+        <div class="pane-foot">
+          <span class="char-count" id="srcCount">0 字</span>
+          <div>
+            <button onclick="speakSrc()">🔊 朗读原文</button>
+            <button onclick="copySrc()">📋 复制</button>
+            <button onclick="clearAll()">🗑 清空</button>
+          </div>
+        </div>
+      </div>
+      <div class="pane">
+        <textarea id="tgtText" placeholder="译文将显示在这里…" readonly></textarea>
+        <div class="pane-foot">
+          <span class="char-count" id="tgtCount">0 字</span>
+          <div>
+            <button onclick="speakTgt()">🔊 朗读译文</button>
+            <button onclick="copyTgt()">📋 复制</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="voice-mode">
+  <h2>🎤 实时语音翻译</h2>
+  <div class="vm-hint">按住说话，松手自动识别 → 翻译 → 朗读。面对面谈判神器</div>
+  <div class="vm-lang-row">
+    <span style="color:var(--text2)">我说</span>
+    <select id="vmSrcLang">
+      <option value="zh" selected>🇨🇳 中文</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="kk">🇰🇿 Қазақша</option>
+      <option value="uz">🇺🇿 O'zbek</option>
+      <option value="id">🇮🇩 Indonesia</option>
+      <option value="ms">🇲🇾 Melayu</option>
+    </select>
+    <span style="color:var(--gold2)">→ 对方听</span>
+    <select id="vmTgtLang">
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="kk">🇰🇿 Қазақша</option>
+      <option value="uz">🇺🇿 O'zbek</option>
+      <option value="en" selected>🇬🇧 English</option>
+      <option value="id">🇮🇩 Indonesia</option>
+      <option value="ms">🇲🇾 Melayu</option>
+      <option value="zh">🇨🇳 中文</option>
+    </select>
+  </div>
+  <button class="mic-big" id="micBtn" onmousedown="startListen()" onmouseup="stopListen()" ontouchstart="startListen(event)" ontouchend="stopListen(event)">🎤</button>
+  <div class="vm-status" id="vmStatus">按住麦克风说话，松手自动翻译并朗读</div>
+  <div class="vm-bubbles" id="vmBubbles"></div>
+  <div class="vm-actions">
+    <button onclick="vmClear()">🗑 清空对话</button>
+    <button onclick="vmSwapLangs()">⇄ 交换语言方向</button>
+  </div>
+</div>
+
+<div class="phrases">
+    <h3>💬 常用外贸话术（点击即翻译）</h3>
+    <div class="phrase-grid" id="phraseGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® · changyanju@zcgkkg.com</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ 七语常用话术库 ============ */
+const PHRASES = [
+  {zh:'你们需要什么规格的汽车配件？', en:'What specifications of auto parts do you need?', ru:'Какие автозапчасти вам нужны?', kk:'Қандай автобөлшектер қажет?', uz:'Qanday avtomobil ehtiyot qismlari kerak?', id:'Suku cadang mobil apa yang Anda butuhkan?', ms:'Alat ganti kereta apa yang anda perlukan?'},
+  {zh:'我们的价格很有竞争力。', en:'Our prices are very competitive.', ru:'Наши цены очень конкурентоспособны.', kk:'Біздің бағаларымыз өте бәсекеге қабілетті.', uz:'Narxlarimiz juda raqobatbardosh.', id:'Harga kami sangat kompetitif.', ms:'Harga kami sangat berdaya saing.'},
+  {zh:'最小起订量是一个托盘。', en:'The minimum order quantity is one pallet.', ru:'Минимальный заказ — одна паллета.', kk:'Минималды тапсырыс — бір паллет.', uz:'Minimal buyurtma — bitta palet.', id:'Minimum pemesanan satu palet.', ms:'Kuantiti pesanan minimum satu palet.'},
+  {zh:'交货期是15到30天。', en:'Delivery time is 15 to 30 days.', ru:'Срок поставки 15-30 дней.', kk:'Жеткізу мерзімі 15-30 күн.', uz:'Yetkazib berish muddati 15-30 kun.', id:'Waktu pengiriman 15-30 hari.', ms:'Tempoh penghantaran 15-30 hari.'},
+  {zh:'支持T/T电汇和信用证付款。', en:'We accept T/T wire transfer and L/C.', ru:'Принимаем T/T и аккредитив L/C.', kk:'T/T аударымы мен L/C қабылдаймыз.', uz:'T/T pul o\'tkazmasi va L/C qabul qilamiz.', id:'Menerima transfer T/T dan L/C.', ms:'Kami terima T/T dan L/C.'},
+  {zh:'产品通过DOT和ECE认证。', en:'Products are DOT and ECE certified.', ru:'Продукция сертифицирована DOT и ECE.', kk:'Өнімдер DOT және ECE сертификатталған.', uz:'Mahsulotlar DOT va ECE sertifikatiga ega.', id:'Produk bersertifikat DOT dan ECE.', ms:'Produk disahkan DOT dan ECE.'},
+  {zh:'可以贴您的品牌生产。', en:'We can produce under your brand.', ru:'Можем производить под вашим брендом.', kk:'Сіздің брендіңізбен өндіре аламыз.', uz:'Sizning brendingiz ostida ishlab chiqaramiz.', id:'Kami bisa produksi dengan merek Anda.', ms:'Kami boleh hasilkan dengan jenama anda.'},
+  {zh:'请把您的邮箱发给我，我发报价单。', en:'Please send me your email for the quotation.', ru:'Пришлите email, вышлю предложение.', kk:'Email жіберіңіз, баға ұсынысын жолдаймын.', uz:'Email yuboring, narx taklifini yuboraman.', id:'Kirim email Anda, saya kirim penawaran.', ms:'Hantar email anda, saya kirim sebut harga.'},
+  {zh:'支持样品测试，验货走SGS。', en:'Samples available, inspection by SGS.', ru:'Образцы доступны, инспекция SGS.', kk:'Үлгілер бар, SGS тексеруі.', uz:'Namunalar mavjud, SGS tekshiruvi.', id:'Sampel tersedia, inspeksi SGS.', ms:'Sampel disediakan, pemeriksaan SGS.'},
+  {zh:'很高兴和您合作！', en:'Pleasure doing business with you!', ru:'Рады сотрудничеству!', kk:'Сізбен жұмыс істеу қуаныш!', uz:'Siz bilan ishlashdan mamnunmiz!', id:'Senang bekerja sama dengan Anda!', ms:'Gembira bekerjasama dengan anda!'},
+];
+
+/* ============ 状态 ============ */
+let debounceTimer = null;
+const LANGS = {zh:'zh-CN', en:'en-US', ru:'ru-RU', kk:'kk-KZ', uz:'uz-UZ', id:'id-ID', ms:'ms-MY'};
+
+/* ============ 翻译（免费 MyMemory API，支持七语） ============ */
+function translate(){
+  const src = document.getElementById('srcText').value.trim();
+  const srcLang = document.getElementById('srcLang').value;
+  const tgtLang = document.getElementById('tgtLang').value;
+  const tgtBox = document.getElementById('tgtText');
+  const status = document.getElementById('status');
+  
+  document.getElementById('srcCount').textContent = src.length + ' 字';
+  
+  if (!src) {
+    tgtBox.value = '';
+    document.getElementById('tgtCount').textContent = '0 字';
+    status.textContent = '输入文字，自动翻译 · 点击 🔊 朗读译文';
+    return;
+  }
+  if (srcLang === tgtLang) {
+    tgtBox.value = src;
+    document.getElementById('tgtCount').textContent = src.length + ' 字';
+    status.textContent = '源语言与目标语言相同';
+    return;
+  }
+  
+  status.textContent = '翻译中…';
+  
+  // MyMemory 免费翻译 API
+  const pair = srcLang + '|' + tgtLang;
+  const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(src) + '&langpair=' + pair;
+  
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      if (data.responseData && data.responseData.translatedText) {
+        let text = data.responseData.translatedText;
+        // MyMemory 会转义HTML实体
+        text = text.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+        tgtBox.value = text;
+        document.getElementById('tgtCount').textContent = text.length + ' 字';
+        status.textContent = '✅ 翻译完成 · 点击 🔊 朗读译文';
+      } else {
+        tgtBox.value = '';
+        status.textContent = '⚠️ 翻译服务暂不可用，请稍后重试';
+      }
+    })
+    .catch(() => {
+      status.textContent = '⚠️ 网络问题，请检查连接（需能访问外网）';
+    });
+}
+
+/* ============ 语音朗读（浏览器TTS） ============ */
+function speak(text, lang){
+  if (!text.trim()) return;
+  if (!('speechSynthesis' in window)) {
+    toast('浏览器不支持语音朗读');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = LANGS[lang] || 'en-US';
+  u.rate = 0.95;
+  window.speechSynthesis.speak(u);
+}
+function speakSrc(){
+  const src = document.getElementById('srcText').value.trim();
+  const lang = document.getElementById('srcLang').value;
+  if (src) speak(src, lang); else toast('请先输入文字');
+}
+function speakTgt(){
+  const tgt = document.getElementById('tgtText').value.trim();
+  const lang = document.getElementById('tgtLang').value;
+  if (tgt) speak(tgt, lang); else toast('请先翻译');
+}
+
+/* ============ 复制 ============ */
+function copyText(text, msg){
+  if (!text.trim()) { toast('没有内容可复制'); return; }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => toast(msg));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    toast(msg);
+  }
+}
+function copySrc(){ copyText(document.getElementById('srcText').value, '✅ 原文已复制'); }
+function copyTgt(){ copyText(document.getElementById('tgtText').value, '✅ 译文已复制'); }
+
+/* ============ 其他 ============ */
+function swapLangs(){
+  const a = document.getElementById('srcLang');
+  const b = document.getElementById('tgtLang');
+  const tmp = a.value; a.value = b.value; b.value = tmp;
+  // 交换内容
+  const sa = document.getElementById('srcText');
+  const tb = document.getElementById('tgtText');
+  const tmpText = sa.value; sa.value = tb.value; tb.value = '';
+  translate();
+}
+function clearAll(){
+  document.getElementById('srcText').value = '';
+  document.getElementById('tgtText').value = '';
+  document.getElementById('srcCount').textContent = '0 字';
+  document.getElementById('tgtCount').textContent = '0 字';
+  document.getElementById('status').textContent = '输入文字，自动翻译 · 点击 🔊 朗读译文';
+}
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+/* ============ 常用话术渲染 ============ */
+function renderPhrases(){
+  const tgtLang = document.getElementById('tgtLang').value;
+  const grid = document.getElementById('phraseGrid');
+  grid.innerHTML = PHRASES.map(p => {
+    const sub = p[tgtLang] || p.en;
+    return '<button class="phrase-chip" onclick="usePhrase(' + "'" + p.zh.replace(/'/g, "\\'") + "'" + ')">' +
+      '<span class="zh">' + p.zh + '</span>' +
+      '<span class="sub">' + sub + '</span></button>';
+  }).join('');
+}
+function usePhrase(zhText){
+  document.getElementById('srcText').value = zhText;
+  translate();
+}
+
+/* ============ 事件绑定 ============ */
+document.getElementById('srcText').addEventListener('input', function(){
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(translate, 600);
+});
+document.getElementById('srcLang').addEventListener('change', translate);
+document.getElementById('tgtLang').addEventListener('change', function(){
+  translate();
+  renderPhrases();
+});
+
+/* ============ 实时语音翻译 ============ */
+let recognition = null;
+let vmListening = false;
+
+function initRecognition(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    document.getElementById('vmStatus').textContent = '⚠️ 当前浏览器不支持语音识别（请用 Chrome 并开启代理）';
+    return null;
+  }
+  const rec = new SR();
+  rec.lang = LANGS[document.getElementById('vmSrcLang').value] || 'zh-CN';
+  rec.interimResults = false;
+  rec.continuous = false;
+  rec.onresult = function(event){
+    const text = event.results[0][0].transcript;
+    if (text) vmTranslateAndSpeak(text);
+  };
+  rec.onerror = function(event){
+    vmListening = false;
+    updateMicUI(false);
+    let msg = '识别失败';
+    if (event.error === 'not-allowed') msg = '⚠️ 麦克风权限被拒绝，请在浏览器设置中允许';
+    else if (event.error === 'network') msg = '⚠️ 语音识别需要外网（请开启Clash后重试）';
+    else if (event.error === 'no-speech') msg = '没听到声音，请重试';
+    document.getElementById('vmStatus').textContent = msg;
+  };
+  rec.onend = function(){
+    vmListening = false;
+    updateMicUI(false);
+    if (document.getElementById('vmStatus').textContent.indexOf('听') >= 0 || document.getElementById('vmStatus').textContent.indexOf('识别') >= 0) {
+      document.getElementById('vmStatus').textContent = '按住麦克风说话，松手自动翻译并朗读';
+    }
+  };
+  return rec;
+}
+
+function updateMicUI(listening){
+  const btn = document.getElementById('micBtn');
+  if (listening) { btn.classList.add('listening'); btn.textContent = '🔴'; }
+  else { btn.classList.remove('listening'); btn.textContent = '🎤'; }
+}
+
+function startListen(e){
+  if (e && e.type === 'touchstart') e.preventDefault();
+  if (vmListening) return;
+  recognition = initRecognition();
+  if (!recognition) return;
+  recognition.lang = LANGS[document.getElementById('vmSrcLang').value] || 'zh-CN';
+  vmListening = true;
+  updateMicUI(true);
+  document.getElementById('vmStatus').textContent = '🎧 正在听…请说话';
+  try { recognition.start(); } catch(err) { vmListening = false; updateMicUI(false); }
+}
+
+function stopListen(){
+  if (recognition && vmListening) {
+    try { recognition.stop(); } catch(err) {}
+  }
+}
+
+function vmTranslateAndSpeak(srcText){
+  const srcLang = document.getElementById('vmSrcLang').value;
+  const tgtLang = document.getElementById('vmTgtLang').value;
+  const status = document.getElementById('vmStatus');
+  const bubbles = document.getElementById('vmBubbles');
+
+  // 显示识别到的原文
+  addBubble('我说', srcText, srcLang);
+
+  if (srcLang === tgtLang) {
+    speak(srcText, tgtLang);
+    addBubble('对方听', srcText, tgtLang);
+    status.textContent = '✅ 已朗读';
+    return;
+  }
+
+  status.textContent = '翻译中…';
+  const pair = srcLang + '|' + tgtLang;
+  fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(srcText) + '&langpair=' + pair)
+    .then(r => r.json())
+    .then(data => {
+      let text = data.responseData && data.responseData.translatedText;
+      if (text) {
+        text = text.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+        addBubble('对方听', text, tgtLang);
+        speak(text, tgtLang);
+        status.textContent = '✅ 已翻译并朗读';
+      } else {
+        status.textContent = '⚠️ 翻译失败，请重试';
+      }
+    })
+    .catch(() => {
+      status.textContent = '⚠️ 网络问题（翻译需要外网）';
+    });
+}
+
+function addBubble(who, text, lang){
+  const bubbles = document.getElementById('vmBubbles');
+  const div = document.createElement('div');
+  div.className = 'vm-bubble';
+  div.innerHTML = '<div class="who">' + who + '</div>' + text +
+    ' <span class="spk" onclick="speak(this.parentNode.childNodes[1].textContent || this.parentNode.textContent.split(String.fromCharCode(10))[1], \'' + lang + '\')">🔊</span>';
+  bubbles.appendChild(div);
+  bubbles.scrollTop = bubbles.scrollHeight;
+}
+
+function vmClear(){
+  document.getElementById('vmBubbles').innerHTML = '';
+  document.getElementById('vmStatus').textContent = '按住麦克风说话，松手自动翻译并朗读';
+}
+
+function vmSwapLangs(){
+  const a = document.getElementById('vmSrcLang');
+  const b = document.getElementById('vmTgtLang');
+  const t = a.value; a.value = b.value; b.value = t;
+  document.getElementById('vmStatus').textContent = '已交换：我说 ' + a.options[a.selectedIndex].text + ' → 对方听 ' + b.options[b.selectedIndex].text;
+}
+
+/* 初始化 */
+renderPhrases();
+</script>
+</body>
+</html>
