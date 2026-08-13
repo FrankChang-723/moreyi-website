@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="MoreYi® 客户需求调研 — 汽车零配件一站式采购需求收集，13大品类74+子品类">
+<title>MoreYi® — 客户需求调研</title>
+<style>
+:root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--gold:#b8860b;--gold2:#daa520;--gold-dim:rgba(184,134,11,0.15);--text:#e0d5c0;--text2:#a09080;--radius:8px;--danger:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;line-height:1.6;overflow-x:hidden;min-height:100vh}
+a{color:var(--gold2);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,134,11,0.2);padding:12px 0}
+.header .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.logo{font-size:1.3rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.nav-links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.nav-links a{color:var(--text2);font-size:0.92rem;transition:color .2s}
+.nav-links a:hover{color:var(--gold2)}
+.lang-select{background:var(--bg2);color:var(--text);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:6px 10px;font-size:0.9rem;cursor:pointer;outline:none}
+.lang-select option{background:var(--bg2);color:var(--text)}
+
+/* Hero */
+.hero{padding:48px 0 28px;text-align:center;background:linear-gradient(180deg,rgba(184,134,11,0.08) 0%,transparent 100%)}
+.hero h1{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;margin-bottom:8px}
+.hero .sub{font-size:1.05rem;color:var(--gold);margin-bottom:6px}
+.hero .slogan{font-size:0.95rem;color:var(--text2);margin-bottom:18px}
+
+/* Step bar */
+.steps{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:0 auto 26px;max-width:900px}
+.step-dot{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:var(--bg2);border:1px solid var(--gold-dim);color:var(--text2);font-size:0.8rem;white-space:nowrap;transition:all .3s}
+.step-dot .num{width:20px;height:20px;border-radius:50%;background:var(--bg3);color:var(--text2);display:inline-flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700}
+.step-dot.active{background:var(--gold);border-color:var(--gold);color:#0a0a0a;font-weight:600}
+.step-dot.active .num{background:#0a0a0a;color:var(--gold)}
+.step-dot.done{background:var(--gold-dim);border-color:var(--gold-dim);color:var(--gold2)}
+.step-dot.done .num{background:var(--gold);color:#0a0a0a}
+
+/* Wizard */
+.wizard{background:var(--bg2);border:1px solid var(--gold-dim);border-radius:12px;padding:26px;margin-bottom:24px}
+.panel{display:none}
+.panel.active{display:block;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel h2{font-size:1.25rem;color:#fff;margin-bottom:4px}
+.panel .hint{color:var(--text2);font-size:0.88rem;margin-bottom:18px}
+
+/* Form controls */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:0.88rem;color:var(--gold2);margin-bottom:6px;font-weight:600}
+.field input,.field select,.field textarea{width:100%;padding:11px 14px;background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);color:var(--text);font-size:0.95rem;font-family:inherit;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{min-height:90px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:640px){.row2,.row3{grid-template-columns:1fr}}
+
+/* Option cards */
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.opt-card{background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:14px;cursor:pointer;transition:all .2s;position:relative}
+.opt-card:hover{border-color:var(--gold2)}
+.opt-card.selected{border-color:var(--gold);background:rgba(184,134,11,0.12);box-shadow:0 0 0 1px var(--gold)}
+.opt-card .t{font-weight:700;color:#fff;font-size:0.95rem}
+.opt-card .d{font-size:0.8rem;color:var(--text2);margin-top:3px}
+.opt-card .tick{position:absolute;top:8px;right:10px;color:var(--gold);font-weight:900;display:none}
+.opt-card.selected .tick{display:block}
+
+/* Category selector */
+.cat-select{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:640px){.cat-select{grid-template-columns:1fr}}
+.cat-select select{padding:11px 14px;background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);color:var(--text);font-size:0.95rem;outline:none}
+
+/* Product entries */
+.prod-entry{background:var(--bg3);border:1px solid var(--gold-dim);border-radius:var(--radius);padding:14px;margin-bottom:12px;position:relative}
+.prod-entry .rm{position:absolute;top:8px;right:10px;color:var(--danger);cursor:pointer;font-weight:700;font-size:1.1rem}
+.prod-entry .row3{margin-top:10px}
+.add-prod{display:block;width:100%;padding:11px;background:transparent;border:1px dashed var(--gold);border-radius:var(--radius);color:var(--gold2);font-size:0.95rem;cursor:pointer;transition:all .2s}
+.add-prod:hover{background:rgba(184,134,11,0.08)}
+
+/* Buttons */
+.btn-row{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 26px;border-radius:var(--radius);font-size:0.95rem;font-weight:600;cursor:pointer;transition:all .25s;border:none;font-family:inherit}
+.btn-primary{background:var(--gold);color:#0a0a0a}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--gold2);border:1px solid var(--gold-dim)}
+.btn-outline:hover{border-color:var(--gold)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* Summary */
+.summary-box{background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:18px;font-size:0.92rem;line-height:1.8;white-space:pre-wrap;word-break:break-word}
+.summary-box .s-t{color:var(--gold);font-weight:700}
+.copy-hint{color:var(--green,#4ade80);font-size:0.85rem;margin-top:8px;display:none}
+
+/* Toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0a0a;padding:12px 28px;border-radius:24px;font-size:0.95rem;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;font-weight:600}
+.toast.show{opacity:1}
+
+footer{text-align:center;padding:28px 20px;color:var(--text2);font-size:0.8rem;border-top:1px solid var(--gold-dim);margin-top:30px}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="logo">MoreYi <span data-i18n="brand_tag">® 需求调研</span></div>
+    <nav class="nav-links">
+      <a href="index.html" data-i18n="nav_home">返回官网</a>
+      <select onchange="setLang(this.value)" class="lang-select" id="langSelect">
+        <option value="zh">🇨🇳 中文</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="ru">🇷🇺 Русский</option>
+      </select>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1 data-i18n="hero_title">MoreYi® 客户需求调研</h1>
+    <div class="sub" data-i18n="hero_sub">3分钟告诉我们您的采购需求 · 24小时内专属方案</div>
+    <div class="slogan" data-i18n="hero_slogan">13大品类 · 74+子品类 · 一站式汽配供应</div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="steps" id="stepBar">
+    <div class="step-dot active" data-step="0"><span class="num">1</span><span data-i18n="st1">基本信息</span></div>
+    <div class="step-dot" data-step="1"><span class="num">2</span><span data-i18n="st2">客户类型</span></div>
+    <div class="step-dot" data-step="2"><span class="num">3</span><span data-i18n="st3">主要需求</span></div>
+    <div class="step-dot" data-step="3"><span class="num">4</span><span data-i18n="st4">产品选择</span></div>
+    <div class="step-dot" data-step="4"><span class="num">5</span><span data-i18n="st5">数量价格</span></div>
+    <div class="step-dot" data-step="5"><span class="num">6</span><span data-i18n="st6">交期认证</span></div>
+    <div class="step-dot" data-step="6"><span class="num">7</span><span data-i18n="st7">确认提交</span></div>
+  </div>
+
+  <div class="wizard">
+
+    <!-- Step 1: Basic info -->
+    <div class="panel active" id="panel0">
+      <h2 data-i18n="p1_title">客户基本信息</h2>
+      <div class="hint" data-i18n="p1_hint">请填写您的联系信息，方便我们发送专属报价方案</div>
+      <div class="row2">
+        <div class="field"><label data-i18n="f_company">公司名称 *</label><input id="company" data-i18n-ph="f_company_ph" placeholder="Company Name / 公司名称"></div>
+        <div class="field"><label data-i18n="f_contact">联系人 *</label><input id="contact" data-i18n-ph="f_contact_ph" placeholder="Contact Person / 联系人"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label data-i18n="f_email">邮箱 *</label><input id="email" type="email" placeholder="Email"></div>
+        <div class="field"><label data-i18n="f_phone">电话 / WhatsApp</label><input id="phone" placeholder="+86 138-0000-0000"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label data-i18n="f_country">国家/地区 *</label><input id="country" data-i18n-ph="f_country_ph" placeholder="Country / 国家"></div>
+        <div class="field"><label data-i18n="f_website">公司网站（选填）</label><input id="website" placeholder="https://"></div>
+      </div>
+      <div class="btn-row">
+        <span></span>
+        <button class="btn btn-primary" onclick="next()" data-i18n="btn_next">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Customer type -->
+    <div class="panel" id="panel1">
+      <h2 data-i18n="p2_title">您的客户类型</h2>
+      <div class="hint" data-i18n="p2_hint">选择最符合您业务模式的类型（可多选）</div>
+      <div class="opts" id="custTypeOpts"></div>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="prev()" data-i18n="btn_back">← 上一步</button>
+        <button class="btn btn-primary" onclick="next()" data-i18n="btn_next">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Main needs -->
+    <div class="panel" id="panel2">
+      <h2 data-i18n="p3_title">主要需求</h2>
+      <div class="hint" data-i18n="p3_hint">勾选您最关心的方面（可多选），我们据此定制方案</div>
+      <div class="opts" id="needOpts"></div>
+      <div class="field" style="margin-top:16px">
+        <label data-i18n="f_need_note">其他需求说明（选填）</label>
+        <textarea id="needNote" data-i18n-ph="f_need_note_ph" placeholder="例如：需要适配中东炎热气候的配方 / 需要 OEM 贴牌服务…"></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="prev()" data-i18n="btn_back">← 上一步</button>
+        <button class="btn btn-primary" onclick="next()" data-i18n="btn_next">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Products -->
+    <div class="panel" id="panel3">
+      <h2 data-i18n="p4_title">选择产品</h2>
+      <div class="hint" data-i18n="p4_hint">选择大品类 → 小品类 → 填写规格。可添加多个产品</div>
+      <div id="prodList"></div>
+      <button class="add-prod" onclick="addProduct()" data-i18n="btn_addprod">＋ 添加产品</button>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="prev()" data-i18n="btn_back">← 上一步</button>
+        <button class="btn btn-primary" onclick="next()" data-i18n="btn_next">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Quantity & price -->
+    <div class="panel" id="panel4">
+      <h2 data-i18n="p5_title">采购数量与价格区间</h2>
+      <div class="hint" data-i18n="p5_hint">帮助我们理解您的采购规模</div>
+      <div class="row2">
+        <div class="field"><label data-i18n="f_qty">单次采购数量</label><select id="qty"></select></div>
+        <div class="field"><label data-i18n="f_price">目标价格区间（单件）</label><select id="priceRange"></select></div>
+      </div>
+      <div class="field">
+        <label data-i18n="f_annual">年采购规模预估（选填）</label>
+        <input id="annual" data-i18n-ph="f_annual_ph" placeholder="例如：每年约 20 个 40HQ 柜">
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="prev()" data-i18n="btn_back">← 上一步</button>
+        <button class="btn btn-primary" onclick="next()" data-i18n="btn_next">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Delivery & certification -->
+    <div class="panel" id="panel5">
+      <h2 data-i18n="p6_title">交货要求</h2>
+      <div class="hint" data-i18n="p6_hint">交货时间与认证标准</div>
+      <div class="field"><label data-i18n="f_lead">期望交货时间</label><select id="leadTime"></select></div>
+      <div class="field" style="margin-top:14px"><label data-i18n="f_cert">需要的认证标准（可多选）</label></div>
+      <div class="opts" id="certOpts"></div>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="prev()" data-i18n="btn_back">← 上一步</button>
+        <button class="btn btn-primary" onclick="next()" data-i18n="btn_next">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- Step 7: Confirm & submit -->
+    <div class="panel" id="panel6">
+      <h2 data-i18n="p7_title">确认需求 · 提交</h2>
+      <div class="hint" data-i18n="p7_hint">请核对以下需求摘要，确认无误后提交。我们会24小时内与您联系</div>
+      <div class="summary-box" id="summary"></div>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="prev()" data-i18n="btn_back">← 上一步</button>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-outline" onclick="copySummary()" data-i18n="btn_copy">📋 复制询价文本</button>
+          <button class="btn btn-primary" onclick="submitForm()" data-i18n="btn_submit">✅ 提交需求</button>
+        </div>
+      </div>
+      <div class="copy-hint" id="copyHint" data-i18n="copy_ok">已复制，可粘贴到 WhatsApp/邮件发送</div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p data-i18n="footer">© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® 全车系汽车零配件供应商 · changyanju@zcgkkg.com</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= i18n ================= */
+let cl = localStorage.getItem('ml') || 'zh';
+const D = {
+  brand_tag:{zh:'® 需求调研',en:'® Market Research',ru:'® Опрос клиентов',ar:'® استبيان العملاء',fr:'® Étude de marché',de:'® Marktforschung'},
+  nav_home:{zh:'返回官网',en:'Back to Home',ru:'На главную',ar:'العودة للموقع',fr:'Retour au site',de:'Zur Startseite'},
+  hero_title:{zh:'MoreYi® 客户需求调研',en:'MoreYi® Customer Needs Survey',ru:'Опрос потребностей клиентов',ar:'استبيان احتياجات العملاء',fr:'Enquête besoins clients',de:'Kundenbedarfsanalyse'},
+  hero_sub:{zh:'3分钟告诉我们您的采购需求 · 24小时内专属方案',en:'Tell us your needs in 3 minutes · Customized plan within 24h',ru:'Расскажите о потребностях за 3 минуты · План в течение 24 часов',ar:'أخبرنا باحتياجاتك في 3 دقائق · خطة مخصصة خلال 24 ساعة',fr:'Dites-nous vos besoins en 3 min · Plan sous 24h',de:'Sagen Sie uns Ihren Bedarf in 3 Min · Plan in 24h'},
+  hero_slogan:{zh:'13大品类 · 74+子品类 · 一站式汽配供应',en:'13 Categories · 74+ Subcategories · One-stop supply',ru:'13 категорий · 74+ подкатегорий · Комплексное снабжение',ar:'13 فئة · 74+ فئة فرعية · توريد متكامل',fr:'13 catégories · 74+ sous-catégories · Fourniture intégrée',de:'13 Kategorien · 74+ Unterkategorien · Komplettversorgung'},
+  st1:{zh:'基本信息',en:'Basic Info',ru:'Контакты',ar:'معلومات أساسية',fr:'Infos de base',de:'Basisdaten'},
+  st2:{zh:'客户类型',en:'Customer Type',ru:'Тип клиента',ar:'نوع العميل',fr:'Type de client',de:'Kundentyp'},
+  st3:{zh:'主要需求',en:'Main Needs',ru:'Потребности',ar:'الاحتياجات الرئيسية',fr:'Besoins',de:'Bedürfnisse'},
+  st4:{zh:'产品选择',en:'Products',ru:'Продукты',ar:'اختيار المنتجات',fr:'Produits',de:'Produkte'},
+  st5:{zh:'数量价格',en:'Qty & Price',ru:'Кол-во и цена',ar:'الكمية والسعر',fr:'Qté & Prix',de:'Menge & Preis'},
+  st6:{zh:'交期认证',en:'Delivery & Cert',ru:'Сроки и сертиф.',ar:'التسليم والشهادات',fr:'Délais & Certifs',de:'Lieferung & Zert.'},
+  st7:{zh:'确认提交',en:'Confirm',ru:'Подтверждение',ar:'التأكيد',fr:'Confirmation',de:'Bestätigung'},
+  p1_title:{zh:'客户基本信息',en:'Basic Information',ru:'Основная информация',ar:'المعلومات الأساسية',fr:'Informations de base',de:'Grundinformationen'},
+  p1_hint:{zh:'请填写您的联系信息，方便我们发送专属报价方案',en:'Fill in your contact info so we can send a customized quotation',ru:'Заполните контакты для отправки предложения',ar:'املأ معلومات الاتصال لنرسل لك عرضاً مخصصاً',fr:'Remplissez vos coordonnées pour recevoir une offre',de:'Füllen Sie Ihre Kontaktdaten aus für ein Angebot'},
+  f_company:{zh:'公司名称 *',en:'Company Name *',ru:'Название компании *',ar:'اسم الشركة *',fr:'Nom de la société *',de:'Firmenname *'},
+  f_company_ph:{zh:'Company Name / 公司名称',en:'Company Name',ru:'Название компании',ar:'اسم الشركة',fr:'Nom de la société',de:'Firmenname'},
+  f_contact:{zh:'联系人 *',en:'Contact Person *',ru:'Контактное лицо *',ar:'الشخص المسؤول *',fr:'Personne de contact *',de:'Ansprechpartner *'},
+  f_contact_ph:{zh:'Contact Person / 联系人',en:'Contact Person',ru:'Контактное лицо',ar:'الشخص المسؤول',fr:'Personne de contact',de:'Ansprechpartner'},
+  f_email:{zh:'邮箱 *',en:'Email *',ru:'Email *',ar:'البريد الإلكتروني *',fr:'Email *',de:'E-Mail *'},
+  f_phone:{zh:'电话 / WhatsApp',en:'Phone / WhatsApp',ru:'Телефон / WhatsApp',ar:'الهاتف / واتساب',fr:'Téléphone / WhatsApp',de:'Telefon / WhatsApp'},
+  f_country:{zh:'国家/地区 *',en:'Country / Region *',ru:'Страна / регион *',ar:'الدولة / المنطقة *',fr:'Pays / Région *',de:'Land / Region *'},
+  f_country_ph:{zh:'Country / 国家',en:'Country',ru:'Страна',ar:'الدولة',fr:'Pays',de:'Land'},
+  f_website:{zh:'公司网站（选填）',en:'Website (optional)',ru:'Сайт (необязательно)',ar:'الموقع الإلكتروني (اختياري)',fr:'Site web (optionnel)',de:'Website (optional)'},
+  btn_next:{zh:'下一步 →',en:'Next →',ru:'Далее →',ar:'التالي ←',fr:'Suivant →',de:'Weiter →'},
+  btn_back:{zh:'← 上一步',en:'← Back',ru:'← Назад',ar:'→ السابق',fr:'← Retour',de:'← Zurück'},
+  p2_title:{zh:'您的客户类型',en:'Your Customer Type',ru:'Тип вашего клиента',ar:'نوع عميلك',fr:'Votre type de client',de:'Ihr Kundentyp'},
+  p2_hint:{zh:'选择最符合您业务模式的类型（可多选）',en:'Select the type that fits your business (multi-select)',ru:'Выберите подходящий тип (несколько)',ar:'اختر النوع المناسب لعملك (متعدد)',fr:'Sélectionnez le type adapté (multi-choix)',de:'Wählen Sie den passenden Typ (Mehrfachauswahl)'},
+  p3_title:{zh:'主要需求',en:'Main Needs',ru:'Основные потребности',ar:'الاحتياجات الرئيسية',fr:'Besoins principaux',de:'Hauptbedürfnisse'},
+  p3_hint:{zh:'勾选您最关心的方面（可多选），我们据此定制方案',en:'Check what matters most (multi-select)',ru:'Отметьте важное (несколько)',ar:'حدد الأهم (متعدد)',fr:'Cochez ce qui compte (multi-choix)',de:'Wählen Sie Wichtiges (Mehrfachauswahl)'},
+  f_need_note:{zh:'其他需求说明（选填）',en:'Other requirements (optional)',ru:'Другие требования',ar:'متطلبات أخرى (اختياري)',fr:'Autres besoins (optionnel)',de:'Sonstige Anforderungen (optional)'},
+  f_need_note_ph:{zh:'例如：需要适配中东炎热气候的配方 / 需要 OEM 贴牌服务…',en:'e.g. Formula for hot Middle East climate / OEM branding...',ru:'Напр.: рецептура для жаркого климата / OEM…',ar:'مثال: تركيبة للمناخ الحار / خدمة OEM…',fr:'Ex: formule pour climat chaud / OEM…',de:'z.B. Rezeptur für heißes Klima / OEM…'},
+  p4_title:{zh:'选择产品',en:'Select Products',ru:'Выбор продуктов',ar:'اختيار المنتجات',fr:'Choisir les produits',de:'Produkte auswählen'},
+  p4_hint:{zh:'选择大品类 → 小品类 → 填写规格。可添加多个产品',en:'Category → Subcategory → Specs. Add multiple products',ru:'Категория → подкатегория → спецификация',ar:'الفئة → الفئة الفرعية → المواصفات',fr:'Catégorie → Sous-catégorie → Spécifications',de:'Kategorie → Unterkategorie → Spezifikationen'},
+  btn_addprod:{zh:'＋ 添加产品',en:'＋ Add Product',ru:'＋ Добавить продукт',ar:'＋ إضافة منتج',fr:'＋ Ajouter un produit',de:'＋ Produkt hinzufügen'},
+  p5_title:{zh:'采购数量与价格区间',en:'Quantity & Price Range',ru:'Количество и диапазон цен',ar:'الكمية ونطاق السعر',fr:'Quantité et fourchette de prix',de:'Menge und Preisspanne'},
+  p5_hint:{zh:'帮助我们理解您的采购规模',en:'Help us understand your purchasing scale',ru:'Помогите понять масштаб закупок',ar:'ساعدنا على فهم حجم مشترياتك',fr:'Aidez-nous à comprendre votre volume',de:'Helfen Sie uns, Ihr Volumen zu verstehen'},
+  f_qty:{zh:'单次采购数量',en:'Order Quantity',ru:'Объём заказа',ar:'كمية الطلب',fr:'Quantité commandée',de:'Bestellmenge'},
+  f_price:{zh:'目标价格区间（单件）',en:'Target Price Range (per unit)',ru:'Целевой диапазон цен (за шт.)',ar:'نطاق السعر المستهدف (للقطعة)',fr:'Fourchette de prix (par unité)',de:'Zielpreisspanne (pro Stück)'},
+  f_annual:{zh:'年采购规模预估（选填）',en:'Estimated Annual Volume (optional)',ru:'Годовой объём (необязательно)',ar:'الحجم السنوي المقدر (اختياري)',fr:'Volume annuel estimé (optionnel)',de:'Geschätztes Jahresvolumen (optional)'},
+  f_annual_ph:{zh:'例如：每年约 20 个 40HQ 柜',en:'e.g. about 20 x 40HQ containers per year',ru:'Напр.: около 20 контейнеров 40HQ в год',ar:'مثال: حوالي 20 حاوية 40HQ سنوياً',fr:'Ex : environ 20 conteneurs 40HQ/an',de:'z.B. ca. 20 x 40HQ-Container pro Jahr'},
+  p6_title:{zh:'交货要求',en:'Delivery Requirements',ru:'Требования к поставке',ar:'متطلبات التسليم',fr:'Exigences de livraison',de:'Lieferanforderungen'},
+  p6_hint:{zh:'交货时间与认证标准',en:'Lead time and certification standards',ru:'Сроки и сертификация',ar:'مدة التسليم ومعايير الشهادات',fr:'Délais et certifications',de:'Lieferzeit und Zertifizierung'},
+  f_lead:{zh:'期望交货时间',en:'Expected Lead Time',ru:'Ожидаемый срок поставки',ar:'مدة التسليم المتوقعة',fr:'Délai de livraison souhaité',de:'Gewünschte Lieferzeit'},
+  f_cert:{zh:'需要的认证标准（可多选）',en:'Required Certifications (multi-select)',ru:'Необходимые сертификаты',ar:'الشهادات المطلوبة (متعدد)',fr:'Certifications requises (multi-choix)',de:'Erforderliche Zertifikate (Mehrfachauswahl)'},
+  p7_title:{zh:'确认需求 · 提交',en:'Confirm & Submit',ru:'Подтверждение и отправка',ar:'التأكيد والإرسال',fr:'Confirmer & Envoyer',de:'Bestätigen & Senden'},
+  p7_hint:{zh:'请核对以下需求摘要，确认无误后提交。我们会24小时内与您联系',en:'Review the summary below, then submit. We will contact you within 24h',ru:'Проверьте резюме и отправьте. Ответим в течение 24 часов',ar:'راجع الملخص ثم أرسل. سنتواصل معك خلال 24 ساعة',fr:'Vérifiez le résumé puis envoyez. Contact sous 24h',de:'Prüfen Sie die Zusammenfassung. Kontakt in 24h'},
+  btn_copy:{zh:'📋 复制询价文本',en:'📋 Copy Inquiry Text',ru:'📋 Копировать текст',ar:'📋 نسخ نص الاستفسار',fr:'📋 Copier le texte',de:'📋 Text kopieren'},
+  btn_submit:{zh:'✅ 提交需求',en:'✅ Submit',ru:'✅ Отправить',ar:'✅ إرسال',fr:'✅ Envoyer',de:'✅ Senden'},
+  copy_ok:{zh:'已复制，可粘贴到 WhatsApp/邮件发送',en:'Copied! Paste into WhatsApp/Email',ru:'Скопировано! Вставьте в WhatsApp/Email',ar:'تم النسخ! الصق في واتساب/البريد',fr:'Copié ! Collez dans WhatsApp/Email',de:'Kopiert! In WhatsApp/E-Mail einfügen'},
+  footer:{zh:'© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® 全车系汽车零配件供应商 · changyanju@zcgkkg.com',en:'© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® Full-Range Auto Parts Supplier · changyanju@zcgkkg.com',ru:'© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® · changyanju@zcgkkg.com',ar:'© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® · changyanju@zcgkkg.com',fr:'© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® · changyanju@zcgkkg.com',de:'© 2026 China Guoke Holding Group (Hainan) Co., Ltd. · MoreYi® · changyanju@zcgkkg.com'},
+  rm_prod:{zh:'✕',en:'✕',ru:'✕',ar:'✕',fr:'✕',de:'✕'},
+  sel_cat:{zh:'-- 选择大品类 --',en:'-- Select Category --',ru:'-- Категория --',ar:'-- اختر الفئة --',fr:'-- Choisir catégorie --',de:'-- Kategorie wählen --'},
+  sel_sub:{zh:'-- 选择小品类 --',en:'-- Select Subcategory --',ru:'-- Подкатегория --',ar:'-- اختر الفئة الفرعية --',fr:'-- Choisir sous-catégorie --',de:'-- Unterkategorie wählen --'},
+  spec_ph:{zh:'规格（如 12R22.5 18PR / 车型 / OE号）',en:'Specs (e.g. 12R22.5 18PR / vehicle / OE#)',ru:'Спецификация (напр. 12R22.5 18PR)',ar:'المواصفات (مثل 12R22.5 18PR)',fr:'Spécifications (ex : 12R22.5 18PR)',de:'Spezifikation (z.B. 12R22.5 18PR)'},
+  qty_ph:{zh:'数量',en:'Quantity',ru:'Количество',ar:'الكمية',fr:'Quantité',de:'Menge'},
+  custom_opt:{zh:'✍️ 自定义（其他产品）',en:'✍️ Custom (other product)',ru:'✍️ Свой вариант (другой товар)'},
+  custom_ph:{zh:'请输入产品名称',en:'Enter product name',ru:'Введите название товара'},
+  spec_custom:{zh:'规格/要求（选填，可直接输入）',en:'Specs/Requirements (optional)',ru:'Спецификация (необязательно)'}
+};
+
+/* 品类数据（与 MoreYi 13 大品类一致） */
+const CATS = {
+  wheels:{name:{zh:'🛞 轮毂轮胎',en:'🛞 Wheels & Tires',ru:'🛞 Колёса и шины',ar:'🛞 العجلات والإطارات',fr:'🛞 Roues & Pneus',de:'🛞 Räder & Reifen'},subs:{
+    alloy:{zh:'锻造铝合金轮毂',en:'Forged Alloy Wheels',ru:'Кованые алюм. диски',ar:'جنوط ألمنيوم مطروقة',fr:'Jantes alu forgées',de:'Geschmiedete Alufelgen'},
+    runflat:{zh:'防爆泄气保用内衬',en:'Runflat Inserts',ru:'Вставки Runflat',ar:'حشوات مقاومة الانفجار',fr:'Inserts runflat',de:'Runflat-Einsätze'},
+    assembly:{zh:'轮毂总成套件',en:'Wheel Assembly Kits',ru:'Комплекты колёс',ar:'أطقم تجميع العجلات',fr:'Kits de montage roue',de:'Radmontage-Kits'},
+    steel:{zh:'钢制车轮',en:'Steel Wheels',ru:'Стальные диски',ar:'عجلات فولاذية',fr:'Roues acier',de:'Stahlfelgen'},
+    tires:{zh:'全钢子午线轮胎',en:'All-Steel Radial Tires',ru:'Цельнометалл. шины',ar:'إطارات شعاعية فولاذية',fr:'Pneus radiaux acier',de:'Stahlgürtelreifen'}
+  }},
+  engine:{name:{zh:'⚙️ 发动机',en:'⚙️ Engine',ru:'⚙️ Двигатель',ar:'⚙️ المحرك',fr:'⚙️ Moteur',de:'⚙️ Motor'},subs:{
+    piston:{zh:'活塞',en:'Piston',ru:'Поршень',ar:'المكبس',fr:'Piston',de:'Kolben'},
+    liner:{zh:'气缸套',en:'Cylinder Liner',ru:'Гильза цилиндра',ar:'بطانة الأسطوانة',fr:'Chemise de cylindre',de:'Zylinderlaufbuchse'},
+    crank:{zh:'曲轴',en:'Crankshaft',ru:'Коленвал',ar:'العمود المرفقي',fr:'Vilebrequin',de:'Kurbelwelle'},
+    rod:{zh:'连杆',en:'Connecting Rod',ru:'Шатун',ar:'ذراع التوصيل',fr:'Bielle',de:'Pleuel'},
+    turbo:{zh:'涡轮增压器',en:'Turbocharger',ru:'Турбонаддув',ar:'الشاحن التوربيني',fr:'Turbocompresseur',de:'Turbolader'},
+    oilpump:{zh:'机油泵',en:'Oil Pump',ru:'Масляный насос',ar:'مضخة الزيت',fr:'Pompe à huile',de:'Ölpumpe'},
+    block:{zh:'发动机缸体',en:'Engine Block',ru:'Блок двигателя',ar:'كتلة المحرك',fr:'Bloc moteur',de:'Motorblock'}
+  }},
+  drivetrain:{name:{zh:'🔗 传动系统',en:'🔗 Drivetrain',ru:'🔗 Трансмиссия',ar:'🔗 نظام الدفع',fr:'🔗 Transmission',de:'🔗 Antriebsstrang'},subs:{
+    ujoint:{zh:'万向节',en:'Universal / CV Joint',ru:'Карданный шарнир',ar:'وصلة عامة',fr:'Joint universel / CV',de:'Kreuzgelenk'},
+    shaft:{zh:'传动轴',en:'Drive Shaft',ru:'Карданный вал',ar:'عمود الإدارة',fr:'Arbre de transmission',de:'Antriebswelle'},
+    gear:{zh:'变速箱齿轮',en:'Transmission Gears',ru:'Шестерни КПП',ar:'تروس ناقل الحركة',fr:'Engrenages',de:'Getriebezahnräder'},
+    diff:{zh:'差速器齿轮',en:'Differential Gears',ru:'Шестерни дифф.',ar:'تروس التفاضل',fr:'Engrenages différentiel',de:'Differenzialgetriebe'},
+    clutch:{zh:'离合器总成',en:'Clutch Assembly',ru:'Сцепление',ar:'مجموعة القابض',fr:'Embrayage',de:'Kupplung'},
+    trans:{zh:'变速箱总成',en:'Transmission Assembly',ru:'КПП в сборе',ar:'ناقل الحركة',fr:'Boîte de vitesses',de:'Getriebe komplett'}
+  }},
+  brake:{name:{zh:'🛑 制动系统',en:'🛑 Brake System',ru:'🛑 Тормозная система',ar:'🛑 نظام الفرامل',fr:'🛑 Freinage',de:'🛑 Bremssystem'},subs:{
+    pads:{zh:'刹车片',en:'Brake Pads',ru:'Тормозные колодки',ar:'وسادات الفرامل',fr:'Plaquettes de frein',de:'Bremsbeläge'},
+    disc:{zh:'刹车盘',en:'Brake Discs',ru:'Тормозные диски',ar:'أقراص الفرامل',fr:'Disques de frein',de:'Bremsscheiben'},
+    caliper:{zh:'刹车卡钳',en:'Brake Caliper',ru:'Суппорты',ar:'ملاقط الفرامل',fr:'Étriers de frein',de:'Bremssättel'},
+    hose:{zh:'刹车油管',en:'Brake Hose',ru:'Тормозные шланги',ar:'خراطيم الفرامل',fr:'Durites de frein',de:'Bremsleitungen'},
+    mc:{zh:'制动总泵/助力器',en:'Master Cylinder / Booster',ru:'Главный цилиндр',ar:'أسطوانة رئيسية',fr:'Maître-cylindre',de:'Hauptbremszylinder'}
+  }},
+  susp:{name:{zh:'🔧 悬挂转向',en:'🔧 Suspension & Steering',ru:'🔧 Подвеска и рулевое',ar:'🔧 التعليق والتوجيه',fr:'🔧 Suspension & Direction',de:'🔧 Fahrwerk & Lenkung'},subs:{
+    shock:{zh:'减震器',en:'Shock Absorber',ru:'Амортизаторы',ar:'ممتصات الصدمات',fr:'Amortisseurs',de:'Stoßdämpfer'},
+    arm:{zh:'悬挂摆臂',en:'Control Arm',ru:'Рычаги подвески',ar:'أذرع التعليق',fr:'Bras de suspension',de:'Querlenker'},
+    tierod:{zh:'转向拉杆',en:'Tie Rod',ru:'Рулевые тяги',ar:'أذرع التوجيه',fr:'Biellettes',de:'Spurstangen'},
+    ball:{zh:'球头',en:'Ball Joint',ru:'Шаровые опоры',ar:'وصلات كروية',fr:'Rotules',de:'Kugelgelenke'},
+    steering:{zh:'转向机总成',en:'Steering Gear',ru:'Рулевой механизм',ar:'علبة التوجيه',fr:'Direction',de:'Lenkgetriebe'},
+    stab:{zh:'稳定杆',en:'Stabilizer Bar',ru:'Стабилизаторы',ar:'قضبان التوازن',fr:'Barres stabilisatrices',de:'Stabilisatoren'}
+  }},
+  cooling:{name:{zh:'❄️ 冷却散热',en:'❄️ Cooling',ru:'❄️ Охлаждение',ar:'❄️ التبريد',fr:'❄️ Refroidissement',de:'❄️ Kühlung'},subs:{
+    radiator:{zh:'散热器',en:'Radiator',ru:'Радиаторы',ar:'المشعات',fr:'Radiateurs',de:'Kühler'},
+    intercooler:{zh:'中冷器',en:'Intercooler',ru:'Интеркулеры',ar:'المبردات البينية',fr:'Échangeurs',de:'Ladeluftkühler'},
+    waterpump:{zh:'水泵',en:'Water Pump',ru:'Водяные насосы',ar:'مضخات المياه',fr:'Pompes à eau',de:'Wasserpumpen'},
+    thermostat:{zh:'节温器',en:'Thermostat',ru:'Термостаты',ar:'الثرمستات',fr:'Thermostats',de:'Thermostate'},
+    fan:{zh:'冷却风扇',en:'Cooling Fan',ru:'Вентиляторы',ar:'مراوح التبريد',fr:'Ventilateurs',de:'Lüfter'},
+    oilcooler:{zh:'机油冷却器',en:'Oil Cooler',ru:'Маслоохладители',ar:'مبردات الزيت',fr:'Refroidisseurs d\'huile',de:'Ölkühler'}
+  }},
+  fuel:{name:{zh:'⛽ 燃油喷射',en:'⛽ Fuel Injection',ru:'⛽ Топливная система',ar:'⛽ حقن الوقود',fr:'⛽ Injection',de:'⛽ Kraftstoff'},subs:{
+    injector:{zh:'喷油器',en:'Fuel Injector',ru:'Форсунки',ar:'الحواقن',fr:'Injecteurs',de:'Einspritzdüsen'},
+    hpump:{zh:'高压油泵',en:'High-Pressure Pump',ru:'ТНВД',ar:'مضخة الضغط العالي',fr:'Pompe haute pression',de:'Hochdruckpumpe'},
+    rail:{zh:'高压油轨',en:'Common Rail',ru:'Топливная рампа',ar:'سكة الوقود',fr:'Rampe commune',de:'Common Rail'},
+    fmodule:{zh:'燃油泵总成',en:'Fuel Pump Module',ru:'Модуль топливного насоса',ar:'وحدة مضخة الوقود',fr:'Module pompe à carburant',de:'Kraftstoffpumpenmodul'},
+    housing:{zh:'滤清器底座',en:'Filter Housing',ru:'Корпус фильтра',ar:'قاعدة الفلتر',fr:'Corps de filtre',de:'Filtergehäuse'},
+    manifold:{zh:'进气歧管',en:'Intake Manifold',ru:'Впускной коллектор',ar:'مشعب السحب',fr:'Collecteur d\'admission',de:'Ansaugkrümmer'}
+  }},
+  elect:{name:{zh:'⚡ 电气系统',en:'⚡ Electrical',ru:'⚡ Электрика',ar:'⚡ الكهرباء',fr:'⚡ Électrique',de:'⚡ Elektrik'},subs:{
+    plug:{zh:'火花塞',en:'Spark Plug',ru:'Свечи зажигания',ar:'شمعات الإشعال',fr:'Bougies',de:'Zündkerzen'},
+    starter:{zh:'起动机',en:'Starter Motor',ru:'Стартеры',ar:'بادئ الحركة',fr:'Démarreurs',de:'Anlasser'},
+    alternator:{zh:'发电机',en:'Alternator',ru:'Генераторы',ar:'مولدات الكهرباء',fr:'Alternateurs',de:'Lichtmaschinen'},
+    sensor:{zh:'传感器/TPMS',en:'Sensors / TPMS',ru:'Датчики / TPMS',ar:'الحساسات / TPMS',fr:'Capteurs / TPMS',de:'Sensoren / TPMS'},
+    harness:{zh:'线束',en:'Wiring Harness',ru:'Жгуты проводов',ar:'أسلاك التوصيل',fr:'Faisceaux électriques',de:'Kabelbäume'},
+    battery:{zh:'蓄电池',en:'Battery',ru:'Аккумуляторы',ar:'البطاريات',fr:'Batteries',de:'Batterien'},
+    coil:{zh:'点火线圈',en:'Ignition Coil',ru:'Катушки зажигания',ar:'ملفات الإشعال',fr:'Bobines d\'allumage',de:'Zündspulen'}
+  }},
+  ac:{name:{zh:'🌡️ 空调系统',en:'🌡️ A/C System',ru:'🌡️ Кондиционер',ar:'🌡️ التكييف',fr:'🌡️ Climatisation',de:'🌡️ Klimaanlage'},subs:{
+    compressor:{zh:'空调压缩机',en:'A/C Compressor',ru:'Компрессор кондиционера',ar:'ضاغط التكييف',fr:'Compresseur clim',de:'Klimakompressor'},
+    condenser:{zh:'冷凝器',en:'Condenser',ru:'Конденсаторы',ar:'المكثفات',fr:'Condenseurs',de:'Kondensatoren'},
+    evaporator:{zh:'蒸发器',en:'Evaporator',ru:'Испарители',ar:'المبخرات',fr:'Évaporateurs',de:'Verdampfer'},
+    valve:{zh:'膨胀阀',en:'Expansion Valve',ru:'Расширительные клапаны',ar:'صمام التمدد',fr:'Détendeurs',de:'Expansionsventile'},
+    hvac:{zh:'HVAC总成',en:'HVAC Assembly',ru:'HVAC в сборе',ar:'وحدة HVAC',fr:'Unité HVAC',de:'HVAC-Einheit'}
+  }},
+  exhaust:{name:{zh:'💨 排气系统',en:'💨 Exhaust',ru:'💨 Выхлоп',ar:'💨 العادم',fr:'💨 Échappement',de:'💨 Auspuff'},subs:{
+    cat:{zh:'三元催化器',en:'Catalytic Converter',ru:'Катализаторы',ar:'المحول الحفاز',fr:'Catalyseurs',de:'Katalysatoren'},
+    muffler:{zh:'消声器',en:'Muffler',ru:'Глушители',ar:'كاتم الصوت',fr:'Silencieux',de:'Schalldämpfer'},
+    manifold2:{zh:'排气歧管',en:'Exhaust Manifold',ru:'Выпускной коллектор',ar:'مشعب العادم',fr:'Collecteur d\'échappement',de:'Abgaskrümmer'},
+    scr:{zh:'SCR尿素喷射系统',en:'SCR / DEF System',ru:'Система SCR',ar:'نظام SCR',fr:'Système SCR',de:'SCR-System'},
+    pipe:{zh:'排气管总成',en:'Exhaust Pipe Assembly',ru:'Выхлопные трубы',ar:'أنابيب العادم',fr:'Lignes d\'échappement',de:'Auspuffanlagen'}
+  }},
+  body:{name:{zh:'🚘 车身外饰',en:'🚘 Body & Exterior',ru:'🚘 Кузов и экстерьер',ar:'🚘 الهيكل الخارجي',fr:'🚘 Carrosserie',de:'🚘 Karosserie'},subs:{
+    lamp:{zh:'车灯',en:'Automotive Lamps',ru:'Фары и фонари',ar:'المصابيح',fr:'Feux auto',de:'Scheinwerfer & Leuchten'},
+    bumper:{zh:'保险杠',en:'Bumper',ru:'Бамперы',ar:'المصدات',fr:'Pare-chocs',de:'Stoßstangen'},
+    grille:{zh:'格栅',en:'Grille',ru:'Решётки радиатора',ar:'الشبكات',fr:'Calandres',de:'Kühlergrills'},
+    mirror:{zh:'后视镜',en:'Rearview Mirror',ru:'Зеркала',ar:'المرايا',fr:'Rétroviseurs',de:'Außenspiegel'},
+    window:{zh:'玻璃升降器',en:'Window Regulator',ru:'Стеклоподъёмники',ar:'رافعات النوافذ',fr:'Lève-vitres',de:'Fensterheber'}
+  }},
+  bearing:{name:{zh:'📐 轴承密封',en:'📐 Bearings & Seals',ru:'📐 Подшипники и уплотнения',ar:'📐 المحامل والأختام',fr:'📐 Roulements & Joints',de:'📐 Lager & Dichtungen'},subs:{
+    hub:{zh:'轮毂轴承单元',en:'Wheel Hub Bearing',ru:'Ступичные подшипники',ar:'محامل العجلات',fr:'Roulements de moyeu',de:'Radlager'},
+    release:{zh:'分离轴承',en:'Clutch Release Bearing',ru:'Выжимные подшипники',ar:'محامل الفصل',fr:'Butées d\'embrayage',de:'Ausrücklager'},
+    taper:{zh:'圆锥滚子轴承',en:'Tapered Roller Bearing',ru:'Конические подшипники',ar:'محامل أسطوانية مخروطية',fr:'Roulements coniques',de:'Kegelrollenlager'},
+    seal:{zh:'油封',en:'Oil Seals',ru:'Сальники',ar:'أختام الزيت',fr:'Joints d\'huile',de:'Wellendichtringe'},
+    oring:{zh:'O型圈/密封垫',en:'O-Rings / Gaskets',ru:'Кольца и прокладки',ar:'حلقات O / جوانات',fr:'Joints toriques',de:'O-Ringe / Dichtungen'},
+    tensioner:{zh:'涨紧轮/惰轮',en:'Tensioner / Idler',ru:'Натяжители',ar:'الشدادات',fr:'Galets tendeurs',de:'Spannrollen'}
+  }},
+  filter:{name:{zh:'🧹 滤清器',en:'🧹 Filters',ru:'🧹 Фильтры',ar:'🧹 الفلاتر',fr:'🧹 Filtres',de:'🧹 Filter'},subs:{
+    oil:{zh:'机油滤清器',en:'Oil Filter',ru:'Масляные фильтры',ar:'فلاتر الزيت',fr:'Filtres à huile',de:'Ölfilter'},
+    air:{zh:'空气滤清器',en:'Air Filter',ru:'Воздушные фильтры',ar:'فلاتر الهواء',fr:'Filtres à air',de:'Luftfilter'},
+    fuel2:{zh:'燃油滤清器',en:'Fuel Filter',ru:'Топливные фильтры',ar:'فلاتر الوقود',fr:'Filtres à carburant',de:'Kraftstofffilter'},
+    cabin:{zh:'空调滤清器',en:'Cabin Air Filter',ru:'Салонные фильтры',ar:'فلاتر المقصورة',fr:'Filtres d\'habitacle',de:'Innenraumfilter'}
+  }}
+};
+
+/* 选项数据 */
+const CUST_TYPES = [
+  {k:'importer',zh:'进口商',en:'Importer',ru:'Импортёр',ar:'مستورد',fr:'Importateur',de:'Importeur',d_zh:'从海外批量进口分销',d_en:'Bulk import & distribute',d_ru:'Оптовый импорт',d_ar:'استيراد وتوزيع بالجملة',d_fr:'Import en gros',d_de:'Großimport & Vertrieb'},
+  {k:'wholesaler',zh:'批发商',en:'Wholesaler',ru:'Оптовик',ar:'تاجر جملة',fr:'Grossiste',de:'Großhändler',d_zh:'面向本地零售商供货',d_en:'Supply local retailers',d_ru:'Поставка ритейлерам',d_ar:'توريد لتجار التجزئة',d_fr:'Fournit les détaillants',d_de:'Beliefert Einzelhändler'},
+  {k:'distributor',zh:'经销商/代理商',en:'Distributor',ru:'Дистрибьютор',ar:'موزع',fr:'Distributeur',de:'Distributor',d_zh:'品牌区域代理',d_en:'Regional brand agent',d_ru:'Региональный агент',d_ar:'وكيل إقليمي',d_fr:'Agent régional',d_de:'Regionalvertreter'},
+  {k:'oem',zh:'OEM品牌商',en:'OEM Brand Owner',ru:'OEM-бренд',ar:'مالك علامة OEM',fr:'Propriétaire de marque OEM',de:'OEM-Markeninhaber',d_zh:'贴牌生产自有品牌',d_en:'Private label production',d_ru:'Производство под своей маркой',d_ar:'إنتاج بعلامة خاصة',d_fr:'Production sous marque propre',d_de:'Eigenmarkenproduktion'},
+  {k:'fleet',zh:'车队运营商',en:'Fleet Operator',ru:'Автопарк',ar:'مشغل أسطول',fr:'Gestionnaire de flotte',de:'Flottenbetreiber',d_zh:'自有车队维护采购',d_en:'Self-fleet maintenance',d_ru:'Обслуживание автопарка',d_ar:'صيانة الأسطول',d_fr:'Maintenance de flotte',d_de:'Flottenwartung'},
+  {k:'repair',zh:'维修连锁',en:'Repair Chain',ru:'Сеть СТО',ar:'سلسلة ورش',fr:'Chaîne de réparation',de:'Werkstattkette',d_zh:'维修配件采购',d_en:'Repair parts purchasing',d_ru:'Закупка запчастей',d_ar:'شراء قطع الغيار',d_fr:'Achat de pièces',d_de:'Ersatzteileinkauf'},
+  {k:'ecom',zh:'电商卖家',en:'E-commerce Seller',ru:'Интернет-продавец',ar:'بائع إلكتروني',fr:'Vendeur e-commerce',de:'E-Commerce-Händler',d_zh:'线上零售/一件代发',d_en:'Online retail / dropship',d_ru:'Онлайн-розница',d_ar:'تجزئة عبر الإنترنت',d_fr:'Vente en ligne',d_de:'Online-Einzelhandel'}
+];
+
+const NEEDS = [
+  {k:'quality',zh:'品质稳定',en:'Stable Quality',ru:'Стабильное качество',ar:'جودة ثابتة',fr:'Qualité stable',de:'Stabile Qualität'},
+  {k:'price',zh:'价格竞争力',en:'Competitive Price',ru:'Конкурентная цена',ar:'سعر تنافسي',fr:'Prix compétitif',de:'Wettbewerbsfähiger Preis'},
+  {k:'lead',zh:'交期保障',en:'On-time Delivery',ru:'Соблюдение сроков',ar:'التسليم في الوقت المحدد',fr:'Délais respectés',de:'Pünktliche Lieferung'},
+  {k:'oem2',zh:'OEM/ODM 贴牌',en:'OEM/ODM Branding',ru:'OEM/ODM',ar:'تصنيع OEM/ODM',fr:'OEM/ODM',de:'OEM/ODM'},
+  {k:'cert2',zh:'认证合规',en:'Certification',ru:'Сертификация',ar:'الشهادات',fr:'Certifications',de:'Zertifizierung'},
+  {k:'custom',zh:'定制开发',en:'Custom Development',ru:'Разработка под заказ',ar:'تطوير مخصص',fr:'Développement sur mesure',de:'Sonderentwicklung'},
+  {k:'sample',zh:'小批量试单',en:'Small Trial Orders',ru:'Пробные заказы',ar:'طلبات تجريبية صغيرة',fr:'Petites commandes test',de:'Kleine Probeaufträge'},
+  {k:'longterm',zh:'长期合作',en:'Long-term Partnership',ru:'Долгосрочное сотрудничество',ar:'شراكة طويلة الأمد',fr:'Partenariat long terme',de:'Langfristige Partnerschaft'}
+];
+
+const QTY_OPTS = [
+  {v:'sample',zh:'样品/试单（<100件）',en:'Samples / Trial (<100 pcs)',ru:'Образцы (<100 шт)',ar:'عينات (<100 قطعة)',fr:'Échantillons (<100 pcs)',de:'Muster (<100 Stk)'},
+  {v:'small',zh:'小批量（100-1000件）',en:'Small Batch (100-1000 pcs)',ru:'Малая партия (100-1000)',ar:'دفعة صغيرة (100-1000)',fr:'Petit lot (100-1000)',de:'Kleine Charge (100-1000)'},
+  {v:'medium',zh:'中批量（1-10柜）',en:'Medium (1-10 containers)',ru:'Средняя партия (1-10 конт.)',ar:'متوسط (1-10 حاويات)',fr:'Moyen (1-10 conteneurs)',de:'Mittel (1-10 Container)'},
+  {v:'large',zh:'大批量（10柜+/年）',en:'Large (10+ containers/yr)',ru:'Крупная (10+ конт./год)',ar:'كبير (10+ حاويات/سنة)',fr:'Grand (10+ conteneurs/an)',de:'Groß (10+ Container/Jahr)'}
+];
+
+const PRICE_OPTS = [
+  {v:'lt1',zh:'<$1 /件',en:'<$1 /pc',ru:'<$1 /шт',ar:'<$1 /قطعة',fr:'<$1 /pc',de:'<$1 /Stk'},
+  {v:'1-10',zh:'$1-10 /件',en:'$1-10 /pc',ru:'$1-10 /шт',ar:'$1-10 /قطعة',fr:'$1-10 /pc',de:'$1-10 /Stk'},
+  {v:'10-50',zh:'$10-50 /件',en:'$10-50 /pc',ru:'$10-50 /шт',ar:'$10-50 /قطعة',fr:'$10-50 /pc',de:'$10-50 /Stk'},
+  {v:'50-100',zh:'$50-100 /件',en:'$50-100 /pc',ru:'$50-100 /шт',ar:'$50-100 /قطعة',fr:'$50-100 /pc',de:'$50-100 /Stk'},
+  {v:'100-500',zh:'$100-500 /件',en:'$100-500 /pc',ru:'$100-500 /шт',ar:'$100-500 /قطعة',fr:'$100-500 /pc',de:'$100-500 /Stk'},
+  {v:'gt500',zh:'>$500 /件',en:'>$500 /pc',ru:'>$500 /шт',ar:'>$500 /قطعة',fr:'>$500 /pc',de:'>$500 /Stk'}
+];
+
+const LEAD_OPTS = [
+  {v:'7d',zh:'7天以内（现货）',en:'Within 7 days (stock)',ru:'До 7 дней (склад)',ar:'خلال 7 أيام (مخزون)',fr:'Sous 7 jours (stock)',de:'Innerhalb 7 Tagen (Lager)'},
+  {v:'15d',zh:'7-15天',en:'7-15 days',ru:'7-15 дней',ar:'7-15 يوماً',fr:'7-15 jours',de:'7-15 Tage'},
+  {v:'30d',zh:'15-30天',en:'15-30 days',ru:'15-30 дней',ar:'15-30 يوماً',fr:'15-30 jours',de:'15-30 Tage'},
+  {v:'60d',zh:'30-60天',en:'30-60 days',ru:'30-60 дней',ar:'30-60 يوماً',fr:'30-60 jours',de:'30-60 Tage'},
+  {v:'60dp',zh:'60天以上（定制）',en:'60+ days (custom)',ru:'60+ дней (заказ)',ar:'+60 يوماً (مخصص)',fr:'60+ jours (sur mesure)',de:'60+ Tage (Sonderanfertigung)'}
+];
+
+const CERT_OPTS = [
+  {v:'dot',label:'DOT'},
+  {v:'ece',label:'ECE / E-mark'},
+  {v:'ccc',label:'CCC'},
+  {v:'gcc',label:'GCC'},
+  {v:'saso',label:'SASO'},
+  {v:'sni',label:'SNI'},
+  {v:'soncap',label:'SONCAP'},
+  {v:'inmetro',label:'INMETRO'},
+  {v:'ts16949',label:'IATF16949'},
+  {v:'none',label:'None 无要求'}
+];
+
+/* ================= State ================= */
+let state = {
+  step: 0,
+  custTypes: new Set(),
+  needs: new Set(),
+  products: [{ cat: '', sub: '', spec: '', qty: '', customName: '' }],
+  qty: '',
+  price: '',
+  annual: '',
+  lead: '',
+  certs: new Set()
+};
+
+/* ================= 草稿自动保存 ================= */
+function saveDraft(){
+  const get = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+  const draft = {
+    company: get('company'), contact: get('contact'), email: get('email'),
+    phone: get('phone'), country: get('country'), website: get('website'),
+    needNote: get('needNote'), annual: get('annual'),
+    custTypes: [...state.custTypes], needs: [...state.needs],
+    products: state.products, qty: state.qty, price: state.price,
+    lead: state.lead, certs: [...state.certs], step: state.step,
+    savedAt: new Date().toISOString()
+  };
+  try { localStorage.setItem('moreyi_survey_draft', JSON.stringify(draft)); } catch(e) {}
+}
+
+function restoreDraft(){
+  let draft = null;
+  try { draft = JSON.parse(localStorage.getItem('moreyi_survey_draft') || 'null'); } catch(e) {}
+  if (!draft) return false;
+  const set = (id, v) => { const el = document.getElementById(id); if (el && v) el.value = v; };
+  set('company', draft.company); set('contact', draft.contact); set('email', draft.email);
+  set('phone', draft.phone); set('country', draft.country); set('website', draft.website);
+  set('needNote', draft.needNote); set('annual', draft.annual);
+  if (Array.isArray(draft.custTypes)) state.custTypes = new Set(draft.custTypes);
+  if (Array.isArray(draft.needs)) state.needs = new Set(draft.needs);
+  if (Array.isArray(draft.products) && draft.products.length) state.products = draft.products;
+  if (draft.qty) state.qty = draft.qty;
+  if (draft.price) state.price = draft.price;
+  if (draft.lead) state.lead = draft.lead;
+  if (Array.isArray(draft.certs)) state.certs = new Set(draft.certs);
+  if (typeof draft.step === 'number' && draft.step >= 0 && draft.step <= 6) state.step = draft.step;
+  return true;
+}
+
+function clearDraft(){ try { localStorage.removeItem('moreyi_survey_draft'); } catch(e) {} }
+
+/* 输入自动保存：所有输入框/下拉/选择变化时调用 */
+function hookAutosave(){
+  ['company','contact','email','phone','country','website','needNote','annual'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', saveDraft);
+  });
+}
+
+
+/* ================= i18n helpers ================= */
+function t(key){ const e = D[key]; return e ? (e[cl] || e.en || key) : key; }
+function tcat(o){ return o[cl] || o.en || o.zh; }
+function setLang(l){
+  cl = l;
+  localStorage.setItem('ml', l);
+  document.getElementById('langSelect').value = l;
+  document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+  applyLang();
+}
+function applyLang(){
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    const v = t(k);
+    if (v) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.getAttribute('data-i18n-ph');
+    const v = t(k);
+    if (v) el.placeholder = v;
+  });
+  renderOpts();
+  renderProducts();
+  renderQtyPrice();
+  renderLeadCerts();
+  updateSummary();
+  document.title = t('hero_title') + ' | MoreYi®';
+}
+
+/* ================= Render ================= */
+function renderOpts(){
+  const ct = document.getElementById('custTypeOpts');
+  ct.innerHTML = CUST_TYPES.map(c => {
+    const sel = state.custTypes.has(c.k) ? 'selected' : '';
+    return '<div class="opt-card ' + sel + '" onclick="toggleSet(\'custTypes\',\'' + c.k + '\')">' +
+      '<span class="tick">✓</span><div class="t">' + tcat(c) + '</div>' +
+      '<div class="d">' + (c['d_' + cl] || c.d_en) + '</div></div>';
+  }).join('');
+
+  const nd = document.getElementById('needOpts');
+  nd.innerHTML = NEEDS.map(n => {
+    const sel = state.needs.has(n.k) ? 'selected' : '';
+    return '<div class="opt-card ' + sel + '" onclick="toggleSet(\'needs\',\'' + n.k + '\')">' +
+      '<span class="tick">✓</span><div class="t">' + tcat(n) + '</div></div>';
+  }).join('');
+}
+
+function toggleSet(setName, key){
+  const s = state[setName];
+  if (s.has(key)) s.delete(key); else s.add(key);
+  renderOpts();
+  saveDraft();
+}
+
+function renderProducts(){
+  const list = document.getElementById('prodList');
+  list.innerHTML = state.products.map((p, i) => {
+    let catOpts = '<option value="">' + t('sel_cat') + '</option>';
+    for (const ck in CATS) {
+      catOpts += '<option value="' + ck + '"' + (p.cat === ck ? ' selected' : '') + '>' + tcat(CATS[ck].name) + '</option>';
+    }
+    let subOpts = '<option value="">' + t('sel_sub') + '</option>';
+    if (p.cat && CATS[p.cat]) {
+      for (const sk in CATS[p.cat].subs) {
+        subOpts += '<option value="' + sk + '"' + (p.sub === sk ? ' selected' : '') + '>' + tcat(CATS[p.cat].subs[sk]) + '</option>';
+      }
+    }
+    subOpts += '<option value="__custom__"' + (p.sub === '__custom__' ? ' selected' : '') + '>' + t('custom_opt') + '</option>';
+    return '<div class="prod-entry">' +
+      (i > 0 ? '<span class="rm" onclick="removeProduct(' + i + ')">✕</span>' : '') +
+      '<div class="row2">' +
+        '<div class="field"><label>' + (cl === 'zh' ? '大品类' : 'Category') + '</label><select onchange="prodCatChange(' + i + ',this.value)">' + catOpts + '</select></div>' +
+        '<div class="field"><label>' + (cl === 'zh' ? '小品类' : 'Subcategory') + '</label><select onchange="prodSubChange(' + i + ',this.value)">' + subOpts + '</select></div>' +
+      '</div>' +
+      (p.sub === '__custom__' ? ('<div class="field" style="margin-top:10px"><label>' + t('custom_ph') + '</label><input value="' + (p.customName || '') + '" placeholder="' + t('custom_ph') + '" onchange="prodCustomChange(' + i + ',this.value)"></div>') : '') +
+      '<div class="row2">' +
+        '<div class="field"><label>' + t('spec_custom') + '</label><input value="' + (p.spec || '') + '" placeholder="' + t('spec_ph') + '" onchange="prodSpecChange(' + i + ',this.value)"></div>' +
+        '<div class="field"><label>' + t('qty_ph') + '</label><input value="' + (p.qty || '') + '" placeholder="' + t('qty_ph') + '" onchange="prodQtyChange(' + i + ',this.value)"></div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function addProduct(){ state.products.push({ cat:'', sub:'', spec:'', qty:'', customName:'' }); renderProducts(); saveDraft(); }
+function removeProduct(i){ if (state.products.length > 1) { state.products.splice(i, 1); renderProducts(); saveDraft(); } }
+function prodCatChange(i, v){ state.products[i].cat = v; state.products[i].sub = ''; renderProducts(); saveDraft(); }
+function prodSubChange(i, v){ state.products[i].sub = v; if (v !== '__custom__') state.products[i].customName = ''; renderProducts(); saveDraft(); }
+function prodCustomChange(i, v){ state.products[i].customName = v; saveDraft(); }
+function prodSpecChange(i, v){ state.products[i].spec = v; saveDraft(); }
+function prodQtyChange(i, v){ state.products[i].qty = v; saveDraft(); }
+
+function renderQtyPrice(){
+  const q = document.getElementById('qty');
+  q.innerHTML = '<option value="">' + (cl === 'zh' ? '-- 请选择 --' : '-- Select --') + '</option>' + QTY_OPTS.map(o => '<option value="' + o.v + '"' + (state.qty === o.v ? ' selected' : '') + '>' + tcat(o) + '</option>').join('');
+  q.onchange = function(){ state.qty = this.value; saveDraft(); };
+
+  const pr = document.getElementById('priceRange');
+  pr.innerHTML = '<option value="">' + (cl === 'zh' ? '-- 请选择 --' : '-- Select --') + '</option>' + PRICE_OPTS.map(o => '<option value="' + o.v + '"' + (state.price === o.v ? ' selected' : '') + '>' + tcat(o) + '</option>').join('');
+  pr.onchange = function(){ state.price = this.value; saveDraft(); };
+}
+
+function renderLeadCerts(){
+  const lt = document.getElementById('leadTime');
+  lt.innerHTML = '<option value="">' + (cl === 'zh' ? '-- 请选择 --' : '-- Select --') + '</option>' + LEAD_OPTS.map(o => '<option value="' + o.v + '"' + (state.lead === o.v ? ' selected' : '') + '>' + tcat(o) + '</option>').join('');
+  lt.onchange = function(){ state.lead = this.value; saveDraft(); };
+
+  const co = document.getElementById('certOpts');
+  co.innerHTML = CERT_OPTS.map(c => {
+    const sel = state.certs.has(c.v) ? 'selected' : '';
+    return '<div class="opt-card ' + sel + '" onclick="toggleCert(\'' + c.v + '\')"><span class="tick">✓</span><div class="t">' + c.label + '</div></div>';
+  }).join('');
+}
+
+function toggleCert(v){ if (state.certs.has(v)) state.certs.delete(v); else state.certs.add(v); renderLeadCerts(); saveDraft(); }
+
+/* ================= Steps ================= */
+function updateStepBar(){
+  document.querySelectorAll('.step-dot').forEach(dot => {
+    const n = parseInt(dot.dataset.step);
+    dot.classList.remove('active', 'done');
+    if (n === state.step) dot.classList.add('active');
+    else if (n < state.step) dot.classList.add('done');
+  });
+}
+function showPanel(){
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel' + state.step).classList.add('active');
+  updateStepBar();
+  window.scrollTo({ top: 300, behavior: 'smooth' });
+}
+function next(){ if (state.step < 6) { state.step++; showPanel(); if (state.step === 6) updateSummary(); saveDraft(); } }
+function prev(){ if (state.step > 0) { state.step--; showPanel(); saveDraft(); } }
+
+/* ================= Summary ================= */
+function updateSummary(){
+  const L = cl === 'zh' ? {
+    title:'【MoreYi® 客户需求调研】', company:'公司名称', contact:'联系人', email:'邮箱', phone:'电话', country:'国家',
+    website:'网站', type:'客户类型', needs:'主要需求', products:'产品需求', spec:'规格', qty:'数量', note:'其他说明',
+    orderQty:'单次采购数量', price:'目标价格区间', annual:'年采购规模', lead:'期望交期', cert:'认证要求', send:'提交日期'
+  } : cl === 'ru' ? {
+    title:'【MoreYi® Опрос клиентов】', company:'Компания', contact:'Контакт', email:'Email', phone:'Телефон', country:'Страна',
+    website:'Сайт', type:'Тип клиента', needs:'Потребности', products:'Продукты', spec:'Спецификация', qty:'Кол-во', note:'Примечание',
+    orderQty:'Объём заказа', price:'Диапазон цен', annual:'Годовой объём', lead:'Срок поставки', cert:'Сертификаты', send:'Дата'
+  } : cl === 'ar' ? {
+    title:'【استبيان احتياجات عملاء MoreYi®】', company:'الشركة', contact:'جهة الاتصال', email:'البريد', phone:'الهاتف', country:'الدولة',
+    website:'الموقع', type:'نوع العميل', needs:'الاحتياجات', products:'المنتجات', spec:'المواصفات', qty:'الكمية', note:'ملاحظات',
+    orderQty:'كمية الطلب', price:'نطاق السعر', annual:'الحجم السنوي', lead:'مدة التسليم', cert:'الشهادات', send:'التاريخ'
+  } : cl === 'fr' ? {
+    title:'【Enquête besoins MoreYi®】', company:'Société', contact:'Contact', email:'Email', phone:'Téléphone', country:'Pays',
+    website:'Site web', type:'Type de client', needs:'Besoins', products:'Produits', spec:'Spécifications', qty:'Qté', note:'Note',
+    orderQty:'Quantité', price:'Fourchette de prix', annual:'Volume annuel', lead:'Délai', cert:'Certifications', send:'Date'
+  } : cl === 'de' ? {
+    title:'【MoreYi® Kundenbedarfsanalyse】', company:'Firma', contact:'Kontakt', email:'E-Mail', phone:'Telefon', country:'Land',
+    website:'Website', type:'Kundentyp', needs:'Bedürfnisse', products:'Produkte', spec:'Spezifikation', qty:'Menge', note:'Anmerkung',
+    orderQty:'Bestellmenge', price:'Preisspanne', annual:'Jahresvolumen', lead:'Lieferzeit', cert:'Zertifikate', send:'Datum'
+  } : {
+    title:'【MoreYi® Customer Needs Survey】', company:'Company', contact:'Contact', email:'Email', phone:'Phone', country:'Country',
+    website:'Website', type:'Customer Type', needs:'Main Needs', products:'Products', spec:'Specs', qty:'Qty', note:'Other Notes',
+    orderQty:'Order Quantity', price:'Price Range', annual:'Annual Volume', lead:'Lead Time', cert:'Certifications', send:'Date'
+  };
+
+  const get = id => document.getElementById(id).value.trim();
+  const lines = [L.title, '──────────────────'];
+  lines.push(L.company + ': ' + (get('company') || '-'));
+  lines.push(L.contact + ': ' + (get('contact') || '-'));
+  lines.push(L.email + ': ' + (get('email') || '-'));
+  lines.push(L.phone + ': ' + (get('phone') || '-'));
+  lines.push(L.country + ': ' + (get('country') || '-'));
+  if (get('website')) lines.push(L.website + ': ' + get('website'));
+  lines.push('──────────────────');
+  lines.push(L.type + ': ' + ([...state.custTypes].map(k => { const c = CUST_TYPES.find(x => x.k === k); return c ? tcat(c) : k; }).join('、') || '-'));
+  lines.push(L.needs + ': ' + ([...state.needs].map(k => { const n = NEEDS.find(x => x.k === k); return n ? tcat(n) : k; }).join('、') || '-'));
+  lines.push('──────────────────');
+  lines.push(L.products + ':');
+  state.products.forEach((p, i) => {
+    if (!p.cat) return;
+    const catName = CATS[p.cat] ? tcat(CATS[p.cat].name) : p.cat;
+    const subName = (p.sub === '__custom__') ? (p.customName || '自定义产品') : ((p.sub && CATS[p.cat] && CATS[p.cat].subs[p.sub]) ? tcat(CATS[p.cat].subs[p.sub]) : (p.sub || '-'));
+    let line = '  ' + (i+1) + '. ' + catName + ' → ' + subName;
+    if (p.spec) line += ' | ' + L.spec + ': ' + p.spec;
+    if (p.qty) line += ' | ' + L.qty + ': ' + p.qty;
+    lines.push(line);
+  });
+  const orderQtyObj = QTY_OPTS.find(o => o.v === state.qty);
+  const priceObj = PRICE_OPTS.find(o => o.v === state.price);
+  const leadObj = LEAD_OPTS.find(o => o.v === state.lead);
+  lines.push('──────────────────');
+  lines.push(L.orderQty + ': ' + (orderQtyObj ? tcat(orderQtyObj) : '-'));
+  lines.push(L.price + ': ' + (priceObj ? tcat(priceObj) : '-'));
+  if (get('annual')) lines.push(L.annual + ': ' + get('annual'));
+  lines.push(L.lead + ': ' + (leadObj ? tcat(leadObj) : '-'));
+  lines.push(L.cert + ': ' + ([...state.certs].map(v => { const c = CERT_OPTS.find(x => x.v === v); return c ? c.label : v; }).join('、') || '-'));
+  if (get('needNote')) lines.push(L.note + ': ' + get('needNote'));
+  lines.push('──────────────────');
+  lines.push(L.send + ': ' + new Date().toLocaleDateString());
+
+  document.getElementById('summary').textContent = lines.join('\n');
+}
+
+function copySummary(){
+  const text = document.getElementById('summary').textContent;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById('copyHint').style.display = 'block';
+      setTimeout(() => { document.getElementById('copyHint').style.display = 'none'; }, 3000);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    document.getElementById('copyHint').style.display = 'block';
+    setTimeout(() => { document.getElementById('copyHint').style.display = 'none'; }, 3000);
+  }
+}
+
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+function submitForm(){
+  const get = id => document.getElementById(id).value.trim();
+  if (!get('company') || !get('contact') || !get('email') || !get('country')) {
+    toast(cl === 'zh' ? '请填写公司名称、联系人、邮箱和国家' : 'Please fill company, contact, email and country');
+    return;
+  }
+  if (!state.products.some(p => p.cat)) {
+    toast(cl === 'zh' ? '请至少选择一个产品' : 'Please select at least one product');
+    return;
+  }
+  const summary = document.getElementById('summary').textContent;
+  const body = encodeURIComponent(summary);
+  const subject = encodeURIComponent('MoreYi Inquiry - ' + get('company'));
+  const email = 'changyanju@zcgkkg.com';
+  const url = 'https://formsubmit.co/ajax/' + email;
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ _subject: subject, _template: 'table', _captcha: 'false', Message: summary })
+  }).then(r => r.json()).then(() => {
+    clearDraft();
+    toast(cl === 'zh' ? '✅ 需求已提交！我们24小时内与您联系' : '✅ Submitted! We will contact you within 24h');
+  }).catch(() => {
+    toast(cl === 'zh' ? '提交失败，请复制询价文本发送到 changyanju@zcgkkg.com' : 'Failed, please copy the text and send to changyanju@zcgkkg.com');
+  });
+}
+
+/* ================= Init ================= */
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('langSelect').value = cl;
+  applyLang();
+  const restored = restoreDraft();
+  if (restored) { renderOpts(); renderProducts(); renderQtyPrice(); renderLeadCerts(); showPanel(); }
+  hookAutosave();
+});
+</script>
+</body>
+</html>
