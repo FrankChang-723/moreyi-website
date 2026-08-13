@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="MoreYi® 实时翻译助手 — 中文/英语/俄语/哈萨克语/乌兹别克语/印尼语/马来语 七语互译，带语音朗读">
-<title>MoreYi® — 实时翻译助手</title>
+<title>MoreYi® — 实时翻译助手 v2.1</title>
 <style>
 :root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--gold:#b8860b;--gold2:#daa520;--gold-dim:rgba(184,134,11,0.15);--text:#e0d5c0;--text2:#a09080;--radius:8px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -92,7 +92,7 @@ footer{text-align:center;padding:24px 20px;color:var(--text2);font-size:0.8rem;b
 
 <section class="hero">
   <div class="container">
-    <h1>🌐 实时翻译助手</h1>
+    <h1>🌐 实时翻译助手 <span style="font-size:0.6rem;color:var(--text2)">v2.1</span></h1>
     <div class="sub">中文 · English · Русский · Қазақша · O'zbek · Bahasa Indonesia · Bahasa Melayu</div>
     <div class="slogan">外贸洽谈 · 即时翻译 · 语音朗读</div>
   </div>
@@ -550,6 +550,21 @@ function vmSwapLangs(){
 
 /* 初始化 */
 renderPhrases();
+
+/* 自检：检测浏览器语音能力，一目了然 */
+(function selfCheck(){
+  var status = document.getElementById('vmStatus');
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var TTS = 'speechSynthesis' in window;
+  var isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '';
+  var msg = [];
+  if (SR) msg.push('✅语音识别支持');
+  else msg.push('❌语音识别不支持（此浏览器无法用麦克风，请用文字翻译+朗读）');
+  if (TTS) msg.push('✅朗读支持');
+  else msg.push('❌朗读不支持');
+  if (!isSecure) msg.push('⚠️非HTTPS页面麦克风可能被禁');
+  status.textContent = msg.join(' · ');
+})();
 </script>
 </body>
 </html>
