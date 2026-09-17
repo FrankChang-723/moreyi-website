@@ -1,3 +1,6 @@
 .DS_Store
 *.log
 node_modules/
+
+# 历史版本归档，不部署
+moreyi-终版-20260813.html
