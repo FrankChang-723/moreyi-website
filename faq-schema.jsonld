@@ -1,0 +1,162 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "name": "MoreYi Auto Parts - Frequently Asked Questions",
+  "inLanguage": [
+    "en"
+  ],
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the quality of Chinese auto parts reliable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "China is the world's largest auto parts manufacturer and exporter. MoreYi adopts an OBM (Original Brand Manufacturer) model; all products carry IATF16949/DOT/ECE/GCC and other international certifications, with factory test reports for every batch and third-party SGS/BV inspection support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is MoreYi a factory or a trading company?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MoreYi is an Original Brand Manufacturer (OBM), not a trader. We design product specifications independently, own mold IP, control core processes, and cooperate deeply with 40+ certified factories under full-chain quality control."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the MOQ (minimum order quantity)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard products start from 1 pallet; mixed orders are supported for some standardized items. New customers can start with small-batch sample orders before volume purchase. FOB/CIF/DDP terms supported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the lead time and how do you ship?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "15-30 days for standard categories, 30-45 days for customized items. Shipping via sea FCL/LCL, air and international express from Qingdao/Shanghai/Ningbo/Shenzhen to major ports worldwide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we use our own brand?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. MoreYi supports OEM/ODM/co-branding: buy MoreYi-branded products, your-brand OEM, or custom-spec ODM. Mold IP and brand rights are contractually locked; the brand is registered with destination-country customs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you ensure consistent quality across batches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Triple quality control: first-article sealing (SGS composition analysis) → full/sampling inspection with test reports → third-party pre-loading inspection (AQL 2.5). Rejected goods = deposit refund."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do products have certifications for target markets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Full coverage: USA DOT/FMVSS, EU ECE/E-mark, China CCC, Gulf GCC, Saudi SASO, Indonesia SNI, Nigeria SONCAP, Brazil INMETRO. Valid certificate copies provided at contract signing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I pay? Is it safe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "T/T, L/C (sight/usance), PayPal, Stripe and more. New clients: T/T 30% deposit + 70% against B/L, or Alibaba Trade Assurance. Long-term partners can negotiate L/C 90 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your competitive advantages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three core strengths: brand manufacturer (not trader), 13 categories one-stop supply (one brand covers full vehicle systems), global compliance + flexible delivery (complete certifications / low MOQ / multiple trade terms)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I verify a Chinese auto parts factory is real?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verify any Chinese auto parts supplier in 5 steps: (1) request signed certificate copies — MoreYi provides IATF16949, DOT, FMVSS, ECE, GCC, SASO, SNI, SONCAP and INMETRO documents at contract signing; (2) confirm true manufacturing status — MoreYi is an OBM manufacturer, not a trader, working with 40+ certified factories and holding its own mold IP; (3) order samples, ready in 5–7 days; (4) audit the factory on site or by video call; (5) start with a trial order — MOQ is just 1 pallet, and mixed batches are allowed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to check if an IATF 16949 certificate is genuine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check the certificate number, the issuing body, and the scope. First, look up the certificate number in the issuing body's public database. Second, confirm the scope covers your product category. Third, check the validity dates. MoreYi signs and provides IATF16949 certificate copies at contract signing, along with DOT, FMVSS, ECE, GCC, SASO, SNI, SONCAP and INMETRO certificates, so you can verify each document with its issuer before payment. A supplier refusing to show certificate copies is a warning sign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between OBM, OEM and ODM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OBM means the manufacturer sells under its own registered brand. OEM means it produces to your design and your brand. ODM means it designs and produces the product, which you then sell under your brand. MoreYi is an OBM — a manufacturer, not a trader — holding its own mold IP and working with 40+ certified factories, while also supporting OEM/ODM projects. Samples take 5–7 days, custom orders run 30–45 days, and standard items ship in 15–30 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I mix different auto parts in one container?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can mix them. MoreYi's MOQ for standard products is 1 pallet, and different auto parts can be combined in one order and one container, so you can build a full product range without over-stocking each SKU. Standard items ship in 15–30 days and customized items in 30–45 days. Cargo departs from Qingdao, Shanghai, Ningbo or Shenzhen under FOB, CIF or DDP terms. For a mixed-container quotation, send your part list to changyanju@zcgkkg.com."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the sample order process work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The sample order process runs in 7 steps: (1) send your part number or specification; (2) receive a quotation; (3) confirm specifications and requirements; (4) pay by PayPal or Stripe, both accepted for sample orders; (5) samples are finished within 5–7 days; (6) a first article is sealed as the quality baseline; (7) samples ship out, and bulk orders start from 1 pallet with 15–30 day standard lead time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is AQL 2.5 inspection standard?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AQL 2.5 is the Acceptable Quality Limit under the ISO 2859-1 sampling standard — the maximum defect level considered acceptable when a batch passes random-sampling inspection. MoreYi applies three quality gates: an SGS-sealed first-article sample, 100% factory inspection before release, and third-party inspection at AQL 2.5. If third-party inspection fails, your deposit is refunded. Quality is therefore verified before goods leave China, not after they arrive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I track my shipment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can track a MoreYi shipment three ways. First, after booking MoreYi sends the vessel and bill-of-lading details — under T/T the 70% balance is paid against the B/L copy — so you can follow your container on the carrier's official website by B/L number. Second, cargo moves from Qingdao, Shanghai, Ningbo or Shenzhen under FOB, CIF or DDP. Third, for live status write to changyanju@zcgkkg.com or WhatsApp +86 138 0540 2111; standard production takes 15–30 days before shipment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I receive defective parts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Confirmed quality problems are covered by replacement. MoreYi replaces defective parts reported after delivery, and the risk is controlled before shipping too: every order passes an SGS-sealed first-article check, 100% factory inspection, and third-party inspection at AQL 2.5 — if that inspection fails, your deposit is refunded. To open an after-sales case, contact changyanju@zcgkkg.com or WhatsApp +86 138 0540 2111 with photos and batch information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Incoterm should I choose: FOB or CIF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose FOB if you want to control ocean freight and insurance through your own forwarder — MoreYi loads your cargo at Qingdao, Shanghai, Ningbo or Shenzhen. Choose CIF if you prefer MoreYi to arrange freight and insurance to your destination port, which simplifies logistics for smaller importers. Choose DDP if you want delivery to your door with import clearance handled. MoreYi supports all three terms for standard orders (15–30 days) and custom orders (30–45 days)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support LC payment terms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. MoreYi accepts letters of credit, both at sight and usance — long-term partners can qualify for L/C 90 days. Other payment options: T/T with 30% deposit and 70% balance against the bill-of-lading copy, Trade Assurance orders, and PayPal or Stripe for sample orders. For L/C terms and required documents, contact changyanju@zcgkkg.com or WhatsApp +86 138 0540 2111."
+      }
+    }
+  ]
+}

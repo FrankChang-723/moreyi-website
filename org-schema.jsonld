@@ -1,0 +1,44 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MoreYi",
+  "legalName": "China Guoke Holding Group (Hainan) Co., Ltd.",
+  "url": "https://moreyi-website.vercel.app",
+  "email": "changyanju@zcgkkg.com",
+  "telephone": "+8613805402111",
+  "brand": {
+    "@type": "Brand",
+    "name": "MoreYi"
+  },
+  "foundingLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CN"
+    }
+  },
+  "knowsLanguage": [
+    "zh",
+    "en",
+    "ru",
+    "ar",
+    "fr",
+    "de"
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+8613805402111",
+      "email": "changyanju@zcgkkg.com",
+      "contactType": "sales",
+      "availableLanguage": [
+        "Chinese",
+        "English",
+        "Russian",
+        "Arabic",
+        "French",
+        "German"
+      ]
+    }
+  ]
+}

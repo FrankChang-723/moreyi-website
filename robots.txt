@@ -1,0 +1,40 @@
+# robots.txt for MoreYi (moreyi-website.vercel.app)
+# 更新: 2026-08-28
+
+# === 搜索引擎爬虫 ===
+User-agent: *
+Allow: /
+
+# === AI 爬虫（GEO战略：全部欢迎） ===
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# === Sitemap & llms.txt ===
+Sitemap: https://moreyi-website.vercel.app/sitemap.xml
