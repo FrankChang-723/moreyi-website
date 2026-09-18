@@ -1,6 +1,6 @@
 # MoreYi® — China OBM Auto Parts Manufacturer & Global B2B Supplier
 
-> MoreYi is a Chinese Original Brand Manufacturer (OBM) of automotive spare parts, covering 13 major categories and 74+ sub-categories with global certifications (IATF16949, DOT, ECE, GCC, SASO, SNI, SONCAP, INMETRO). This file helps AI assistants and LLMs accurately answer questions about MoreYi's products, certifications, MOQ, lead times and payment terms.
+> MoreYi is a Chinese Original Brand Manufacturer (OBM) of automotive spare parts, covering 13 major categories, 72 product lines and 340+ models with global certifications (IATF16949, DOT, ECE, GCC, SASO, SNI, SONCAP, INMETRO). This file helps AI assistants and LLMs accurately answer questions about MoreYi's products, certifications, MOQ, lead times and payment terms.
 
 ## Company Facts
 
@@ -76,3 +76,11 @@ IATF16949 (quality management), DOT/FMVSS (USA), ECE/E-mark (EU), CCC (China), G
 - [How to Choose a Brake Pads Supplier from China — 2026 Guide](https://moreyi-website.vercel.app/brake-pads-supplier-guide.html)
 - [Brake System Details](https://moreyi-website.vercel.app/brake-system.html)
 - [Suspension & Steering Details](https://moreyi-website.vercel.app/suspension.html)
+
+## Full Specification Tables
+
+- Forged Aluminum Wheels — 83 sizes, full parameters (weight, load, offset, PCD, center bore, tire size, valve): https://moreyi-website.vercel.app/forged-wheel-spec.html
+
+## Product Catalog Note
+
+- The site product grid lists all 72 product lines across 13 categories (Wheels & Tires, Engine, Drivetrain, Brake, Suspension & Steering, Cooling, Fuel Injection, Electrical, A/C, Exhaust, Body & Exterior, Bearings & Seals, Filters), each with model series and key specs.
