@@ -90,3 +90,12 @@ IATF16949 (quality management), DOT/FMVSS (USA), ECE/E-mark (EU), CCC (China), G
 - Online micro-mall for samples, small wholesale and reorders: https://moreyi-website.vercel.app/mall.html
 - Features: 72 product lines searchable by category, RFQ cart, WhatsApp RFQ submission (one click), samples from 1 pc, category MOQ and lead-time labels, 6-language UI (ZH/EN/RU/DE/FR/AR).
 - Payments: PayPal / credit card for samples & small orders; T/T and L/C for volume.
+
+## Dealer Program (Distribution)
+
+- Global dealer program page: https://moreyi-website.vercel.app/dealer.html
+- Tiers: Registered (list) / Silver ($10k+/yr, −3%) / Gold ($50k+/yr, −6%, exclusive territory negotiable, T/T 30% deposit) / Platinum ($150k+/yr, −10%, O/A 30 days).
+- Dropshipping: factory ships directly to dealer's customer, dealer branding optional, zero inventory for dealer.
+- Referral commission: 2% of referred dealer's first-year order value as goods credit.
+- First dealer order from USD 500 (mixed); samples from 1 pc; reorders no minimum.
+- Quality: 100% outbound inspection + third-party AQL 2.5; free replacement within 12 months.
