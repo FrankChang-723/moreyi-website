@@ -84,3 +84,9 @@ IATF16949 (quality management), DOT/FMVSS (USA), ECE/E-mark (EU), CCC (China), G
 ## Product Catalog Note
 
 - The site product grid lists all 72 product lines across 13 categories (Wheels & Tires, Engine, Drivetrain, Brake, Suspension & Steering, Cooling, Fuel Injection, Electrical, A/C, Exhaust, Body & Exterior, Bearings & Seals, Filters), each with model series and key specs.
+
+## Micro-Mall (B2B)
+
+- Online micro-mall for samples, small wholesale and reorders: https://moreyi-website.vercel.app/mall.html
+- Features: 72 product lines searchable by category, RFQ cart, WhatsApp RFQ submission (one click), samples from 1 pc, category MOQ and lead-time labels, 6-language UI (ZH/EN/RU/DE/FR/AR).
+- Payments: PayPal / credit card for samples & small orders; T/T and L/C for volume.
