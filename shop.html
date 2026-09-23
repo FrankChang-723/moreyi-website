@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MoreYi® Shop — Auto Parts Factory-Direct Retail · Brake Pads, Spark Plugs, Filters, TPMS</title>
+<meta name="description" content="Buy MoreYi auto parts direct from the factory: ceramic brake pads $39.99, iridium spark plugs $9.99, TPMS sensors, filters. DHL worldwide 5-12 days, free over $99. 12-month warranty, 30-day returns.">
+<link rel="canonical" href="https://moreyi-website.vercel.app/shop.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "MoreYi Shop",
+  "description": "Factory-direct retail for MoreYi auto parts: brake pads, spark plugs, filters, TPMS sensors with worldwide DHL shipping.",
+  "url": "https://moreyi-website.vercel.app/shop.html",
+  "parentOrganization": {"@type":"Organization","name":"MoreYi® — China Guoke Holding Group (Hainan) Co., Ltd."},
+  "paymentAccepted": "PayPal, Credit Card",
+  "priceRange": "$8.99 - $79.99",
+  "currenciesAccepted": "USD"
+}
+</script>
+<style>
+:root{--bg:#0a0a0a;--bg2:#141414;--bg3:#1a1a1a;--gold:#d4af37;--gold2:#b8860b;--gold-dim:rgba(212,175,55,.16);--text:#e5e5e5;--text2:#9ca3af;--border:#2a2a2a;--radius:12px;--red:#e05252}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,'PingFang SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--gold);text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px 90px}
+.bar{border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:50}
+.bar-in{max-width:1120px;margin:0 auto;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{color:var(--gold);font-weight:800;font-size:1.05rem;letter-spacing:.5px}
+.bar nav a{color:var(--text2);font-size:.84rem;margin-left:13px}
+.bar nav a:hover{color:var(--gold)}
+.lang{background:var(--bg3);color:var(--gold);border:1px solid var(--gold2);border-radius:7px;padding:5px 8px;font-size:.84rem}
+.hero{background:linear-gradient(160deg,#111,#0a0a0a 65%);border-bottom:1px solid var(--border);padding:46px 0 40px;text-align:center}
+.tag{display:inline-block;background:var(--gold-dim);border:1px solid var(--gold2);color:var(--gold);border-radius:999px;padding:6px 16px;font-size:.8rem;margin-bottom:14px}
+h1{color:var(--gold);font-size:2.1rem;margin-bottom:10px}
+.hero p{color:var(--text2);max-width:660px;margin:0 auto;font-size:.93rem}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;max-width:860px;margin:26px auto 0}
+.trust div{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.8rem;color:var(--text)}
+h2{color:var(--gold);font-size:1.4rem;margin:40px 0 16px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.prod{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px;position:relative;transition:transform .15s,border-color .15s}
+.prod:hover{transform:translateY(-3px);border-color:var(--gold2)}
+.ptag{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;font-size:.66rem;font-weight:800;border-radius:6px;padding:3px 8px;letter-spacing:.5px}
+.pemoji{font-size:2.2rem;text-align:center;padding:10px 0 2px}
+.pname{color:#fff;font-weight:700;font-size:.98rem;text-align:center}
+.pzh{color:var(--gold);font-size:.78rem;text-align:center}
+.pnote{color:var(--text2);font-size:.74rem;text-align:center;min-height:1.2em}
+.pprice{text-align:center;margin-top:2px}
+.pprice .now{color:var(--gold);font-size:1.45rem;font-weight:800}
+.pprice .was{color:var(--text2);text-decoration:line-through;font-size:.82rem;margin-left:7px}
+.addbtn{background:var(--gold);color:#0a0a0a;border:none;border-radius:9px;padding:11px;font-size:.9rem;font-weight:800;cursor:pointer;margin-top:6px}
+.addbtn:hover{background:#e6c14d}
+/* cart */
+.fab{position:fixed;right:16px;bottom:16px;background:var(--gold);color:#0a0a0a;border:none;border-radius:999px;padding:13px 20px;font-weight:800;font-size:.92rem;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.55);z-index:55}
+.cartbar{position:fixed;left:0;right:0;bottom:0;background:var(--bg2);border-top:1px solid var(--gold2);z-index:60;transform:translateY(100%);transition:transform .25s;max-height:66vh;overflow-y:auto}
+.cartbar.open{transform:translateY(0)}
+.cart-in{max-width:1120px;margin:0 auto;padding:16px 18px}
+.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cart-head b{color:var(--gold);font-size:1.05rem}
+.ci{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.ci .nm{color:#fff;font-size:.9rem}
+.ci .nm span{display:block;color:var(--text2);font-size:.72rem}
+.qty{display:inline-flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.qty button{background:var(--bg3);color:var(--text);border:none;width:30px;height:32px;font-size:1rem;cursor:pointer}
+.qty input{width:46px;text-align:center;background:var(--bg3);border:none;color:var(--text);height:32px;font-size:.9rem}
+.ci .ln{color:var(--gold);font-weight:700;min-width:70px;text-align:right}
+.tot{display:flex;justify-content:space-between;padding:8px 0;font-size:.92rem;color:var(--text2)}
+.tot.big{color:#fff;font-size:1.05rem;font-weight:700}
+.tot.big b{color:var(--gold);font-size:1.25rem}
+.wa-btn{display:block;width:100%;background:#25d366;color:#06130a;border:none;border-radius:10px;padding:13px;font-size:.98rem;font-weight:800;cursor:pointer;margin-top:10px}
+.pp-btn{display:block;width:100%;background:var(--bg3);border:1px solid var(--gold2);color:var(--gold);border-radius:10px;padding:12px;font-size:.92rem;font-weight:700;cursor:pointer;margin-top:8px}
+.cnote{color:var(--text2);font-size:.74rem;text-align:center;margin-top:10px}
+.or-sep{text-align:center;color:var(--text2);font-size:.78rem;margin:6px 0}
+/* faq */
+.faq details{background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden;max-width:760px;margin-left:auto;margin-right:auto}
+.faq summary{cursor:pointer;padding:13px 18px;color:#fff;font-weight:700;font-size:.9rem;list-style:none;position:relative}
+.faq summary:after{content:'+';position:absolute;right:18px;color:var(--gold)}
+.faq details[open] summary:after{content:'−'}
+.faq p{padding:0 18px 14px;color:var(--text2);font-size:.85rem}
+.b2b-strip{text-align:center;margin:44px 0 0}
+.b2b-strip a{display:inline-block;border:1px solid var(--gold2);color:var(--gold);border-radius:10px;padding:12px 24px;font-size:.9rem;font-weight:700}
+.b2b-strip a:hover{background:var(--gold-dim)}
+footer{border-top:1px solid var(--border);margin-top:40px;padding:22px;color:var(--text2);font-size:.78rem;text-align:center}
+@media(max-width:640px){h1{font-size:1.5rem}.bar nav{display:none}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+  <span class="brand">MoreYi® <span style="font-size:.7rem;color:var(--text2)">零售店 Shop</span></span>
+  <nav>
+    <a href="/index.html" data-t2="home_zh">主站</a>
+    <a href="/mall.html" data-t2="mall_zh">B2B 微商城</a>
+    <a href="/dealer.html" data-t2="dealer_zh">经销商计划</a>
+    <a href="/faq.html" data-t2="faq_zh">FAQ</a>
+  </nav>
+  <select class="lang" id="langSel" onchange="setLang(this.value)">
+    <option value="zh">中文</option><option value="en">English</option><option value="ru">Русский</option>
+    <option value="de">Deutsch</option><option value="fr">Français</option><option value="ar">العربية</option>
+  </select>
+</div></div>
+
+<section class="hero"><div class="wrap">
+  <div class="tag" data-t="tag">MoreYi® 零售店 · 全球直邮 · 工厂价</div>
+  <h1 data-t="h1">汽配工厂直营店</h1>
+  <p data-t="sub">刹车片、火花塞、滤清器、TPMS——MoreYi 工厂直发，DHL 5-12天到家，满 $99 包国际快递</p>
+  <div class="trust">
+    <div data-t="trust1">🏭 工厂直营 — 没有中间商</div>
+    <div data-t="trust2">🛡️ 12个月质保 · 30天退换</div>
+    <div data-t="trust3">🚚 DHL 全球 5-12 天</div>
+    <div data-t="trust4">🔒 PayPal / 信用卡</div>
+  </div>
+</div></section>
+
+<div class="wrap">
+<h2 data-t2="picks">🔥 工厂直选</h2>
+<div class="grid" id="grid"></div>
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary data-t="faq1q">发货和运费？</summary><p data-t="faq1a">DHL 国际快递 5-12 天，费率 $19.99，满 $99 免运费。支持全球 200+ 国家。</p></details>
+  <details><summary data-t="faq2q">怎么知道适不适合我的车？</summary><p data-t="faq2a">下单前把车型/年份/VIN 发给 WhatsApp 客服，免费查适配。MoreYi 覆盖主流车型 6700+ 品种。</p></details>
+  <details><summary data-t="faq3q">质保和退换？</summary><p data-t="faq3a">12 个月质量质保，质量问题免费补发运费我们出；30 天无理由退换（未安装）。</p></details>
+</div>
+
+<div class="b2b-strip">
+  <a href="/mall.html" data-t="b2b">批量采购？去 B2B 微商城 →</a>
+</div>
+</div>
+
+<button class="fab" onclick="toggleCart()">🛒 <span data-t="cart">购物车</span> · $<span id="fabTotal">0</span></button>
+<div class="cartbar" id="cartbar"><div class="cart-in">
+  <div class="cart-head"><b data-t="cart">购物车</b><button onclick="toggleCart()" style="background:none;border:1px solid var(--border);color:var(--text2);border-radius:7px;padding:5px 12px;cursor:pointer">✕</button></div>
+  <div id="cartItems"></div>
+  <div class="tot" id="shipRow"></div>
+  <div class="tot big" id="totalRow"></div>
+  <button class="wa-btn" onclick="waCheckout()" data-t="checkout">WhatsApp 下单（24h内确认）</button>
+  <div class="or-sep" data-t="or">或</div>
+  <button class="pp-btn" onclick="ppCheckout()" data-t="pp">PayPal / 信用卡在线付</button>
+  <div class="cnote" data-t="note">下单后客服发付款链接（PayPal/信用卡均可），付款后 48 小时内发货。批量/整柜需求请走 B2B 询价。</div>
+</div></div>
+
+<footer>© 2026 MoreYi® — China Guoke Holding Group (Hainan) Co., Ltd. · <a href="/index.html">moreyi-website.vercel.app</a> · changyanju@zcgkkg.com</footer>
+
+<script>
+const T = {"tag":{"zh":"MoreYi® 零售店 · 全球直邮 · 工厂价","en":"MoreYi® Retail Store · Worldwide Shipping · Factory Prices","ru":"MoreYi® розница · доставка по миру · цены завода","de":"MoreYi® Einzelhandel · Weltweite Lieferung · Fabrikpreise","fr":"MoreYi® vente au détail · livraison mondiale · prix usine","ar":"MoreYi® تجزئة · شحن عالمي · أسعار المصنع"},"h1":{"zh":"汽配工厂直营店","en":"The Auto Parts Factory Store","ru":"Магазин автозапчастей от завода","de":"Autoteile-Werkshop","fr":"La boutique usine de pièces auto","ar":"متجر المصنع لقطع غيار السيارات"},"sub":{"zh":"刹车片、火花塞、滤清器、TPMS——MoreYi 工厂直发，DHL 5-12天到家，满 $99 包国际快递","en":"Brake pads, spark plugs, filters, TPMS — shipped direct from the MoreYi factory. DHL 5–12 days to your door. Free shipping over $99.","ru":"Колодки, свечи, фильтры, TPMS — напрямую с завода MoreYi. DHL 5–12 дней. Бесплатно от $99.","de":"Bremsbeläge, Zündkerzen, Filter, TPMS — direkt ab MoreYi-Werk. DHL 5–12 Tage. Ab $99 versandkostenfrei.","fr":"Plaquettes, bougies, filtres, TPMS — expédiés directement de l'usine MoreYi. DHL 5–12 jours. Livraison offerte dès 99 $.","ar":"أحذية فرامل، بواجي، فلاتر، TPMS — شحن مباشر من مصنع MoreYi. DHL خلال 5-12 يومًا. شحن مجاني فوق 99$."},"trust1":{"zh":"🏭 工厂直营 — 没有中间商","en":"🏭 Factory-direct — no middlemen","ru":"🏭 Напрямую с завода","de":"🏭 Direkt ab Werk","fr":"🏭 Direct usine","ar":"🏭 مباشرة من المصنع"},"trust2":{"zh":"🛡️ 12个月质保 · 30天退换","en":"🛡️ 12-month warranty · 30-day returns","ru":"🛡️ Гарантия 12 мес. · возврат 30 дней","de":"🛡️ 12 Monate Garantie · 30 Tage Rückgabe","fr":"🛡️ Garantie 12 mois · retour 30 jours","ar":"🛡️ ضمان 12 شهرًا · إرجاع 30 يومًا"},"trust3":{"zh":"🚚 DHL 全球 5-12 天","en":"🚚 DHL worldwide 5–12 days","ru":"🚚 DHL по миру 5–12 дней","de":"🚚 DHL weltweit 5–12 Tage","fr":"🚚 DHL mondial 5–12 jours","ar":"🚚 DHL عالميًا 5-12 يومًا"},"trust4":{"zh":"🔒 支付宝/PayPal/信用卡","en":"🔒 PayPal / credit card","ru":"🔒 PayPal / карта","de":"🔒 PayPal / Kreditkarte","fr":"🔒 PayPal / carte bancaire","ar":"🔒 PayPal / بطاقة ائتمان"},"add":{"zh":"加入购物车","en":"Add to Cart","ru":"В корзину","de":"In den Warenkorb","fr":"Ajouter au panier","ar":"أضف إلى السلة"},"cart":{"zh":"购物车","en":"Cart","ru":"Корзина","de":"Warenkorb","fr":"Panier","ar":"السلة"},"cart_e":{"zh":"购物车是空的","en":"Your cart is empty","ru":"Корзина пуста","de":"Warenkorb ist leer","fr":"Panier vide","ar":"السلة فارغة"},"subtot":{"zh":"小计","en":"Subtotal","ru":"Сумма","de":"Zwischensumme","fr":"Sous-total","ar":"المجموع الفرعي"},"ship":{"zh":"运费","en":"Shipping","ru":"Доставка","de":"Versand","fr":"Livraison","ar":"الشحن"},"free":{"zh":"免运费","en":"FREE","ru":"БЕСПЛАТНО","de":"GRATIS","fr":"OFFERTE","ar":"مجاني"},"checkout":{"zh":"WhatsApp 下单（24h内确认）","en":"Checkout via WhatsApp (confirmed within 24h)","ru":"Оформить через WhatsApp (подтверждение за 24 ч)","de":"Bestellung per WhatsApp (Bestätigung in 24 Std.)","fr":"Commander via WhatsApp (confirmation sous 24h)","ar":"اطلب عبر واتساب (تأكيد خلال 24 ساعة)"},"or":{"zh":"或","en":"or","ru":"или","de":"oder","fr":"ou","ar":"أو"},"pp":{"zh":"PayPal / 信用卡在线付","en":"Pay by PayPal / card online","ru":"Оплата PayPal / картой","de":"Per PayPal / Karte zahlen","fr":"Payer par PayPal / carte","ar":"ادفع عبر PayPal / بطاقة"},"note":{"zh":"下单后客服发付款链接（PayPal/信用卡均可），付款后 48 小时内发货。批量/整柜需求请走 B2B 询价。","en":"After you send the order, our team sends a secure payment link (PayPal or card). Ships within 48h of payment. For volume orders use the B2B RFQ.","ru":"После отправки заказа мы вышлем платёжную ссылку (PayPal/карта). Отправка в течение 48 ч после оплаты. Для оптовых заказов — B2B-запрос.","de":"Nach Bestellung erhalten Sie einen Zahlungs-Link (PayPal/Karte). Versand innerhalb von 48 Std. nach Zahlung. Für Großbestellungen B2B-Anfrage.","fr":"Après envoi de la commande, recevez un lien de paiement sécurisé (PayPal/carte). Expédition sous 48h après paiement. Pour les volumes, demande B2B.","ar":"بعد إرسال الطلب يصلك رابط دفع آمن (PayPal/بطاقة). الشحن خلال 48 ساعة من الدفع. للكميات الكبيرة استخدم طلب B2B."},"faq1q":{"zh":"发货和运费？","en":"Shipping & fees?","ru":"Доставка и стоимость?","de":"Versand & Kosten?","fr":"Livraison & frais ?","ar":"الشحن والرسوم؟"},"faq1a":{"zh":"DHL 国际快递 5-12 天，费率 $19.99，满 $99 免运费。支持全球 200+ 国家。","en":"DHL express 5–12 days, flat $19.99, free over $99. We ship to 200+ countries.","ru":"DHL экспресс 5–12 дней, $19.99, бесплатно от $99. Доставка в 200+ стран.","de":"DHL Express 5–12 Tage, 19,99 $, ab 99 $ gratis. Versand in 200+ Länder.","fr":"DHL express 5–12 jours, 19,99 $, offert dès 99 $. Expédition dans 200+ pays.","ar":"DHL سريع 5-12 يومًا، 19.99$، مجاني فوق 99$. نشحن إلى أكثر من 200 دولة."},"faq2q":{"zh":"怎么知道适不适合我的车？","en":"How do I check fitment?","ru":"Как проверить совместимость?","de":"Wie prüfe ich die Passung?","fr":"Comment vérifier la compatibilité ?","ar":"كيف أتحقق من التوافق؟"},"faq2a":{"zh":"下单前把车型/年份/VIN 发给 WhatsApp 客服，免费查适配。MoreYi 覆盖主流车型 6700+ 品种。","en":"Send your car model/year/VIN to our WhatsApp before ordering — free fitment check. 6,700+ fitments in the brake line alone.","ru":"Отправьте модель/год/VIN в WhatsApp — бесплатная проверка. 6700+ применений только в тормозной линии.","de":"Modell/Jahr/VIN per WhatsApp senden — kostenlose Prüfung. 6700+ Passungen nur bei Bremsen.","fr":"Envoyez modèle/année/VIN sur WhatsApp — vérification gratuite. 6 700+ applications rien que pour les freins.","ar":"أرسل موديل سيارتك/سنة الصنع/VIN عبر واتساب — فحص مجاني. أكثر من 6700 تطبيق في خط الفرامل وحده."},"faq3q":{"zh":"质保和退换？","en":"Warranty & returns?","ru":"Гарантия и возврат?","de":"Garantie & Rückgabe?","fr":"Garantie & retours ?","ar":"الضمان والإرجاع؟"},"faq3a":{"zh":"12 个月质量质保，质量问题免费补发运费我们出；30 天无理由退换（未安装）。","en":"12-month quality warranty — free replacement, freight on us. 30-day returns (uninstalled).","ru":"12 месяцев гарантии — бесплатная замена, фрахт за наш счёт. Возврат 30 дней (не установлено).","de":"12 Monate Garantie — kostenloser Ersatz, Fracht übernehmen wir. 30 Tage Rückgabe (nicht eingebaut).","fr":"Garantie 12 mois — remplacement gratuit, fret à notre charge. Retour 30 jours (non monté).","ar":"ضمان 12 شهرًا — استبدال مجاني والشحن علينا. إرجاع خلال 30 يومًا (غير مركّب)."},"b2b":{"zh":"批量采购？去 B2B 微商城 →","en":"Buying in volume? B2B Micro-Mall →","ru":"Оптом? B2B магазин →","de":"Großmengen? B2B-Shop →","fr":"Volume ? Boutique B2B →","ar":"شراء بالجملة؟ متجر B2B →"}};
+const SKUS = [{"id":19,"name":"Ceramic Brake Pads Set","price":39.99,"was":54.99,"tag":"BEST SELLER","note":"per axle set (4 pads)","zh":"刹车片","en":"Brake Pads"},{"id":20,"name":"Vented Brake Disc Pair","price":45.99,"was":59.99,"tag":"PAIR DEAL","note":"per pair, ECE R90","zh":"刹车盘","en":"Brake Disc / Rotor"},{"id":44,"name":"Iridium Spark Plug","price":9.99,"was":13.99,"tag":"PACK OF 4","note":"per plug · 4-pack $34.99","zh":"发电机","en":"Alternator"},{"id":72,"name":"Oil Filter Spin-On","price":8.99,"was":11.99,"tag":"","note":"7000+ fitments","zh":"燃油滤清器","en":"Fuel Filter"},{"id":73,"name":"Cabin Air Filter Carbon","price":14.99,"was":18.99,"tag":"PM2.5","note":"activated carbon","zh":"空调滤清器","en":"Cabin Air Filter"},{"id":70,"name":"Air Filter Panel/Cyl","price":12.99,"was":16.99,"tag":"","note":"ISO/TS16949","zh":"机油滤清器","en":"Oil Filter"},{"id":71,"name":"Fuel Filter (Gas/Diesel)","price":11.99,"was":15.99,"tag":"","note":"water-sep option","zh":"空气滤清器","en":"Air Filter"},{"id":47,"name":"TPMS Sensor 433MHz","price":24.99,"was":32.99,"tag":"HOT","note":"program to vehicle","zh":"蓄电池","en":"Battery"},{"id":50,"name":"Ignition Coil Pen-Type","price":32.99,"was":42.99,"tag":"","note":"OE-match quality","zh":"冷凝器","en":"Condenser"},{"id":61,"name":"LED Headlight Bulb Pair","price":59.99,"was":79.99,"tag":"NEW","note":"6000K, CANbus-free","zh":"格栅","en":"Grille"}];
+const FREE_SHIP = 99.0;
+const EMOJI = {19:'🛑',20:'⚙️',44:'⚡',72:'🧴',73:'🌬️',70:'🧹',71:'⛽',47:'📡',50:'🔌',61:'💡'};
+let lang = localStorage.getItem('shop_lang') || 'zh';
+let cart = JSON.parse(localStorage.getItem('shop_cart') || '{}'); // sku id (product pid) -> qty
+
+function L(k){ const v = T[k]; return v ? (v[lang] || v.en || v.zh) : k; }
+function money(n){ return '$' + n.toFixed(2); }
+function setLang(l){ lang = l; localStorage.setItem('shop_lang', l); applyLang(); }
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-t]').forEach(el => el.textContent = L(el.dataset.t));
+  document.querySelector('.fab').innerHTML = '🛒 ' + esc(L('cart')) + ' · $<span id="fabTotal">' + total().toFixed(2) + '</span>';
+  render(); renderCart();
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function render(){
+  document.getElementById('grid').innerHTML = SKUS.map(s => `
+    <div class="prod">
+      ${s.tag ? `<span class="ptag">${s.tag}</span>` : ''}
+      <div class="pemoji">${EMOJI[s.id] || '🔧'}</div>
+      <div class="pname">${esc(s.name)}</div>
+      <div class="pzh">${lang==='zh'?esc(s.zh):esc(s.en)}</div>
+      <div class="pnote">${esc(s.note)}</div>
+      <div class="pprice"><span class="now">${money(s.price)}</span><span class="was">${money(s.was)}</span></div>
+      <button class="addbtn" onclick="add(${s.id})">🛒 ${esc(L('add'))}</button>
+    </div>`).join('');
+}
+
+function add(pid){ cart[pid] = (cart[pid]||0) + 1; persist(); renderCart(); }
+function ch(pid, d){ cart[pid] = (cart[pid]||0) + d; if(cart[pid] <= 0) delete cart[pid]; persist(); renderCart(); }
+function rm(pid){ delete cart[pid]; persist(); renderCart(); }
+function persist(){ localStorage.setItem('shop_cart', JSON.stringify(cart)); }
+function subtotal(){ return Math.round(Object.entries(cart).reduce((s,[pid,q]) => s + (SKUS.find(x=>x.id===+pid)?.price||0)*q, 0) * 100) / 100; }
+function total(){ const st = subtotal(); return Math.round((st >= FREE_SHIP || st === 0 ? st : st + 19.99) * 100) / 100; }
+
+function renderCart(){
+  const box = document.getElementById('cartItems');
+  const ids = Object.keys(cart);
+  document.getElementById('fabTotal').textContent = total().toFixed(2);
+  if(!ids.length){
+    box.innerHTML = `<p style="color:var(--text2);padding:16px 0;text-align:center">${esc(L('cart_e'))}</p>`;
+    document.getElementById('shipRow').innerHTML = '';
+    document.getElementById('totalRow').innerHTML = '';
+    return;
+  }
+  box.innerHTML = ids.map(pid => {
+    const s = SKUS.find(x=>x.id===+pid);
+    return `<div class="ci">
+      <div class="nm">${esc(s.name)}<span>${lang==='zh'?esc(s.zh):esc(s.en)} · $${s.price.toFixed(2)}</span></div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="qty"><button onclick="ch(${pid},-1)">−</button><input value="${cart[pid]}" readonly><button onclick="ch(${pid},1)">＋</button></span>
+        <span class="ln">${money(s.price * cart[pid])}</span>
+        <button onclick="rm(${pid})" style="background:none;border:none;color:#b44;cursor:pointer">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+  const st = subtotal();
+  const ship = st >= FREE_SHIP ? L('free') : money(19.99);
+  document.getElementById('shipRow').innerHTML = `<span>${esc(L('subtot'))}</span><span>${money(st)}</span>`;
+  document.getElementById('totalRow').innerHTML = `<span>${esc(L('ship'))}: ${ship}</span><span>${esc(L('subtot'))} <b>${money(total())}</b></span>`;
+}
+
+function orderText(){
+  const lines = [lang === 'zh' ? 'MoreYi 零售店订单：' : 'MoreYi Shop order:'];
+  for (const [pid, q] of Object.entries(cart)) {
+    const s = SKUS.find(x=>x.id===+pid);
+    lines.push(`• ${s.name} (${s.en}) x${q} = $${(s.price*q).toFixed(2)}`);
+  }
+  const st = subtotal();
+  lines.push(st >= FREE_SHIP ? `Shipping: FREE · TOTAL: $${total().toFixed(2)}` : `Shipping: $19.99 · TOTAL: $${total().toFixed(2)}`);
+  lines.push(lang === 'zh' ? '请发付款链接。' : 'Please send the payment link.');
+  return lines.join('\n');
+}
+function waCheckout(){
+  if(!Object.keys(cart).length) return;
+  window.open('https://wa.me/8613805402111?text=' + encodeURIComponent(orderText()), '_blank');
+}
+function ppCheckout(){
+  if(!Object.keys(cart).length) return;
+  // TODO: replace with real PayPal / Stripe payment link once account is provided
+  const msg = orderText() + '\n(PayPal/card payment link request)';
+  window.open('https://wa.me/8613805402111?text=' + encodeURIComponent(msg), '_blank');
+}
+function toggleCart(){ document.getElementById('cartbar').classList.toggle('open'); }
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('langSel').value = lang;
+  applyLang();
+});
+</script>
+</body>
+</html>

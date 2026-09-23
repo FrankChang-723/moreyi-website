@@ -99,3 +99,10 @@ IATF16949 (quality management), DOT/FMVSS (USA), ECE/E-mark (EU), CCC (China), G
 - Referral commission: 2% of referred dealer's first-year order value as goods credit.
 - First dealer order from USD 500 (mixed); samples from 1 pc; reorders no minimum.
 - Quality: 100% outbound inspection + third-party AQL 2.5; free replacement within 12 months.
+
+## Retail Store (B2C)
+
+- Factory-direct retail storefront: https://moreyi-website.vercel.app/shop.html
+- 10 retail SKUs: ceramic brake pads $39.99/set, vented brake discs $45.99/pair, iridium spark plugs $9.99, oil/cabin/air/fuel filters $8.99–14.99, TPMS sensors $24.99, ignition coils $32.99, LED headlight bulbs $59.99.
+- Free DHL shipping over $99 (flat $19.99 otherwise), 5–12 days worldwide, 200+ countries.
+- Checkout via WhatsApp (payment link sent by team); 12-month warranty, 30-day returns; free fitment check by car model/VIN.
