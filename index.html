@@ -51,7 +51,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
 .card{background:var(--bg2);border:1px solid rgba(184,134,11,0.15);border-radius:var(--radius);padding:20px;transition:all .3s;display:none}
 .card.show{display:block}
 .card:hover{border-color:var(--gold-dim);transform:translateY(-2px)}
-.card .prod-img{text-align:center;margin-bottom:12px}
+.card .prod-img{text-align:center;margin-bottom:12px}.prod-img img{width:100%;max-width:210px;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid rgba(184,134,11,0.25);background:#111}
 .card .badge{display:inline-block;background:var(--gold-dim);color:var(--gold);font-size:0.7rem;padding:2px 8px;border-radius:10px;margin-bottom:8px}
 .card h3{font-size:1rem;color:#fff;margin-bottom:4px}
 .card .en-name{font-size:0.8rem;color:var(--text2);margin-bottom:10px}
@@ -352,7 +352,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <span class="cat-tab" data-cat="bearing" onclick="switchCat(this)" data-i18n-cat="bearing">📐 📐 轴承密封</span>
       <span class="cat-tab" data-cat="filter" onclick="switchCat(this)" data-i18n-cat="filter">🧹 🧹 滤清器</span></div>
     <div class="product-grid"><div class="card" data-cat="brake">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p1.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_1_title">锻造铝合金轮毂</h3>
       <div class="en-name">Forged Aluminum Alloy Wheels</div>
@@ -362,7 +362,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-1" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="wheels">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p2.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_2_title">防爆泄气保用内衬</h3>
       <div class="en-name">Runflat / Blast-Proof Inserts</div>
@@ -372,7 +372,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-2" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="wheels">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p3.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_3_title">轮毂总成套件</h3>
       <div class="en-name">Complete Wheel Assembly</div>
@@ -382,7 +382,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-3" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="wheels">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p4.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_4_title">钢制车轮</h3>
       <div class="en-name">Steel Wheels</div>
@@ -392,7 +392,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-4" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="wheels">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p5.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_5_title">全钢子午线轮胎</h3>
       <div class="en-name">All-Steel Radial Tires</div>
@@ -402,7 +402,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-5" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="engine">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p6.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_6_title">活塞</h3>
       <div class="en-name">Piston</div>
@@ -412,7 +412,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-6" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="engine">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p7.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_7_title">气缸套</h3>
       <div class="en-name">Cylinder Liner</div>
@@ -422,7 +422,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-7" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="engine">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p8.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_8_title">曲轴</h3>
       <div class="en-name">Crankshaft</div>
@@ -432,7 +432,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-8" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="engine">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p9.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_9_title">连杆</h3>
       <div class="en-name">Connecting Rod</div>
@@ -442,7 +442,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-9" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="engine">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p10.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_10_title">涡轮增压器</h3>
       <div class="en-name">Turbocharger</div>
@@ -452,7 +452,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-10" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="engine">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p11.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_11_title">机油泵</h3>
       <div class="en-name">Oil Pump</div>
@@ -462,7 +462,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-11" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="engine">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p12.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_12_title">发动机缸体</h3>
       <div class="en-name">Engine Block</div>
@@ -472,7 +472,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-12" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="drivetrain">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p13.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_13_title">万向节</h3>
       <div class="en-name">Universal / CV Joint</div>
@@ -482,7 +482,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-13" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="drivetrain">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p14.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_14_title">传动轴</h3>
       <div class="en-name">Drive Shaft / CV Axle</div>
@@ -492,7 +492,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-14" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="drivetrain">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p15.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_15_title">变速箱齿轮</h3>
       <div class="en-name">Transmission Gears</div>
@@ -502,7 +502,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-15" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="drivetrain">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p16.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_16_title">差速器齿轮</h3>
       <div class="en-name">Differential Gears</div>
@@ -512,7 +512,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-16" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="brake">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p17.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_17_title">离合器总成</h3>
       <div class="en-name">Clutch Assembly</div>
@@ -522,7 +522,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-17" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="brake">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p18.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_18_title">变速箱总成</h3>
       <div class="en-name">Transmission Assembly</div>
@@ -532,7 +532,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-18" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p19.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_19_title">刹车片</h3>
       <div class="en-name">Brake Pads</div>
@@ -542,7 +542,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-19" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p20.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_20_title">刹车盘</h3>
       <div class="en-name">Brake Disc / Rotor</div>
@@ -552,7 +552,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-20" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="cooling">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p21.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_21_title">刹车卡钳</h3>
       <div class="en-name">Brake Caliper</div>
@@ -562,7 +562,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <div class="price">询价<small>/件</small></div>
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-21" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div><div class="card" data-cat="fuel">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p22.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_22_title">刹车油管</h3>
       <div class="en-name">Brake Hose / Lines</div>
@@ -573,7 +573,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-22" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="brake">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p23.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_23_title">制动总泵/真空助力器</h3>
       <div class="en-name">Master Cylinder / Booster</div>
@@ -584,7 +584,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-23" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p24.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_24_title">减震器</h3>
       <div class="en-name">Shock Absorber</div>
@@ -595,7 +595,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-24" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p25.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_25_title">悬挂摆臂</h3>
       <div class="en-name">Control Arm</div>
@@ -606,7 +606,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-25" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p26.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_26_title">转向拉杆</h3>
       <div class="en-name">Tie Rod</div>
@@ -617,7 +617,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-26" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p27.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_27_title">球头</h3>
       <div class="en-name">Ball Joint</div>
@@ -628,7 +628,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-27" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p28.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_28_title">转向机总成</h3>
       <div class="en-name">Steering Gear / Rack</div>
@@ -639,7 +639,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-28" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="susp">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p29.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_29_title">稳定杆</h3>
       <div class="en-name">Stabilizer Bar</div>
@@ -650,7 +650,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-29" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="cooling">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p30.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_30_title">散热器</h3>
       <div class="en-name">Radiator</div>
@@ -661,7 +661,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-30" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="cooling">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p31.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_31_title">中冷器</h3>
       <div class="en-name">Intercooler</div>
@@ -672,7 +672,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-31" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="cooling">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p32.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_32_title">水泵</h3>
       <div class="en-name">Water Pump</div>
@@ -683,7 +683,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-32" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="cooling">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p33.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_33_title">节温器</h3>
       <div class="en-name">Thermostat</div>
@@ -694,7 +694,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-33" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="cooling">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p34.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_34_title">冷却风扇</h3>
       <div class="en-name">Cooling Fan Assembly</div>
@@ -705,7 +705,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-34" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="cooling">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p35.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_35_title">机油冷却器</h3>
       <div class="en-name">Oil Cooler</div>
@@ -716,7 +716,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-35" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="fuel">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p36.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_36_title">喷油器</h3>
       <div class="en-name">Fuel Injector</div>
@@ -727,7 +727,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-36" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="fuel">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p37.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_37_title">高压油泵</h3>
       <div class="en-name">High-Pressure Fuel Pump</div>
@@ -738,7 +738,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-37" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="fuel">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p38.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_38_title">高压油轨</h3>
       <div class="en-name">Common Rail / Fuel Rail</div>
@@ -749,7 +749,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-38" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="fuel">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p39.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_39_title">燃油泵总成</h3>
       <div class="en-name">Fuel Pump Module</div>
@@ -760,7 +760,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-39" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="fuel">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p40.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_40_title">燃油滤清器底座</h3>
       <div class="en-name">Fuel Filter Housing</div>
@@ -771,7 +771,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-40" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="fuel">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p41.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_41_title">进气歧管</h3>
       <div class="en-name">Intake Manifold</div>
@@ -782,7 +782,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-41" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="elect">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p42.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_42_title">火花塞</h3>
       <div class="en-name">Spark Plug</div>
@@ -793,7 +793,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-42" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="elect">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p43.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_43_title">起动机</h3>
       <div class="en-name">Starter Motor</div>
@@ -804,7 +804,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-43" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="elect">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p44.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_44_title">发电机</h3>
       <div class="en-name">Alternator</div>
@@ -815,7 +815,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-44" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="elect">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p45.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_45_title">传感器/TPMS</h3>
       <div class="en-name">Sensors / TPMS</div>
@@ -826,7 +826,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-45" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="elect">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p46.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_46_title">线束</h3>
       <div class="en-name">Wiring Harness</div>
@@ -837,7 +837,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-46" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="elect">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p47.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_47_title">蓄电池</h3>
       <div class="en-name">Battery</div>
@@ -848,7 +848,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-47" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="elect">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p48.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_48_title">点火线圈</h3>
       <div class="en-name">Ignition Coil</div>
@@ -859,7 +859,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-48" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="ac">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p49.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_49_title">空调压缩机</h3>
       <div class="en-name">A/C Compressor</div>
@@ -870,7 +870,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-49" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="ac">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p50.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_50_title">冷凝器</h3>
       <div class="en-name">Condenser</div>
@@ -881,7 +881,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-50" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="ac">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p51.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_51_title">蒸发器</h3>
       <div class="en-name">Evaporator</div>
@@ -892,7 +892,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-51" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="ac">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p52.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_52_title">膨胀阀</h3>
       <div class="en-name">Expansion Valve</div>
@@ -903,7 +903,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-52" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="ac">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p53.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_53_title">HVAC总成</h3>
       <div class="en-name">HVAC Assembly</div>
@@ -914,7 +914,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-53" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="exhaust">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p54.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_54_title">三元催化器</h3>
       <div class="en-name">Catalytic Converter</div>
@@ -925,7 +925,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-54" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="exhaust">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p55.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_55_title">消声器</h3>
       <div class="en-name">Muffler / Silencer</div>
@@ -936,7 +936,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-55" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="exhaust">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p56.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_56_title">排气歧管</h3>
       <div class="en-name">Exhaust Manifold</div>
@@ -947,7 +947,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-56" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="exhaust">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p57.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_57_title">SCR尿素喷射系统</h3>
       <div class="en-name">SCR / DEF System</div>
@@ -958,7 +958,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-57" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="exhaust">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p58.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_58_title">排气管总成</h3>
       <div class="en-name">Exhaust Pipe Assembly</div>
@@ -969,7 +969,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-58" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="body">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p59.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_59_title">车灯</h3>
       <div class="en-name">Automotive Lamps</div>
@@ -980,7 +980,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-59" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="body">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p60.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_60_title">保险杠</h3>
       <div class="en-name">Bumper</div>
@@ -991,7 +991,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-60" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="body">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p61.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_61_title">格栅</h3>
       <div class="en-name">Grille</div>
@@ -1002,7 +1002,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-61" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="body">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p62.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_62_title">后视镜</h3>
       <div class="en-name">Rearview Mirror</div>
@@ -1013,7 +1013,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-62" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="body">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p63.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_63_title">玻璃升降器</h3>
       <div class="en-name">Window Regulator</div>
@@ -1024,7 +1024,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-63" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="bearing">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p64.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_64_title">轮毂轴承单元</h3>
       <div class="en-name">Wheel Hub Bearing Unit</div>
@@ -1035,7 +1035,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-64" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="bearing">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p65.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_65_title">离合器分离轴承</h3>
       <div class="en-name">Clutch Release Bearing</div>
@@ -1046,7 +1046,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-65" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="bearing">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p66.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_66_title">圆锥滚子轴承</h3>
       <div class="en-name">Tapered Roller Bearing</div>
@@ -1057,7 +1057,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-66" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="bearing">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p67.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_67_title">油封</h3>
       <div class="en-name">Oil Seals</div>
@@ -1068,7 +1068,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-67" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="bearing">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p68.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_68_title">O型圈/密封垫</h3>
       <div class="en-name">O-Rings / Gaskets</div>
@@ -1079,7 +1079,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-68" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="bearing">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p69.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_69_title">涨紧轮/惰轮轴承</h3>
       <div class="en-name">Tensioner / Idler Bearing</div>
@@ -1090,7 +1090,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-69" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="filter">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p70.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_70_title">机油滤清器</h3>
       <div class="en-name">Oil Filter</div>
@@ -1101,7 +1101,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-70" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="filter">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p71.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_71_title">空气滤清器</h3>
       <div class="en-name">Air Filter</div>
@@ -1112,7 +1112,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-71" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="filter">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p72.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_72_title">燃油滤清器</h3>
       <div class="en-name">Fuel Filter</div>
@@ -1123,7 +1123,7 @@ section h2::after{content:'';display:block;width:60px;height:2px;background:var(
       <a href="#contact" class="btn btn-primary card-btn" data-product="MoreYi-72" onclick="prefillForm(this)" data-i18n="button_5">微信</a>
     </div>
 <div class="card" data-cat="filter">
-      <div class="prod-img"><svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="18" fill="none" stroke="#b8860b" stroke-width="3"/></svg></div>
+      <div class="prod-img"><img loading="lazy" src="/img/products/p73.jpg" alt="MoreYi product" onerror="this.outerHTML='<svg viewBox=\'0 0 48 48\' width=\'48\' height=\'48\'><circle cx=\'24\' cy=\'24\' r=\'18\' fill=\'none\' stroke=\'#b8860b\' stroke-width=\'3\'/></svg>'"></div>
       <span class="badge">MoreYi®</span>
       <h3 data-i18n="product_73_title">空调滤清器</h3>
       <div class="en-name">Cabin Air Filter</div>
